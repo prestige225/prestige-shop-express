@@ -84,16 +84,50 @@
         .carousel-container {
             position: relative;
             overflow: hidden;
+            touch-action: pan-y pinch-zoom;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        .carousel-container.dragging {
+            cursor: grabbing;
+            cursor: -webkit-grabbing;
+        }
+        
+        .carousel-container:not(.dragging) {
+            cursor: grab;
+            cursor: -webkit-grab;
         }
         
         .carousel-track {
             display: flex;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        
+        .carousel-track.no-transition {
+            transition: none;
         }
         
         .carousel-slide {
             min-width: 100%;
             position: relative;
+            pointer-events: none;
+        }
+        
+        .carousel-slide img {
+            pointer-events: auto;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
         }
         
         .carousel-nav {
@@ -114,12 +148,21 @@
             z-index: 20;
             font-size: 16px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         
-        .carousel-nav:hover {
+        .carousel-nav:hover,
+        .carousel-nav:active,
+        .carousel-nav:focus {
             background: rgba(0,0,0,0.9);
             transform: translateY(-50%) scale(1.15);
             box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            outline: none;
         }
         
         .carousel-prev {
@@ -128,6 +171,21 @@
         
         .carousel-next {
             right: 8px;
+        }
+        
+        /* Amélioration pour mobile */
+        @media (max-width: 768px) {
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+                background: rgba(0,0,0,0.8);
+            }
+            
+            .carousel-nav:active {
+                transform: translateY(-50%) scale(1.1);
+                background: rgba(0,0,0,0.95);
+            }
         }
         
         .carousel-indicators {
@@ -179,6 +237,21 @@
             justify-content: center;
             backdrop-filter: blur(15px);
             animation: fadeIn 0.3s ease-out;
+            touch-action: pan-y pinch-zoom;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        .zoom-overlay.dragging {
+            cursor: grabbing;
+            cursor: -webkit-grabbing;
+        }
+        
+        .zoom-overlay:not(.dragging) {
+            cursor: grab;
+            cursor: -webkit-grab;
         }
         
         @keyframes fadeIn {
@@ -208,6 +281,25 @@
             border-radius: 15px;
             box-shadow: 0 25px 80px rgba(0,0,0,0.7);
             transition: all 0.3s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            /* user-drag: none; */
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+        
+        @media (max-width: 768px) {
+            .zoom-image {
+                max-width: 95vw;
+                max-height: 85vh;
+                border-radius: 10px;
+            }
         }
         
         .zoom-close {
@@ -228,12 +320,37 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255,255,255,0.2);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         
-        .zoom-close:hover {
+        .zoom-close:hover,
+        .zoom-close:active,
+        .zoom-close:focus {
             background: rgba(255,255,255,0.25);
             transform: scale(1.15);
             border-color: rgba(255,255,255,0.4);
+            outline: none;
+        }
+        
+        @media (max-width: 768px) {
+            .zoom-close {
+                top: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+                background: rgba(255,255,255,0.2);
+            }
+            
+            .zoom-close:active {
+                transform: scale(1.1);
+                background: rgba(255,255,255,0.35);
+            }
         }
         
         .zoom-nav {
@@ -254,12 +371,21 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255,255,255,0.2);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         
-        .zoom-nav:hover {
+        .zoom-nav:hover,
+        .zoom-nav:active,
+        .zoom-nav:focus {
             background: rgba(255,255,255,0.25);
             transform: translateY(-50%) scale(1.15);
             border-color: rgba(255,255,255,0.4);
+            outline: none;
         }
         
         .zoom-prev {
@@ -268,6 +394,29 @@
         
         .zoom-next {
             right: -90px;
+        }
+        
+        /* Amélioration pour mobile */
+        @media (max-width: 768px) {
+            .zoom-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                background: rgba(255,255,255,0.2);
+            }
+            
+            .zoom-prev {
+                left: 15px;
+            }
+            
+            .zoom-next {
+                right: 15px;
+            }
+            
+            .zoom-nav:active {
+                transform: translateY(-50%) scale(1.1);
+                background: rgba(255,255,255,0.35);
+            }
         }
         
         .zoom-indicator {
@@ -284,6 +433,21 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        @media (max-width: 768px) {
+            .zoom-indicator {
+                bottom: 20px;
+                font-size: 14px;
+                padding: 8px 16px;
+                border-radius: 20px;
+                background: rgba(0,0,0,0.8);
+            }
         }
         
         .line-clamp-3 {
@@ -303,7 +467,7 @@
             <div class="flex items-center justify-between py-4">
                 <div class="flex items-center space-x-3">
                     <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden bg-white shadow-lg flex-shrink-0">
-                        <img src="images/prestige shop.png" 
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=100&h=100&fit=crop&crop=center" 
                              alt="Digit Shop Express Logo" 
                              class="w-full h-full object-cover">
                     </div>
@@ -644,7 +808,7 @@
                         <i class="fab fa-whatsapp text-2xl"></i>
                     </div>
                     <h4 class="text-xl font-bold mb-2">WhatsApp</h4>
-                    <p class="text-gray-300">+2250150241670</p>
+                    <p class="text-gray-300">+225015O241670</p>
                 </div>
                 
                 <div class="text-center">
@@ -660,7 +824,7 @@
                         <i class="fas fa-map-marker-alt text-2xl"></i>
                     </div>
                     <h4 class="text-xl font-bold mb-2">Localisation</h4>
-                    <p class="text-gray-300">Abidjan, Côte d'Ivoire</p>
+                    <p class="text-gray-300">Abidjan, Cote d'ivoire</p>
                 </div>
             </div>
             
@@ -700,7 +864,7 @@
             
             <div class="text-center mt-12 pt-8 border-t border-gray-700">
                 <div class="mb-4">
-                    <p class="text-2xl font-bold text-yellow-300 mb-2">✨ "Shoppez malin. Shoppez Prestige." ✨</p>
+                    <p class="text-2xl font-bold text-yellow-300 mb-2">✨ "Shoppez malin. Shoppez Prestige. " ✨</p>
                     <p class="text-gray-300 italic">Ensemble, construisons votre avenir avec les meilleurs produits</p>
                 </div>
                 <p>&copy; 2024 Digit Shop Express. Tous droits réservés.</p>
@@ -1035,10 +1199,14 @@
                         </div>
                         
                         ${product.images.length > 1 ? `
-                            <button class="carousel-nav carousel-prev" onclick="previousImage(${product.id})">
+                            <button class="carousel-nav carousel-prev" 
+                                    onclick="previousImage(${product.id})" 
+                                    ontouchend="event.preventDefault(); previousImage(${product.id})">
                                 <i class="fas fa-chevron-left"></i>
                             </button>
-                            <button class="carousel-nav carousel-next" onclick="nextImage(${product.id})">
+                            <button class="carousel-nav carousel-next" 
+                                    onclick="nextImage(${product.id})"
+                                    ontouchend="event.preventDefault(); nextImage(${product.id})">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
                             
@@ -1553,39 +1721,258 @@
             const container = document.querySelector(`#carousel-${productId}`).closest('.carousel-container');
             if (container) {
                 addTouchNavigation(container, productId);
+                
+                // Ajouter des gestionnaires d'événements supplémentaires pour mobile
+                const prevBtn = container.querySelector('.carousel-prev');
+                const nextBtn = container.querySelector('.carousel-next');
+                
+                if (prevBtn) {
+                    // Gestionnaire tactile spécifique
+                    prevBtn.addEventListener('touchstart', function(e) {
+                        e.stopPropagation();
+                        this.style.transform = 'translateY(-50%) scale(1.1)';
+                        this.style.background = 'rgba(0,0,0,0.95)';
+                    }, { passive: true });
+                    
+                    prevBtn.addEventListener('touchend', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        this.style.transform = 'translateY(-50%) scale(1.15)';
+                        this.style.background = 'rgba(0,0,0,0.9)';
+                        previousImage(productId);
+                        
+                        // Reset style après un délai
+                        setTimeout(() => {
+                            this.style.transform = 'translateY(-50%)';
+                            this.style.background = 'rgba(0,0,0,0.7)';
+                        }, 150);
+                    }, { passive: false });
+                }
+                
+                if (nextBtn) {
+                    // Gestionnaire tactile spécifique
+                    nextBtn.addEventListener('touchstart', function(e) {
+                        e.stopPropagation();
+                        this.style.transform = 'translateY(-50%) scale(1.1)';
+                        this.style.background = 'rgba(0,0,0,0.95)';
+                    }, { passive: true });
+                    
+                    nextBtn.addEventListener('touchend', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        this.style.transform = 'translateY(-50%) scale(1.15)';
+                        this.style.background = 'rgba(0,0,0,0.9)';
+                        nextImage(productId);
+                        
+                        // Reset style après un délai
+                        setTimeout(() => {
+                            this.style.transform = 'translateY(-50%)';
+                            this.style.background = 'rgba(0,0,0,0.7)';
+                        }, 150);
+                    }, { passive: false });
+                }
             }
         }
         
         // Navigation tactile pour le carousel
         function addTouchNavigation(container, productId) {
             let startX = 0;
+            let startY = 0;
+            let currentX = 0;
             let isDragging = false;
+            let hasMoved = false;
+            let dragDistance = 0;
+            const track = container.querySelector('.carousel-track');
+            const state = carouselStates[productId] || { currentIndex: 0 };
+            
+            // Variables pour l'animation de défilement
+            let initialTransform = 0;
+            let isAnimating = false;
             
             container.addEventListener('touchstart', (e) => {
+                if (isAnimating) return;
+                
                 startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                currentX = startX;
                 isDragging = true;
+                hasMoved = false;
+                dragDistance = 0;
+                
+                // Récupérer la position actuelle du carousel
+                initialTransform = -state.currentIndex * 100;
+                
+                // Désactiver la transition pendant le drag
+                if (track) {
+                    track.style.transition = 'none';
+                }
+                
+                // Ajouter une classe pour indiquer le drag
+                container.classList.add('dragging');
             }, { passive: true });
             
             container.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
+                if (!isDragging || isAnimating) return;
+                
+                currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const diffX = currentX - startX;
+                const diffY = Math.abs(currentY - startY);
+                
+                // Si le mouvement horizontal est plus important que vertical
+                if (Math.abs(diffX) > diffY && Math.abs(diffX) > 10) {
+                    e.preventDefault();
+                    hasMoved = true;
+                    dragDistance = diffX;
+                    
+                    // Calculer le pourcentage de déplacement
+                    const containerWidth = container.offsetWidth;
+                    const dragPercent = (diffX / containerWidth) * 100;
+                    
+                    // Appliquer la transformation en temps réel avec résistance aux bords
+                    let newTransform = initialTransform + dragPercent;
+                    
+                    // Ajouter une résistance aux bords
+                    const product = products.find(p => p.id === productId);
+                    const maxIndex = product ? product.images.length - 1 : 0;
+                    
+                    if (state.currentIndex === 0 && diffX > 0) {
+                        // Résistance au début
+                        newTransform = initialTransform + (dragPercent * 0.3);
+                    } else if (state.currentIndex === maxIndex && diffX < 0) {
+                        // Résistance à la fin
+                        newTransform = initialTransform + (dragPercent * 0.3);
+                    }
+                    
+                    if (track) {
+                        track.style.transform = `translateX(${newTransform}%)`;
+                    }
+                    
+                    // Feedback visuel sur les indicateurs
+                    updateDragIndicators(container, diffX, containerWidth);
+                }
             }, { passive: false });
             
             container.addEventListener('touchend', (e) => {
-                if (!isDragging) return;
+                if (!isDragging || isAnimating) return;
+                
                 isDragging = false;
+                container.classList.remove('dragging');
                 
-                const endX = e.changedTouches[0].clientX;
-                const diffX = startX - endX;
+                // Réactiver la transition
+                if (track) {
+                    track.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                }
                 
-                if (Math.abs(diffX) > 50) { // Seuil de déclenchement
-                    if (diffX > 0) {
-                        nextImage(productId);
-                    } else {
+                if (!hasMoved) {
+                    // Simple tap - revenir à la position normale
+                    if (track) {
+                        track.style.transform = `translateX(${initialTransform}%)`;
+                    }
+                    return;
+                }
+                
+                const containerWidth = container.offsetWidth;
+                const threshold = containerWidth * 0.25; // 25% de la largeur pour déclencher
+                const velocity = Math.abs(dragDistance);
+                
+                // Décider si on change d'image
+                let shouldChange = Math.abs(dragDistance) > threshold || velocity > 50;
+                
+                if (shouldChange) {
+                    isAnimating = true;
+                    
+                    if (dragDistance > 0) {
+                        // Swipe vers la droite - image précédente
                         previousImage(productId);
+                    } else {
+                        // Swipe vers la gauche - image suivante
+                        nextImage(productId);
+                    }
+                    
+                    // Feedback haptique
+                    if (window.navigator && window.navigator.vibrate) {
+                        window.navigator.vibrate(50);
+                    }
+                    
+                    // Réinitialiser l'animation après la transition
+                    setTimeout(() => {
+                        isAnimating = false;
+                    }, 300);
+                } else {
+                    // Revenir à la position actuelle
+                    if (track) {
+                        track.style.transform = `translateX(${initialTransform}%)`;
                     }
                 }
+                
+                // Nettoyer les indicateurs
+                cleanupDragIndicators(container);
             }, { passive: true });
+            
+            // Empêcher le comportement par défaut sur les boutons de navigation
+            const navButtons = container.querySelectorAll('.carousel-nav');
+            navButtons.forEach(button => {
+                button.addEventListener('touchstart', (e) => {
+                    e.stopPropagation();
+                }, { passive: true });
+                
+                button.addEventListener('touchend', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }, { passive: false });
+            });
+        }
+        
+        // Feedback visuel pendant le drag
+        function updateDragIndicators(container, dragDistance, containerWidth) {
+            const dots = container.querySelectorAll('.carousel-dot');
+            const dragPercent = Math.abs(dragDistance) / containerWidth;
+            
+            dots.forEach((dot, index) => {
+                const isActive = dot.classList.contains('active');
+                
+                if (isActive) {
+                    // Réduire l'opacité du dot actuel pendant le drag
+                    dot.style.opacity = Math.max(0.3, 1 - dragPercent * 2);
+                } else {
+                    // Augmenter l'opacité du prochain dot
+                    const isNext = (dragDistance < 0 && index === getNextIndex(container)) ||
+                                  (dragDistance > 0 && index === getPrevIndex(container));
+                    
+                    if (isNext) {
+                        dot.style.opacity = Math.min(1, 0.3 + dragPercent * 2);
+                    }
+                }
+            });
+        }
+        
+        // Nettoyer les indicateurs après le drag
+        function cleanupDragIndicators(container) {
+            const dots = container.querySelectorAll('.carousel-dot');
+            dots.forEach(dot => {
+                dot.style.opacity = '';
+            });
+        }
+        
+        // Obtenir l'index suivant
+        function getNextIndex(container) {
+            const productId = parseInt(container.querySelector('.carousel-track').id.replace('carousel-', ''));
+            const product = products.find(p => p.id === productId);
+            const state = carouselStates[productId] || { currentIndex: 0 };
+            
+            if (!product) return 0;
+            return (state.currentIndex + 1) % product.images.length;
+        }
+        
+        // Obtenir l'index précédent
+        function getPrevIndex(container) {
+            const productId = parseInt(container.querySelector('.carousel-track').id.replace('carousel-', ''));
+            const product = products.find(p => p.id === productId);
+            const state = carouselStates[productId] || { currentIndex: 0 };
+            
+            if (!product) return 0;
+            return (state.currentIndex - 1 + product.images.length) % product.images.length;
         }
 
         // Navigation du carousel - image précédente
@@ -1594,8 +1981,17 @@
             if (!product) return;
             
             const state = carouselStates[productId];
+            if (!state) {
+                carouselStates[productId] = { currentIndex: 0 };
+            }
+            
             state.currentIndex = (state.currentIndex - 1 + product.images.length) % product.images.length;
             updateCarousel(productId);
+            
+            // Feedback visuel pour mobile
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(50);
+            }
         }
 
         // Navigation du carousel - image suivante
@@ -1604,8 +2000,17 @@
             if (!product) return;
             
             const state = carouselStates[productId];
+            if (!state) {
+                carouselStates[productId] = { currentIndex: 0 };
+            }
+            
             state.currentIndex = (state.currentIndex + 1) % product.images.length;
             updateCarousel(productId);
+            
+            // Feedback visuel pour mobile
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(50);
+            }
         }
 
         // Aller à une image spécifique
@@ -1644,7 +2049,7 @@
             overlay.id = 'zoom-overlay';
             
             overlay.innerHTML = `
-                <div class="zoom-content">
+                <div class="zoom-content" id="zoom-content">
                     <img src="${product.images[startIndex]}" alt="${product.name}" class="zoom-image" id="zoom-image">
                     <button class="zoom-close" onclick="closeImageZoom()">
                         <i class="fas fa-times"></i>
@@ -1658,7 +2063,7 @@
                             <i class="fas fa-chevron-right"></i>
                         </button>
                         
-                        <div class="zoom-indicator">
+                        <div class="zoom-indicator" id="zoom-indicator">
                             ${startIndex + 1} / ${product.images.length}
                         </div>
                     ` : ''}
@@ -1667,6 +2072,11 @@
             
             document.body.appendChild(overlay);
             document.body.style.overflow = 'hidden';
+            
+            // Ajouter la navigation tactile au zoom
+            if (product.images.length > 1) {
+                addZoomTouchNavigation(overlay);
+            }
             
             // Fermeture en cliquant à l'extérieur
             overlay.addEventListener('click', function(e) {
@@ -1712,20 +2122,427 @@
             updateZoomImage();
         }
 
+        // Navigation tactile pour le zoom - Version corrigée pour mobile
+        function addZoomTouchNavigation(overlay) {
+            let startX = 0;
+            let startY = 0;
+            let currentX = 0;
+            let isDragging = false;
+            let hasMoved = false;
+            let dragDistance = 0;
+            let isAnimating = false;
+            let startTime = 0;
+            let lastMoveTime = 0;
+            let velocity = 0;
+            let touchStarted = false;
+            
+            const zoomContent = overlay.querySelector('.zoom-content');
+            const zoomImage = overlay.querySelector('.zoom-image');
+            
+            // Configuration tactile optimisée pour mobile
+            overlay.style.touchAction = 'manipulation';
+            if (zoomContent) {
+                zoomContent.style.touchAction = 'manipulation';
+            }
+            if (zoomImage) {
+                zoomImage.style.touchAction = 'manipulation';
+            }
+            
+            // Gestionnaire touchstart sur l'overlay entier
+            overlay.addEventListener('touchstart', (e) => {
+                // Ignorer si animation en cours ou multi-touch
+                if (isAnimating || e.touches.length > 1) return;
+                
+                // Ignorer si le touch commence sur un bouton
+                if (e.target.closest('.zoom-close') || e.target.closest('.zoom-nav')) {
+                    return;
+                }
+                
+                touchStarted = true;
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                currentX = startX;
+                isDragging = false; // Ne pas commencer le drag immédiatement
+                hasMoved = false;
+                dragDistance = 0;
+                startTime = Date.now();
+                lastMoveTime = startTime;
+                velocity = 0;
+                
+                // Préparer l'image pour le drag potentiel
+                if (zoomImage) {
+                    zoomImage.style.willChange = 'transform, opacity';
+                }
+                
+            }, { passive: true });
+            
+            // Gestionnaire touchmove
+            overlay.addEventListener('touchmove', (e) => {
+                if (!touchStarted || isAnimating || e.touches.length > 1) return;
+                
+                const currentTime = Date.now();
+                currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const diffX = currentX - startX;
+                const diffY = currentY - startY;
+                const absDiffX = Math.abs(diffX);
+                const absDiffY = Math.abs(diffY);
+                
+                // Calculer la vélocité
+                const timeDiff = currentTime - lastMoveTime;
+                if (timeDiff > 0) {
+                    velocity = absDiffX / timeDiff;
+                }
+                lastMoveTime = currentTime;
+                
+                // Déterminer si c'est un mouvement horizontal significatif
+                const isHorizontalSwipe = absDiffX > 15 && absDiffX > absDiffY * 1.5;
+                
+                if (isHorizontalSwipe && !isDragging) {
+                    // Commencer le drag horizontal
+                    isDragging = true;
+                    overlay.classList.add('dragging');
+                    
+                    // Désactiver les transitions pendant le drag
+                    if (zoomImage) {
+                        zoomImage.style.transition = 'none';
+                    }
+                    
+                    // Empêcher le scroll de la page
+                    e.preventDefault();
+                } else if (!isDragging && absDiffY > 15) {
+                    // Mouvement vertical - permettre le comportement par défaut
+                    return;
+                }
+                
+                if (isDragging) {
+                    // Empêcher le comportement par défaut pendant le drag horizontal
+                    e.preventDefault();
+                    
+                    hasMoved = true;
+                    dragDistance = diffX;
+                    
+                    // Calculer le pourcentage de déplacement
+                    const overlayWidth = overlay.offsetWidth;
+                    const dragPercent = (diffX / overlayWidth) * 100;
+                    
+                    // Appliquer la transformation en temps réel avec résistance améliorée
+                    let newTransform = diffX;
+                    let newOpacity = 1;
+                    
+                    // Ajouter une résistance progressive aux bords
+                    const product = products.find(p => p.id === zoomState.productId);
+                    const maxIndex = product ? product.images.length - 1 : 0;
+                    
+                    if (zoomState.currentIndex === 0 && diffX > 0) {
+                        // Résistance au début avec courbe progressive
+                        const resistance = Math.min(0.4, Math.abs(diffX) / overlayWidth);
+                        newTransform = diffX * (0.3 - resistance * 0.2);
+                        newOpacity = Math.max(0.6, 1 - resistance);
+                    } else if (zoomState.currentIndex === maxIndex && diffX < 0) {
+                        // Résistance à la fin avec courbe progressive
+                        const resistance = Math.min(0.4, Math.abs(diffX) / overlayWidth);
+                        newTransform = diffX * (0.3 - resistance * 0.2);
+                        newOpacity = Math.max(0.6, 1 - resistance);
+                    } else {
+                        // Mouvement normal avec légère réduction d'opacité
+                        const dragRatio = Math.min(0.3, Math.abs(dragPercent) / 100);
+                        newOpacity = Math.max(0.7, 1 - dragRatio);
+                    }
+                    
+                    if (zoomImage) {
+                        zoomImage.style.transform = `translateX(${newTransform}px)`;
+                        zoomImage.style.opacity = newOpacity;
+                    }
+                    
+                    // Feedback visuel amélioré sur l'indicateur
+                    updateZoomDragIndicator(diffX, overlayWidth, velocity);
+                }
+            }, { passive: false });
+            
+            // Gestionnaire touchend
+            overlay.addEventListener('touchend', (e) => {
+                if (!touchStarted) return;
+                
+                touchStarted = false;
+                
+                if (!isDragging || isAnimating) {
+                    // Nettoyer si pas de drag
+                    if (zoomImage) {
+                        zoomImage.style.willChange = 'auto';
+                    }
+                    return;
+                }
+                
+                isDragging = false;
+                overlay.classList.remove('dragging');
+                
+                // Réactiver les transitions avec une courbe plus fluide
+                if (zoomImage) {
+                    zoomImage.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    zoomImage.style.willChange = 'auto';
+                }
+                
+                if (!hasMoved) {
+                    // Simple tap - revenir à la position normale
+                    if (zoomImage) {
+                        zoomImage.style.transform = '';
+                        zoomImage.style.opacity = '';
+                    }
+                    cleanupZoomDragIndicator();
+                    return;
+                }
+                
+                const overlayWidth = overlay.offsetWidth;
+                const threshold = overlayWidth * 0.25; // 25% de la largeur pour déclencher
+                const velocityThreshold = 0.5; // Seuil de vélocité pour un swipe rapide
+                
+                // Décider si on change d'image basé sur la distance ET la vélocité
+                const distanceCondition = Math.abs(dragDistance) > threshold;
+                const velocityCondition = velocity > velocityThreshold && Math.abs(dragDistance) > 30;
+                const shouldChange = distanceCondition || velocityCondition;
+                
+                if (shouldChange) {
+                    isAnimating = true;
+                    
+                    if (dragDistance > 0) {
+                        // Swipe vers la droite - image précédente
+                        previousZoomImage();
+                        showZoomChangeNotification('← Image précédente');
+                    } else {
+                        // Swipe vers la gauche - image suivante
+                        nextZoomImage();
+                        showZoomChangeNotification('Image suivante →');
+                    }
+                    
+                    // Feedback haptique adaptatif
+                    if (window.navigator && window.navigator.vibrate) {
+                        // Vibration plus forte pour un swipe rapide
+                        const vibrationDuration = velocityCondition ? 100 : 50;
+                        window.navigator.vibrate(vibrationDuration);
+                    }
+                    
+                    // Réinitialiser l'animation après la transition
+                    setTimeout(() => {
+                        isAnimating = false;
+                        if (zoomImage) {
+                            zoomImage.style.transform = '';
+                            zoomImage.style.opacity = '';
+                        }
+                    }, 300);
+                } else {
+                    // Revenir à la position normale avec animation élastique
+                    if (zoomImage) {
+                        zoomImage.style.transition = 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                        zoomImage.style.transform = '';
+                        zoomImage.style.opacity = '';
+                        
+                        // Remettre la transition normale après l'animation
+                        setTimeout(() => {
+                            if (zoomImage) {
+                                zoomImage.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                            }
+                        }, 400);
+                    }
+                }
+                
+                // Nettoyer l'indicateur
+                setTimeout(() => {
+                    cleanupZoomDragIndicator();
+                }, 100);
+            }, { passive: true });
+            
+            // Gestionnaire touchcancel pour nettoyer l'état
+            overlay.addEventListener('touchcancel', (e) => {
+                touchStarted = false;
+                isDragging = false;
+                overlay.classList.remove('dragging');
+                
+                if (zoomImage) {
+                    zoomImage.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    zoomImage.style.transform = '';
+                    zoomImage.style.opacity = '';
+                    zoomImage.style.willChange = 'auto';
+                }
+                
+                cleanupZoomDragIndicator();
+            }, { passive: true });
+            
+            // Gestion des gestes multi-touch
+            overlay.addEventListener('touchstart', (e) => {
+                if (e.touches.length > 1) {
+                    touchStarted = false;
+                    isDragging = false;
+                    overlay.classList.remove('dragging');
+                    if (zoomImage) {
+                        zoomImage.style.transform = '';
+                        zoomImage.style.opacity = '';
+                        zoomImage.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                        zoomImage.style.willChange = 'auto';
+                    }
+                    cleanupZoomDragIndicator();
+                }
+            }, { passive: true });
+        }
+        
+        // Feedback visuel pendant le drag du zoom - Version améliorée
+        function updateZoomDragIndicator(dragDistance, overlayWidth, velocity = 0) {
+            const indicator = document.getElementById('zoom-indicator');
+            if (!indicator) return;
+            
+            const dragPercent = Math.abs(dragDistance) / overlayWidth;
+            const product = products.find(p => p.id === zoomState.productId);
+            if (!product) return;
+            
+            // Animation de l'opacité basée sur le drag et la vélocité
+            const baseOpacity = Math.max(0.4, 1 - dragPercent * 1.5);
+            const velocityBoost = Math.min(0.3, velocity * 0.5);
+            indicator.style.opacity = Math.min(1, baseOpacity + velocityBoost);
+            
+            // Échelle dynamique basée sur l'intensité du drag
+            const scale = Math.max(0.9, 1 + dragPercent * 0.3);
+            indicator.style.transform = `translateX(-50%) scale(${scale})`;
+            
+            // Feedback directionnel amélioré avec icônes et couleurs
+            if (dragDistance > 0 && zoomState.currentIndex > 0) {
+                // Vers la gauche (image précédente)
+                const intensity = Math.min(1, dragPercent * 3);
+                indicator.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-chevron-left" style="opacity: ${0.5 + intensity * 0.5}"></i>
+                        <span>${zoomState.currentIndex} / ${product.images.length}</span>
+                        <div style="width: 4px; height: 4px; background: currentColor; border-radius: 50%; opacity: ${intensity}"></div>
+                    </div>
+                `;
+                indicator.style.color = '#10b981'; // Vert
+                indicator.style.background = `rgba(16, 185, 129, ${0.1 + intensity * 0.2})`;
+                indicator.style.borderColor = `rgba(16, 185, 129, ${0.3 + intensity * 0.4})`;
+            } else if (dragDistance < 0 && zoomState.currentIndex < product.images.length - 1) {
+                // Vers la droite (image suivante)
+                const intensity = Math.min(1, dragPercent * 3);
+                indicator.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div style="width: 4px; height: 4px; background: currentColor; border-radius: 50%; opacity: ${intensity}"></div>
+                        <span>${zoomState.currentIndex + 2} / ${product.images.length}</span>
+                        <i class="fas fa-chevron-right" style="opacity: ${0.5 + intensity * 0.5}"></i>
+                    </div>
+                `;
+                indicator.style.color = '#3b82f6'; // Bleu
+                indicator.style.background = `rgba(59, 130, 246, ${0.1 + intensity * 0.2})`;
+                indicator.style.borderColor = `rgba(59, 130, 246, ${0.3 + intensity * 0.4})`;
+            } else {
+                // Pas de changement possible - feedback de résistance
+                const intensity = Math.min(1, dragPercent * 2);
+                const direction = dragDistance > 0 ? 'left' : 'right';
+                indicator.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-ban" style="opacity: ${0.5 + intensity * 0.5}"></i>
+                        <span>${zoomState.currentIndex + 1} / ${product.images.length}</span>
+                        <i class="fas fa-ban" style="opacity: ${0.5 + intensity * 0.5}"></i>
+                    </div>
+                `;
+                indicator.style.color = '#ef4444'; // Rouge
+                indicator.style.background = `rgba(239, 68, 68, ${0.1 + intensity * 0.2})`;
+                indicator.style.borderColor = `rgba(239, 68, 68, ${0.3 + intensity * 0.4})`;
+                
+                // Animation de secousse pour indiquer la résistance
+                if (intensity > 0.5) {
+                    const shake = Math.sin(Date.now() * 0.02) * 2 * intensity;
+                    indicator.style.transform = `translateX(calc(-50% + ${shake}px)) scale(${scale})`;
+                }
+            }
+            
+            // Effet de pulsation pour les swipes rapides
+            if (velocity > 0.5) {
+                indicator.style.boxShadow = `0 0 ${10 + velocity * 20}px rgba(255, 255, 255, 0.3)`;
+            }
+        }
+        
+        // Nettoyer l'indicateur après le drag du zoom
+        function cleanupZoomDragIndicator() {
+            const indicator = document.getElementById('zoom-indicator');
+            if (!indicator) return;
+            
+            // Animation de retour à la normale
+            indicator.style.transition = 'all 0.3s ease';
+            indicator.style.opacity = '';
+            indicator.style.color = '';
+            indicator.style.background = '';
+            indicator.style.borderColor = '';
+            indicator.style.transform = 'translateX(-50%) scale(1)';
+            indicator.style.boxShadow = '';
+            
+            // Remettre le texte normal
+            const product = products.find(p => p.id === zoomState.productId);
+            if (product) {
+                indicator.innerHTML = `${zoomState.currentIndex + 1} / ${product.images.length}`;
+            }
+            
+            // Supprimer la transition après l'animation
+            setTimeout(() => {
+                if (indicator) {
+                    indicator.style.transition = '';
+                }
+            }, 300);
+        }
+        
+        // Notification de changement d'image dans le zoom
+        function showZoomChangeNotification(message) {
+            // Créer une notification temporaire
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-black bg-opacity-80 text-white px-6 py-3 rounded-full font-semibold text-lg backdrop-blur-sm border border-white border-opacity-20';
+            notification.style.pointerEvents = 'none';
+            notification.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animation d'apparition
+            notification.style.opacity = '0';
+            notification.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            
+            setTimeout(() => {
+                notification.style.transition = 'all 0.2s ease-out';
+                notification.style.opacity = '1';
+                notification.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 10);
+            
+            // Disparition automatique
+            setTimeout(() => {
+                notification.style.transition = 'all 0.2s ease-in';
+                notification.style.opacity = '0';
+                notification.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 200);
+            }, 1000);
+        }
+
         // Mise à jour de l'image dans le zoom
         function updateZoomImage() {
             const product = products.find(p => p.id === zoomState.productId);
             if (!product) return;
             
             const zoomImage = document.getElementById('zoom-image');
-            const indicator = document.querySelector('.zoom-indicator');
+            const indicator = document.getElementById('zoom-indicator');
             
             if (zoomImage) {
                 zoomImage.src = product.images[zoomState.currentIndex];
+                // S'assurer que les styles sont réinitialisés
+                zoomImage.style.transform = '';
+                zoomImage.style.opacity = '';
             }
             
             if (indicator) {
                 indicator.textContent = `${zoomState.currentIndex + 1} / ${product.images.length}`;
+                indicator.style.color = '';
+                indicator.style.opacity = '';
             }
         }
 
@@ -2082,10 +2899,14 @@
                         </div>
                         
                         ${product.images.length > 1 ? `
-                            <button class="carousel-nav carousel-prev" onclick="previousImage(${product.id})">
+                            <button class="carousel-nav carousel-prev" 
+                                    onclick="previousImage(${product.id})" 
+                                    ontouchend="event.preventDefault(); previousImage(${product.id})">
                                 <i class="fas fa-chevron-left"></i>
                             </button>
-                            <button class="carousel-nav carousel-next" onclick="nextImage(${product.id})">
+                            <button class="carousel-nav carousel-next" 
+                                    onclick="nextImage(${product.id})"
+                                    ontouchend="event.preventDefault(); nextImage(${product.id})">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
                             
@@ -2249,5 +3070,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9688535542ec8650',t:'MTc1NDA4MjY2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'968baeb0574306db',t:'MTc1NDExNzg2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
