@@ -452,7 +452,7 @@
         
         .line-clamp-3 {
             display: -webkit-box;
-            /* -webkit-line-clamp: 3; */
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             line-height: 1.5;
@@ -473,7 +473,7 @@
                     </div>
                     <div class="min-w-0 flex-1">
                         <h1 class="text-lg md:text-2xl font-bold text-gray-800 truncate">Prestige Shop Express</h1>
-                        <p class="text-xs md:text-sm text-gray-500 hidden sm:block">Shoppez malin. Shoppez Prestige.</p>
+                        <p class="text-xs md:text-sm text-gray-500 hidden sm:block">Votre boutique en ligne</p>
                     </div>
                 </div>
                 
@@ -753,7 +753,7 @@
                                 <div>
                                     <select id="customer-city" 
                                             class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-sm">
-<option value="">Sélectionnez votre ville *</option>
+                                                  <option value="">Sélectionnez votre ville *</option>
 <option value="Abidjan">Abidjan</option>
 <option value="Yamoussoukro">Yamoussoukro</option>
 <option value="Bouaké">Bouaké</option>
@@ -808,7 +808,7 @@
                         <i class="fab fa-whatsapp text-2xl"></i>
                     </div>
                     <h4 class="text-xl font-bold mb-2">WhatsApp</h4>
-                    <p class="text-gray-300">+225015O241670</p>
+                    <p class="text-gray-300">+2250150241670</p>
                 </div>
                 
                 <div class="text-center">
@@ -864,7 +864,7 @@
             
             <div class="text-center mt-12 pt-8 border-t border-gray-700">
                 <div class="mb-4">
-                    <p class="text-2xl font-bold text-yellow-300 mb-2">✨ "Shoppez malin. Shoppez Prestige. " ✨</p>
+                    <p class="text-2xl font-bold text-yellow-300 mb-2">✨ "Shoppez malin. Shoppez Prestige." ✨</p>
                     <p class="text-gray-300 italic">Ensemble, construisons votre avenir avec les meilleurs produits</p>
                 </div>
                 <p>&copy; 2024 Digit Shop Express. Tous droits réservés.</p>
@@ -1639,7 +1639,15 @@
                 message += `   📦 Quantité: ${item.quantity}\n`;
                 message += `   💰 Prix unitaire: ${item.price.toLocaleString()} FCFA\n`;
                 message += `   💵 Sous-total: ${(item.price * item.quantity).toLocaleString()} FCFA\n`;
-                message += `   📝 ${item.description}\n\n`;
+                message += `   📝 ${item.description}\n`;
+                message += `   🖼️ Image: ${item.images[0]}\n`;
+                if (item.images.length > 1) {
+                    message += `   📸 Images supplémentaires:\n`;
+                    item.images.slice(1).forEach((img, imgIndex) => {
+                        message += `      • ${img}\n`;
+                    });
+                }
+                message += `\n`;
             });
 
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -2610,7 +2618,7 @@
         
         // Fonction de recherche principale
         function searchProducts(query) {
-            if (!query || query.trim().length < 2) {
+            if (!query || query.trim().length < 1) {
                 return [];
             }
             
@@ -2679,7 +2687,7 @@
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
                 performSearch(query, false);
-            }, 300);
+            }, 150);
         }
         
         // Gestion de la recherche mobile
@@ -2699,7 +2707,7 @@
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
                 performSearch(query, true);
-            }, 300);
+            }, 150);
         }
         
         // Exécution de la recherche
@@ -2708,7 +2716,8 @@
                 document.getElementById('mobile-search-content') : 
                 document.getElementById('search-content');
             
-            if (!query || query.length < 2) {
+            // Recherche dès la première lettre
+            if (!query || query.length < 1) {
                 resultsContainer.innerHTML = '';
                 if (isMobile) {
                     document.getElementById('mobile-search-results').classList.add('hidden');
@@ -2742,25 +2751,47 @@
                             ${results.length} résultat${results.length > 1 ? 's' : ''} pour "${query}"
                         </div>
                         ${results.map(product => `
-                            <div class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
+                            <div class="search-result-item flex items-center space-x-3 p-3 ${isMobile ? 'active:bg-purple-50' : 'hover:bg-gray-50'} rounded-lg cursor-pointer transition-all duration-200 border border-transparent ${isMobile ? 'hover:border-purple-200 hover:shadow-md' : ''}"
+                                 data-product-id="${product.id}"
+                                 data-is-mobile="${isMobile}"
+                                 ${isMobile ? 'ontouchstart="handleSearchResultTouch(this, true)" ontouchend="handleSearchResultTouch(this, false)"' : ''}
                                  onclick="selectSearchResult(${product.id}, ${isMobile})">
-                                <img src="${product.images[0]}" alt="${product.name}" 
-                                     class="w-12 h-12 object-cover rounded-lg flex-shrink-0">
+                                <div class="relative flex-shrink-0">
+                                    <img src="${product.images[0]}" alt="${product.name}" 
+                                         class="w-12 h-12 object-cover rounded-lg border-2 border-gray-100">
+                                    ${product.images.length > 1 ? `
+                                        <div class="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                                            ${product.images.length}
+                                        </div>
+                                    ` : ''}
+                                </div>
                                 <div class="flex-1 min-w-0">
-                                    <h4 class="font-semibold text-gray-800 truncate">${highlightSearchTerm(product.name, query)}</h4>
-                                    <p class="text-sm text-gray-600 truncate">${highlightSearchTerm(product.description, query)}</p>
-                                    <div class="flex items-center justify-between mt-1">
-                                        <span class="text-purple-600 font-bold text-sm">${product.price.toLocaleString()} FCFA</span>
+                                    <h4 class="font-semibold text-gray-800 ${isMobile ? 'text-base' : 'text-sm'} truncate">${highlightSearchTerm(product.name, query)}</h4>
+                                    <p class="text-sm text-gray-600 truncate ${isMobile ? 'mt-1' : ''}">${highlightSearchTerm(product.description, query)}</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-purple-600 font-bold ${isMobile ? 'text-base' : 'text-sm'}">${product.price.toLocaleString()} FCFA</span>
                                         <span class="text-xs bg-${getCategoryColor(product.category)} text-white px-2 py-1 rounded-full">
                                             ${getCategoryName(product.category)}
                                         </span>
                                     </div>
                                 </div>
-                                <div class="flex-shrink-0">
-                                    <button onclick="event.stopPropagation(); addToCart(${product.id}); hideSearchResults(${isMobile})" 
-                                            class="bg-purple-100 hover:bg-purple-200 text-purple-600 p-2 rounded-full transition-colors">
-                                        <i class="fas fa-cart-plus text-sm"></i>
+                                <div class="flex-shrink-0 flex flex-col space-y-2">
+                                    <button onclick="event.stopPropagation(); addToCartFromSearch(${product.id}, ${isMobile})" 
+                                            ontouchstart="event.stopPropagation()"
+                                            ontouchend="event.stopPropagation()"
+                                            class="bg-purple-100 hover:bg-purple-200 active:bg-purple-300 text-purple-600 ${isMobile ? 'p-3' : 'p-2'} rounded-full transition-all transform active:scale-95"
+                                            title="Ajouter au panier">
+                                        <i class="fas fa-cart-plus ${isMobile ? 'text-base' : 'text-sm'}"></i>
                                     </button>
+                                    ${isMobile ? `
+                                        <button onclick="event.stopPropagation(); openImageZoom(${product.id}, 0); hideSearchResults(true)" 
+                                                ontouchstart="event.stopPropagation()"
+                                                ontouchend="event.stopPropagation()"
+                                                class="bg-blue-100 hover:bg-blue-200 active:bg-blue-300 text-blue-600 p-3 rounded-full transition-all transform active:scale-95"
+                                                title="Voir les images">
+                                            <i class="fas fa-images text-base"></i>
+                                        </button>
+                                    ` : ''}
                                 </div>
                             </div>
                         `).join('')}
@@ -2768,14 +2799,22 @@
                         ${results.length > 3 ? `
                             <div class="p-3 border-t border-gray-200 text-center">
                                 <button onclick="showAllResults('${query}', ${isMobile})" 
-                                        class="text-purple-600 hover:text-purple-700 font-medium text-sm">
+                                        ${isMobile ? 'ontouchstart="this.style.transform=\'scale(0.95)\'" ontouchend="this.style.transform=\'scale(1)\'"' : ''}
+                                        class="text-purple-600 hover:text-purple-700 active:text-purple-800 font-medium ${isMobile ? 'text-base py-3 px-6' : 'text-sm'} bg-purple-50 hover:bg-purple-100 rounded-lg transition-all">
                                     Voir tous les résultats (${results.length})
-                                    <i class="fas fa-arrow-right ml-1"></i>
+                                    <i class="fas fa-arrow-right ml-2"></i>
                                 </button>
                             </div>
                         ` : ''}
                     </div>
                 `;
+                
+                // Ajouter les gestionnaires d'événements pour mobile après création du DOM
+                if (isMobile) {
+                    setTimeout(() => {
+                        addMobileSearchEventListeners();
+                    }, 100);
+                }
             }
             
             // Afficher les résultats
@@ -2792,18 +2831,198 @@
             return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>');
         }
         
+        // Gestionnaire de touch pour les résultats de recherche mobile
+        function handleSearchResultTouch(element, isStart) {
+            if (isStart) {
+                element.style.transform = 'scale(0.98)';
+                element.style.backgroundColor = '#f3e8ff';
+                element.style.borderColor = '#a855f7';
+            } else {
+                element.style.transform = 'scale(1)';
+                element.style.backgroundColor = '';
+                element.style.borderColor = '';
+            }
+        }
+        
+        // Gestionnaires d'événements pour mobile
+        function addMobileSearchEventListeners() {
+            const searchItems = document.querySelectorAll('.search-result-item[data-is-mobile="true"]');
+            
+            searchItems.forEach(item => {
+                let touchStartTime = 0;
+                let touchStartY = 0;
+                let touchStartX = 0;
+                let hasMoved = false;
+                
+                // Gestionnaire touchstart
+                item.addEventListener('touchstart', function(e) {
+                    touchStartTime = Date.now();
+                    touchStartY = e.touches[0].clientY;
+                    touchStartX = e.touches[0].clientX;
+                    hasMoved = false;
+                    
+                    // Feedback visuel immédiat
+                    this.style.transform = 'scale(0.98)';
+                    this.style.backgroundColor = '#f3e8ff';
+                    this.style.borderColor = '#a855f7';
+                    this.style.boxShadow = '0 4px 12px rgba(168, 85, 247, 0.15)';
+                }, { passive: true });
+                
+                // Gestionnaire touchmove
+                item.addEventListener('touchmove', function(e) {
+                    const currentY = e.touches[0].clientY;
+                    const currentX = e.touches[0].clientX;
+                    const diffY = Math.abs(currentY - touchStartY);
+                    const diffX = Math.abs(currentX - touchStartX);
+                    
+                    // Si le mouvement est significatif, annuler le clic
+                    if (diffY > 10 || diffX > 10) {
+                        hasMoved = true;
+                        // Retirer le feedback visuel
+                        this.style.transform = '';
+                        this.style.backgroundColor = '';
+                        this.style.borderColor = '';
+                        this.style.boxShadow = '';
+                    }
+                }, { passive: true });
+                
+                // Gestionnaire touchend
+                item.addEventListener('touchend', function(e) {
+                    const touchDuration = Date.now() - touchStartTime;
+                    
+                    // Retirer le feedback visuel avec animation
+                    this.style.transition = 'all 0.2s ease';
+                    this.style.transform = '';
+                    this.style.backgroundColor = '';
+                    this.style.borderColor = '';
+                    this.style.boxShadow = '';
+                    
+                    // Remettre la transition normale après l'animation
+                    setTimeout(() => {
+                        this.style.transition = '';
+                    }, 200);
+                    
+                    // Si c'est un tap rapide et sans mouvement, déclencher l'action
+                    if (!hasMoved && touchDuration < 500) {
+                        e.preventDefault();
+                        const productId = parseInt(this.dataset.productId);
+                        
+                        // Feedback haptique
+                        if (window.navigator && window.navigator.vibrate) {
+                            window.navigator.vibrate(50);
+                        }
+                        
+                        // Déclencher la sélection avec un petit délai pour l'animation
+                        setTimeout(() => {
+                            selectSearchResult(productId, true);
+                        }, 100);
+                    }
+                }, { passive: false });
+                
+                // Gestionnaire touchcancel
+                item.addEventListener('touchcancel', function(e) {
+                    // Nettoyer le feedback visuel
+                    this.style.transform = '';
+                    this.style.backgroundColor = '';
+                    this.style.borderColor = '';
+                    this.style.boxShadow = '';
+                }, { passive: true });
+            });
+        }
+        
+        // Ajouter au panier depuis la recherche avec feedback
+        function addToCartFromSearch(productId, isMobile = false) {
+            addToCart(productId);
+            
+            // Feedback visuel spécifique pour mobile
+            if (isMobile) {
+                // Feedback haptique
+                if (window.navigator && window.navigator.vibrate) {
+                    window.navigator.vibrate([50, 50, 50]);
+                }
+                
+                // Animation du bouton
+                const button = event.target.closest('button');
+                if (button) {
+                    button.style.transform = 'scale(1.2)';
+                    button.style.backgroundColor = '#10b981';
+                    button.style.color = 'white';
+                    
+                    setTimeout(() => {
+                        button.style.transform = '';
+                        button.style.backgroundColor = '';
+                        button.style.color = '';
+                    }, 300);
+                }
+                
+                // Notification optimisée pour mobile
+                showMobileNotification('✅ Ajouté au panier !', 'success');
+            }
+        }
+        
+        // Notification optimisée pour mobile
+        function showMobileNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-20 left-1/2 transform -translate-x-1/2 z-50 px-6 py-4 rounded-xl shadow-2xl text-white font-bold text-lg ${
+                type === 'success' ? 'bg-green-500' : 'bg-red-500'
+            } border-2 border-white`;
+            
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} text-2xl"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            notification.style.opacity = '0';
+            notification.style.transform = 'translate(-50%, -20px) scale(0.8)';
+            
+            document.body.appendChild(notification);
+            
+            // Animation d'entrée
+            setTimeout(() => {
+                notification.style.transition = 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                notification.style.opacity = '1';
+                notification.style.transform = 'translate(-50%, 0) scale(1)';
+            }, 10);
+            
+            // Animation de sortie
+            setTimeout(() => {
+                notification.style.transition = 'all 0.3s ease-in';
+                notification.style.opacity = '0';
+                notification.style.transform = 'translate(-50%, -20px) scale(0.8)';
+                
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 2500);
+        }
+        
         // Sélection d'un résultat de recherche
         function selectSearchResult(productId, isMobile = false) {
             // Fermer les résultats de recherche
             hideSearchResults(isMobile);
             
-            // Faire défiler vers la section produits
-            document.getElementById('produits').scrollIntoView({ behavior: 'smooth' });
+            // Fermer le menu mobile si ouvert
+            if (isMobile) {
+                closeMobileMenu();
+            }
             
-            // Attendre un peu puis mettre en évidence le produit
-            setTimeout(() => {
-                highlightProduct(productId);
-            }, 1000);
+            // Ouvrir directement le zoom de l'image du produit
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                // Ouvrir le zoom immédiatement
+                openImageZoom(productId, 0);
+                
+                // Notification pour mobile
+                if (isMobile) {
+                    showMobileNotification(`🔍 ${product.name} - Zoom ouvert !`, 'success');
+                } else {
+                    showNotification(`🔍 Zoom ouvert pour ${product.name}`, 'success');
+                }
+            }
         }
         
         // Mettre en évidence un produit
@@ -2952,7 +3171,7 @@
             const results = document.getElementById('search-results');
             const input = document.getElementById('search-input');
             
-            if (input.value.trim().length >= 2) {
+            if (input.value.trim().length >= 1) {
                 results.classList.remove('hidden');
             }
         }
@@ -2974,7 +3193,7 @@
             const results = document.getElementById('mobile-search-results');
             const input = document.getElementById('mobile-search-input');
             
-            if (input.value.trim().length >= 2) {
+            if (input.value.trim().length >= 1) {
                 results.classList.remove('hidden');
             }
         }
@@ -3050,6 +3269,22 @@
             }
         });
         
+        // Gestion spéciale des événements tactiles pour mobile
+        document.addEventListener('touchstart', function(e) {
+            const searchContainer = e.target.closest('#search-results') || e.target.closest('.relative');
+            const mobileSearchContainer = e.target.closest('#mobile-search-results') || e.target.closest('#mobile-menu');
+            
+            // Si on touche en dehors des résultats de recherche, les fermer
+            if (!searchContainer && !mobileSearchContainer) {
+                // Délai pour permettre aux interactions en cours de se terminer
+                setTimeout(() => {
+                    isSearchFocused = false;
+                    document.getElementById('search-results').classList.add('hidden');
+                    document.getElementById('mobile-search-results').classList.add('hidden');
+                }, 100);
+            }
+        }, { passive: true });
+        
         // Raccourcis clavier pour la recherche
         document.addEventListener('keydown', function(e) {
             // Ctrl/Cmd + K pour ouvrir la recherche
@@ -3070,5 +3305,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'968baeb0574306db',t:'MTc1NDExNzg2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9691b486e7a06923',t:'MTc1NDE4MTAxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
