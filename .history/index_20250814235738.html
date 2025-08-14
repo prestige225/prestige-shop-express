@@ -574,106 +574,113 @@
         </div>
     </header>
 
-   
-
-
-
-
-
-        
-
-<!-- Hero Banner Spéciale Rentrée -->
+    <!-- Hero Banner Spéciale Rentrée -->
 <section id="accueil" class="hero-banner text-white py-20 relative overflow-hidden">
+    <!-- Fond dégradé -->
+    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 animate-gradient"></div>
+
+    <!-- Effet confettis flottants -->
+    <div class="absolute inset-0 pointer-events-none confetti"></div>
+
     <div class="container mx-auto px-4 text-center relative z-10">
-        <h2 class="text-5xl font-bold mb-6 animate-fade-in">🎒 Spéciale Rentrée chez Prestige Shop Express</h2>
-        
-        <div class="mb-8">
-            <div class="text-3xl font-extrabold text-yellow-300 mb-4 animate-bounce">
-                ✨ "Shoppez malin. Shoppez Prestige" ✨
-            </div>
-            <p class="text-xl max-w-2xl mx-auto animate-slide-up">
-                Découvrez notre sélection spéciale rentrée : fournitures scolaires, électroniques, et accessoires à prix malin. 
-                Qualité garantie, livraison rapide !
-            </p>
+        <!-- Titre animé -->
+        <h2 class="text-5xl font-extrabold mb-6 animate-fade-down">
+            🎒 Spéciale Rentrée 2025 🎒
+        </h2>
+
+        <!-- Slogan avec effet machine à écrire -->
+        <div class="mb-8 text-3xl font-extrabold text-yellow-300 mb-4">
+            <span id="typed-text"></span>
         </div>
 
-        <!-- Avantages -->
-        <div class="flex flex-wrap justify-center gap-4 mb-8 animate-slide-up delay-200">
-            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
+        <p class="text-xl max-w-2xl mx-auto animate-fade-up">
+            Découvrez nos promos exclusives pour bien commencer l'année scolaire.
+            Produits éducatifs, électroniques et mode à prix mini !
+        </p>
+
+        <!-- Badges avec animation -->
+        <div class="flex flex-wrap justify-center gap-4 mb-8 mt-6 animate-fade-up">
+            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full">
                 <i class="fas fa-truck mr-2"></i> Livraison rapide
             </div>
-            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
+            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full">
                 <i class="fab fa-whatsapp mr-2"></i> Commande WhatsApp
             </div>
-            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
+            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full">
                 <i class="fas fa-shield-alt mr-2"></i> Qualité garantie
             </div>
         </div>
 
-        <!-- Bouton -->
-        <button onclick="document.getElementById('produits').scrollIntoView({behavior: 'smooth'})" 
-            class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 animate-fade-in delay-300">
+        <!-- Bouton call-to-action -->
+        <button onclick="document.getElementById('produits').scrollIntoView({behavior: 'smooth'})"
+            class="bg-white text-purple-700 px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:scale-105 transform transition">
             Découvrir nos produits <i class="fas fa-arrow-down ml-2"></i>
         </button>
     </div>
-
-    <!-- Illustration flottante -->
-    <img src="https://cdn-icons-png.flaticon.com/512/2947/2947960.png" 
-        alt="Illustration scolaire" 
-        class="floating-image absolute right-10 bottom-0 w-64 opacity-90 animate-floating">
 </section>
 
-
+<!-- Styles supplémentaires -->
 <style>
-    /* Fond dégradé animé */
-.hero-banner {
-    background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
-    background-size: 600% 600%;
-    animation: gradientAnimation 12s ease infinite;
-}
-
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Illustration flottante */
-.floating-image {
-    animation: floating 6s ease-in-out infinite;
-}
-@keyframes floating {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
-}
-
-/* Animations d'apparition */
-.animate-fade-in {
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-
-.animate-slide-up {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUp 1s forwards;
-}
-@keyframes slideUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    /* Animation fond dégradé */
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
-}
+    .animate-gradient {
+        background-size: 300% 300%;
+        animation: gradientMove 8s ease infinite;
+    }
 
-/* Délais pour un effet progressif */
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
+    /* Apparition douce */
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up {
+        animation: fadeUp 1s ease forwards;
+    }
+    @keyframes fadeDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-down {
+        animation: fadeDown 1s ease forwards;
+    }
 
+    /* Confettis flottants */
+    .confetti::before, .confetti::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(circle, rgba(255,255,255,0.8) 2px, transparent 2px);
+        background-size: 20px 20px;
+        animation: moveConfetti 10s linear infinite;
+    }
+    .confetti::after {
+        animation-delay: 5s;
+    }
+    @keyframes moveConfetti {
+        from { transform: translateY(-100%); }
+        to { transform: translateY(100%); }
+    }
 </style>
+
+<!-- Script effet machine à écrire -->
+<script>
+    const text = "✨ Shoppez malin. Shoppez Prestige pour la rentrée ✨";
+    let i = 0;
+    function typeWriter() {
+        if (i < text.length) {
+            document.getElementById("typed-text").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 80);
+        }
+    }
+    document.addEventListener("DOMContentLoaded", typeWriter);
+</script>
+
 
     <!-- Products Section -->
     <section id="produits" class="py-16">

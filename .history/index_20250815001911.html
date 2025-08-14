@@ -579,101 +579,73 @@
 
 
 
-
-        
-
 <!-- Hero Banner Spéciale Rentrée -->
-<section id="accueil" class="hero-banner text-white py-20 relative overflow-hidden">
+<section id="accueil" class="hero-banner relative overflow-hidden text-white py-20 bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400">
     <div class="container mx-auto px-4 text-center relative z-10">
-        <h2 class="text-5xl font-bold mb-6 animate-fade-in">🎒 Spéciale Rentrée chez Prestige Shop Express</h2>
-        
+        <!-- Texte principal avec animation -->
+        <h2 class="text-5xl font-extrabold mb-6 animate-fadeInUp">
+            🎒 Spéciale Rentrée chez Prestige Shop Express 🎓
+        </h2>
+
         <div class="mb-8">
             <div class="text-3xl font-extrabold text-yellow-300 mb-4 animate-bounce">
                 ✨ "Shoppez malin. Shoppez Prestige" ✨
             </div>
-            <p class="text-xl max-w-2xl mx-auto animate-slide-up">
-                Découvrez notre sélection spéciale rentrée : fournitures scolaires, électroniques, et accessoires à prix malin. 
+            <p class="text-xl max-w-2xl mx-auto animate-fadeInUp delay-200">
+                Préparez la rentrée avec nos produits scolaires, électroniques et mode. 
                 Qualité garantie, livraison rapide !
             </p>
         </div>
 
         <!-- Avantages -->
-        <div class="flex flex-wrap justify-center gap-4 mb-8 animate-slide-up delay-200">
-            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
+        <div class="flex flex-wrap justify-center gap-4 mb-8 animate-fadeInUp delay-400">
+            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full">
                 <i class="fas fa-truck mr-2"></i> Livraison rapide
             </div>
-            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
+            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full">
                 <i class="fab fa-whatsapp mr-2"></i> Commande WhatsApp
             </div>
-            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
+            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full">
                 <i class="fas fa-shield-alt mr-2"></i> Qualité garantie
             </div>
         </div>
 
         <!-- Bouton -->
         <button onclick="document.getElementById('produits').scrollIntoView({behavior: 'smooth'})" 
-            class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 animate-fade-in delay-300">
-            Découvrir nos produits <i class="fas fa-arrow-down ml-2"></i>
+                class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all transform hover:scale-105">
+            Découvrir nos produits
+            <i class="fas fa-arrow-down ml-2"></i>
         </button>
     </div>
 
-    <!-- Illustration flottante -->
-    <img src="https://cdn-icons-png.flaticon.com/512/2947/2947960.png" 
-        alt="Illustration scolaire" 
-        class="floating-image absolute right-10 bottom-0 w-64 opacity-90 animate-floating">
+    <!-- Illustration scolaire flottante -->
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" 
+         alt="Illustration scolaire" 
+         class="absolute right-10 bottom-0 w-48 md:w-64 floating">
 </section>
 
-
+<!-- Animation CSS -->
 <style>
-    /* Fond dégradé animé */
-.hero-banner {
-    background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
-    background-size: 600% 600%;
-    animation: gradientAnimation 12s ease infinite;
-}
-
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Illustration flottante */
-.floating-image {
-    animation: floating 6s ease-in-out infinite;
-}
 @keyframes floating {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-15px); }
     100% { transform: translateY(0px); }
 }
-
-/* Animations d'apparition */
-.animate-fade-in {
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-@keyframes fadeIn {
-    to { opacity: 1; }
+.floating {
+    animation: floating 4s ease-in-out infinite;
 }
 
-.animate-slide-up {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUp 1s forwards;
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
-@keyframes slideUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.animate-fadeInUp {
+    animation: fadeInUp 1s ease forwards;
 }
-
-/* Délais pour un effet progressif */
 .delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-
+.delay-400 { animation-delay: 0.4s; }
 </style>
+
 
     <!-- Products Section -->
     <section id="produits" class="py-16">
