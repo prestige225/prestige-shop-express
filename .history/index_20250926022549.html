@@ -483,142 +483,21 @@
             line-height: 1.5;
             max-height: 4.5em;
         }
-        
-        /* Styles pour les résultats de recherche améliorés */
-        #search-results, #mobile-search-results {
-            animation: slideDown 0.3s ease-out;
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .search-result-card {
-            animation: fadeInUp 0.3s ease-out;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Scrollbar personnalisée pour les résultats de recherche */
-        #search-content::-webkit-scrollbar,
-        #mobile-search-content::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        #search-content::-webkit-scrollbar-track,
-        #mobile-search-content::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        
-        #search-content::-webkit-scrollbar-thumb,
-        #mobile-search-content::-webkit-scrollbar-thumb {
-            background: #9333ea;
-            border-radius: 10px;
-        }
-        
-        #search-content::-webkit-scrollbar-thumb:hover,
-        #mobile-search-content::-webkit-scrollbar-thumb:hover {
-            background: #7e22ce;
-        }
-        
-        /* Effet de surlignage pour les termes de recherche */
-        mark {
-            background: linear-gradient(120deg, #fef08a 0%, #fde047 100%);
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-weight: 600;
-        }
-        
-        /* Styles Amazon pour les cartes de recherche */
-        .search-result-card {
-            animation: fadeInUp 0.2s ease-out;
-        }
-        
-        .search-result-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Étoiles de notation style Amazon */
-        .fa-star-half-alt:before {
-            content: "\f089";
-        }
-        
-        /* Barre de promotion */
-        .promo-bar {
-            animation: slideDown 0.5s ease-out;
-        }
-        
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-        
-        .promo-text {
-            animation: marquee 20s linear infinite;
-        }
-        
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        
-        /* Bouton retour en haut */
-        .back-to-top {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
+
+
   
     </style>
 </head>
 <body class="bg-gray-50">
-   <!-- Barre de Promotion Sticky -->
-   <div id="promo-bar" class="promo-bar bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white py-3 sticky top-0 z-[60] shadow-lg">
-       <div class="container mx-auto px-4 flex items-center justify-between">
-           <div class="flex-1 overflow-hidden">
-               <div class="flex items-center space-x-8 promo-text whitespace-nowrap">
-                   <span class="font-bold text-sm md:text-base">🔥 PROMO RENTRÉE : -20% sur toute la collection éducative !</span>
-                   <span class="font-bold text-sm md:text-base">🎒 Livraison GRATUITE dès 50 000 FCFA</span>
-                   <span class="font-bold text-sm md:text-base">⚡ Offre limitée - Ne manquez pas cette occasion !</span>
-                   <span class="font-bold text-sm md:text-base">🔥 PROMO RENTRÉE : -20% sur toute la collection éducative !</span>
-                   <span class="font-bold text-sm md:text-base">🎒 Livraison GRATUITE dès 50 000 FCFA</span>
-               </div>
-           </div>
-           <button onclick="closePromoBar()" class="ml-4 text-white hover:text-gray-200 transition-colors">
-               <i class="fas fa-times text-xl"></i>
-           </button>
-       </div>
-   </div>
-
    <!-- Header -->
+
 <header class="bg-white shadow-lg sticky top-0 z-50">
+    <!-- Conteneur principal -->
     <div class="container mx-auto px-4 flex flex-col">
-        <!-- Ligne logo + menu hamburger + boutons -->
+        <!-- Ligne 1 : Logo + Hamburger + Nav/Cart -->
         <div class="flex items-center justify-between py-4 w-full">
-            <!-- Logo et titre -->
-            <div class="flex items-center space-x-3 w-auto">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
                 <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden bg-white shadow-lg flex-shrink-0">
                     <img src="images/prestige shop.png" alt="Prestige Shop Express Logo" class="w-full h-full object-cover">
                 </div>
@@ -635,25 +514,6 @@
                     <a href="#produits" class="text-gray-700 hover:text-purple-600 font-medium transition-colors text-sm lg:text-base">Produits</a>
                     <a href="#contact" class="text-gray-700 hover:text-purple-600 font-medium transition-colors text-sm lg:text-base">Contact</a>
                 </nav>
-                
-                <!-- Boutons Connexion/Inscription (si non connecté) -->
-                <div id="auth-buttons" class="hidden md:flex items-center space-x-2">
-                    <a href="login.html" class="flex items-center space-x-2 bg-white border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-4 py-2 rounded-lg font-semibold transition-all">
-                        <i class="fas fa-sign-in-alt"></i>
-                        <span class="hidden lg:inline">Connexion</span>
-                    </a>
-                    <a href="register.html" class="flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-md">
-                        <i class="fas fa-user-plus"></i>
-                        <span class="hidden lg:inline">Inscription</span>
-                    </a>
-                </div>
-                
-                <!-- Bouton Profil utilisateur (si connecté) -->
-                <button id="user-menu-btn" onclick="openUserModal()" class="hidden md:flex items-center space-x-2 bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg transition-all">
-                    <i class="fas fa-user-circle text-purple-600 text-2xl"></i>
-                    <span id="user-fullname-header" class="text-sm font-semibold text-gray-800 hidden lg:inline"></span>
-                    <i class="fas fa-chevron-down text-gray-600 text-sm"></i>
-                </button>
 
                 <button onclick="toggleCart()" class="relative bg-purple-100 hover:bg-purple-200 p-2 md:p-3 rounded-full transition-colors flex-shrink-0">
                     <i class="fas fa-shopping-cart text-purple-600 text-lg md:text-xl"></i>
@@ -666,104 +526,86 @@
             </div>
         </div>
 
-        <!-- Barre de recherche desktop - STYLE AMÉLIORÉ -->
-        <div class="relative hidden sm:block w-full mb-3">
-            <div class="relative">
-                <input type="text"
-                       id="search-input"
-                       placeholder="Rechercher des produits, catégories ou marques..."
-                       class="w-full pl-12 pr-24 py-4 text-base border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-orange-200 focus:border-orange-400 transition-all shadow-sm hover:shadow-md"
-                       oninput="handleSearch()"
-                       onfocus="showSearchResults()"
-                       onblur="hideSearchResults()">
-                <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-                    <i class="fas fa-search text-lg"></i>
-                </div>
-                <button onclick="clearSearch()"
-                        id="clear-search"
-                        class="absolute right-16 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden transition-colors">
-                    <i class="fas fa-times-circle text-lg"></i>
-                </button>
-                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-lg transition-all font-semibold">
-                    <i class="fas fa-search mr-1"></i>
-                    <span class="hidden md:inline">Rechercher</span>
-                </button>
-            </div>
-            <div id="search-results" class="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-2xl shadow-2xl mt-2 max-h-[600px] overflow-y-auto z-50 hidden animate-slideDown">
-                <div id="search-content"></div>
-            </div>
-        </div>
+       <!-- RECHERCHE DESKTOP -->
+<div class="hidden sm:flex w-full bg-white border-b border-gray-200 px-4 py-2">
+  <div class="flex bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden w-full">
+    <input type="text"
+           id="search-input"
+           placeholder="Rechercher un produit..."
+           class="flex-1 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500">
+    <button id="search-btn" class="bg-purple-600 hover:bg-purple-700 text-white px-4 flex items-center justify-center">
+      <i class="fas fa-search"></i>
+    </button>
+    <button id="clear-search" class="hidden bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 flex items-center justify-center">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div id="search-results" class="absolute w-full bg-white shadow-lg rounded-lg mt-1 hidden z-50"></div>
+</div>
 
-        <!-- Barre de recherche mobile - STYLE AMÉLIORÉ -->
-        <div class="sm:hidden w-full bg-white border-b border-gray-200 px-3 py-3">
-            <div class="relative">
-                <input type="text"
-                       id="mobile-search-input"
-                       placeholder="Rechercher des produits..."
-                       class="w-full pl-11 pr-11 py-3.5 text-base border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-orange-200 focus:border-orange-400 transition-all"
-                       oninput="handleMobileSearch()"
-                       onfocus="showMobileSearchResults()"
-                       onblur="hideMobileSearchResults()">
-                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"></i>
-                <button onclick="clearMobileSearch()"
-                        id="mobile-clear-search"
-                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden">
-                    <i class="fas fa-times-circle text-lg"></i>
-                </button>
-            </div>
-            <div id="mobile-search-results" class="hidden mt-2">
-                <div id="mobile-search-content" class="bg-white rounded-2xl shadow-xl border border-gray-200 p-2 max-h-[500px] overflow-y-auto"></div>
-            </div>
-        </div>
+<!-- RECHERCHE MOBILE -->
+<div class="sm:hidden w-full bg-white border-t border-gray-200 px-4 py-2">
+  <div class="flex bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden w-full">
+    <input type="text"
+           id="mobile-search-input"
+           placeholder="Rechercher un produit..."
+           class="flex-1 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500">
+    <button id="mobile-search-btn" class="bg-purple-600 hover:bg-purple-700 text-white px-4 flex items-center justify-center">
+      <i class="fas fa-search"></i>
+    </button>
+    <button id="mobile-clear-search" class="hidden bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 flex items-center justify-center">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div id="mobile-search-results" class="absolute w-full bg-white shadow-lg rounded-lg mt-1 hidden z-50"></div>
+</div>
 
-        <!-- Menu mobile -->
-        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-200 hidden">
-            <div class="px-4 py-3 space-y-3">
-                <!-- Profil utilisateur mobile (si connecté) -->
-                <div id="mobile-user-profile" class="hidden bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4 mb-3 border border-purple-200">
-                    <div class="flex items-center space-x-3 mb-3">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-user text-white text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <p class="font-bold text-gray-900" id="mobile-user-fullname"></p>
-                            <p class="text-xs text-gray-600" id="mobile-user-email"></p>
-                        </div>
-                    </div>
-                    <button onclick="logout()" class="w-full bg-red-100 hover:bg-red-200 text-red-600 px-4 py-2.5 rounded-lg font-semibold transition-all flex items-center justify-center">
-                        <i class="fas fa-sign-out-alt mr-2"></i>
-                        Déconnexion
-                    </button>
-                </div>
-                
-                <!-- Boutons connexion/inscription mobile (si non connecté) -->
-                <div id="mobile-auth-buttons" class="hidden space-y-2 mb-3">
-                    <a href="login.html" class="block w-full bg-white border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-4 py-3 rounded-lg font-bold transition-all text-center">
-                        <i class="fas fa-sign-in-alt mr-2"></i>
-                        Connexion
-                    </a>
-                    <a href="register.html" class="block w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-3 rounded-lg font-bold transition-all text-center shadow-lg">
-                        <i class="fas fa-user-plus mr-2"></i>
-                        Créer un compte
-                    </a>
-                </div>
-                
-                <a href="#accueil" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
-                    <i class="fas fa-home mr-3 text-purple-600"></i> Accueil
-                </a>
-                <a href="#produits" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
-                    <i class="fas fa-shopping-bag mr-3 text-purple-600"></i> Produits
-                </a>
-                <a href="#contact" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
-                    <i class="fas fa-envelope mr-3 text-purple-600"></i> Contact
-                </a>
-            </div>
+    <!-- Menu mobile inchangé -->
+    <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-200 hidden">
+        <div class="px-4 py-3 space-y-3">
+            <a href="#accueil" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
+                <i class="fas fa-home mr-3 text-purple-600"></i> Accueil
+            </a>
+            <a href="#produits" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
+                <i class="fas fa-shopping-bag mr-3 text-purple-600"></i> Produits
+            </a>
+            <a href="#contact" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
+                <i class="fas fa-envelope mr-3 text-purple-600"></i> Contact
+            </a>
         </div>
     </div>
 </header>
 
+<script>
+    // Fonction pour afficher les résultats avec animation
+    function showSearchResults() {
+        const results = document.getElementById('search-results');
+        results.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+        results.classList.add('opacity-100', 'scale-100');
+    }
 
-   
+    function hideSearchResults() {
+        const results = document.getElementById('search-results');
+        setTimeout(() => {
+            results.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+            results.classList.remove('opacity-100', 'scale-100');
+        }, 150);
+    }
+
+    // Même style pour la recherche mobile
+    const mobileSearch = document.getElementById('mobile-search-input');
+    const mobileResults = document.getElementById('mobile-search-results');
+    const mobileContent = document.getElementById('mobile-search-content');
+
+    function showMobileSearchResults() {
+        mobileResults.classList.remove('hidden');
+        mobileResults.classList.add('animate-fadeIn');
+    }
+
+    function hideMobileSearchResults() {
+        setTimeout(() => mobileResults.classList.add('hidden'), 150);
+    }
+</script>
 
 <style>
     @keyframes fadeIn {
@@ -779,115 +621,52 @@
 
 
 
-<!-- Hero Banner Moderne - Style E-commerce Premium -->
-<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800">
-    <!-- Arrière-plan animé -->
+<!-- Hero Banner Carrousel Spéciale Rentrée -->
+<section id="accueil" class="hero-banner text-white py-20 relative overflow-hidden">
     <div class="absolute inset-0">
-        <!-- Images du carrousel avec effet parallaxe -->
+        <!-- Images du carrousel -->
         <div id="carouselImages" class="w-full h-full relative overflow-hidden">
             <img src="images/eleve1.jpg" class="absolute inset-0 w-full h-full object-cover opacity-100 scale-100 transition-all duration-1000 ease-in-out">
             <img src="images/ELEVE2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-0 scale-110 transition-all duration-1000 ease-in-out">
             <img src="images/ELEVE3.jpg" class="absolute inset-0 w-full h-full object-cover opacity-0 scale-110 transition-all duration-1000 ease-in-out">
         </div>
-        <!-- Overlay gradient moderne -->
-        <div class="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-purple-800/70 to-indigo-900/80"></div>
-        
-        <!-- Formes décoratives -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div> <!-- Overlay pour lisibilité -->
     </div>
 
-    <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
-        <div class="max-w-4xl mx-auto text-center">
-            <!-- Badge promotionnel -->
-            <div class="inline-flex items-center bg-orange-400 text-white px-4 py-2 rounded-full font-bold text-sm mb-6 shadow-lg animate-bounce">
-                <i class="fas fa-fire mr-2"></i>
-                OFFRES SPÉCIALES RENTRÉE
+    <div class="container mx-auto px-4 text-center relative z-10">
+        <h2 class="text-5xl font-bold mb-6 animate-fade-in">🎒 Spéciale Rentrée chez Prestige Shop Express</h2>
+        <div class="mb-8">
+            <div class="text-3xl font-extrabold text-yellow-300 mb-4 animate-bounce">
+                ✨ "Shoppez malin. Shoppez Prestige" ✨
             </div>
-            
-            <!-- Titre principal -->
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-                Shoppez Malin,
-                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-300">
-                    Shoppez Prestige
-                </span>
-            </h1>
-            
-            <!-- Sous-titre -->
-            <p class="text-lg md:text-xl text-gray-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Découvrez notre sélection premium de <strong>fournitures scolaires</strong>, <strong>électroniques</strong> et <strong>accessoires mode</strong> à prix imbattables. Qualité garantie, livraison express !
+            <p class="text-xl max-w-2xl mx-auto animate-slide-up">
+                Découvrez notre sélection spéciale rentrée : fournitures scolaires, électroniques, et accessoires à prix malin. 
+                Qualité garantie, livraison rapide !
             </p>
-            
-            <!-- Boutons CTA -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <a href="#produits" class="bg-orange-400 hover:bg-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-2xl hover:shadow-orange-500/50 transition-all transform hover:scale-105 inline-flex items-center justify-center">
-                    <i class="fas fa-shopping-bag mr-2"></i>
-                    Découvrir nos produits
-                </a>
-                <a href="#contact" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all transform hover:scale-105 inline-flex items-center justify-center">
-                    <i class="fab fa-whatsapp mr-2"></i>
-                    Commander sur WhatsApp
-                </a>
+        </div>
+
+        <!-- Avantages -->
+        <div class="flex flex-wrap justify-center gap-4 mb-8 animate-slide-up delay-200">
+            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
+                <i class="fas fa-truck mr-2"></i> Livraison rapide
             </div>
-            
-            <!-- Avantages avec icônes modernes -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all transform hover:scale-105">
-                    <div class="bg-orange-400 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-shipping-fast text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-white font-bold text-lg mb-2">Livraison Rapide</h3>
-                    <p class="text-gray-200 text-sm">Recevez vos commandes en 24-48h partout en Côte d'Ivoire</p>
-                </div>
-                
-                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all transform hover:scale-105">
-                    <div class="bg-green-400 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-shield-check text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-white font-bold text-lg mb-2">Qualité Garantie</h3>
-                    <p class="text-gray-200 text-sm">Produits authentiques et certifiés, satisfaction garantie</p>
-                </div>
-                
-                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all transform hover:scale-105">
-                    <div class="bg-blue-400 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-headset text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-white font-bold text-lg mb-2">Support 24/7</h3>
-                    <p class="text-gray-200 text-sm">Notre équipe à votre écoute via WhatsApp et téléphone</p>
-                </div>
+            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
+                <i class="fab fa-whatsapp mr-2"></i> Commande WhatsApp
+            </div>
+            <div class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
+                <i class="fas fa-shield-alt mr-2"></i> Qualité garantie
             </div>
         </div>
-    </div>
-    
-    <!-- Indicateurs de carrousel -->
-    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
-        <button onclick="goToSlide(0)" class="carousel-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all active"></button>
-        <button onclick="goToSlide(1)" class="carousel-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"></button>
-        <button onclick="goToSlide(2)" class="carousel-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"></button>
     </div>
 </section>
 
 
 
 
-<!-- JavaScript pour le carrousel animé amélioré -->
+<!-- JavaScript pour le carrousel animé -->
 <script>
 const images = document.querySelectorAll("#carouselImages img");
-const indicators = document.querySelectorAll(".carousel-indicator");
 let current = 0;
-let carouselInterval;
-
-function updateIndicators() {
-    indicators.forEach((indicator, index) => {
-        if (index === current) {
-            indicator.classList.add("active", "bg-white", "scale-125");
-            indicator.classList.remove("bg-white/50");
-        } else {
-            indicator.classList.remove("active", "bg-white", "scale-125");
-            indicator.classList.add("bg-white/50");
-        }
-    });
-}
 
 function showNextImage() {
     const prev = images[current];
@@ -899,35 +678,10 @@ function showNextImage() {
     const next = images[current];
     next.classList.remove("opacity-0", "scale-110");
     next.classList.add("opacity-100", "scale-100");
-    
-    updateIndicators();
 }
-
-function goToSlide(index) {
-    if (index === current) return;
-    
-    const prev = images[current];
-    prev.classList.remove("opacity-100", "scale-100");
-    prev.classList.add("opacity-0", "scale-110");
-
-    current = index;
-
-    const next = images[current];
-    next.classList.remove("opacity-0", "scale-110");
-    next.classList.add("opacity-100", "scale-100");
-    
-    updateIndicators();
-    
-    // Réinitialiser l'intervalle
-    clearInterval(carouselInterval);
-    carouselInterval = setInterval(showNextImage, 5000);
-}
-
-// Initialiser les indicateurs
-updateIndicators();
 
 // Change image toutes les 5 secondes
-carouselInterval = setInterval(showNextImage, 5000);
+setInterval(showNextImage, 5000);
 </script>
 
 
@@ -1002,11 +756,6 @@ carouselInterval = setInterval(showNextImage, 5000);
             <span id="cart-float-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hidden">0</span>
         </button>
     </div>
-    
-    <!-- Bouton Retour en Haut -->
-    <button id="back-to-top" class="back-to-top fixed bottom-24 left-6 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white p-4 rounded-full shadow-2xl transition-all transform hover:scale-110 z-50">
-        <i class="fas fa-arrow-up text-xl"></i>
-    </button>
 
     <!-- Cart Modal -->
     <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 modal-overlay hidden z-50">
@@ -1142,357 +891,80 @@ carouselInterval = setInterval(showNextImage, 5000);
         </div>
     </div>
 
-    <!-- User Profile Modal -->
-    <div id="user-modal" class="fixed inset-0 bg-black bg-opacity-50 modal-overlay hidden z-50" onclick="closeUserModal()">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md max-h-[90vh] flex flex-col slide-up" onclick="event.stopPropagation()">
-                <!-- Header - Fixed -->
-                <div class="gradient-bg text-white p-6 rounded-t-3xl relative flex-shrink-0">
-                    <button onclick="closeUserModal()" class="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors">
-                        <i class="fas fa-times text-2xl"></i>
-                    </button>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-xl">
-                            <i class="fas fa-user text-purple-600 text-3xl"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-2xl font-black mb-1">Mon Profil</h2>
-                            <p class="text-purple-100 text-sm">Informations du compte</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Body - Scrollable -->
-                <div class="p-6 overflow-y-auto flex-1">
-                    <!-- User Info -->
-                    <div class="space-y-4 mb-6">
-                        <div class="bg-purple-50 rounded-xl p-4 border border-purple-200">
-                            <div class="flex items-center space-x-3 mb-3">
-                                <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-user text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-xs text-gray-500 mb-1">Nom complet</p>
-                                    <p class="font-bold text-gray-900" id="modal-user-fullname"></p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
-                            <div class="flex items-center space-x-3 mb-3">
-                                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-envelope text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-xs text-gray-500 mb-1">Email</p>
-                                    <p class="font-semibold text-gray-900 text-sm break-all" id="modal-user-email"></p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-green-50 rounded-xl p-4 border border-green-200">
-                            <div class="flex items-center space-x-3 mb-3">
-                                <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-phone text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-xs text-gray-500 mb-1">Téléphone</p>
-                                    <p class="font-semibold text-gray-900" id="modal-user-phone"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Quick Actions -->
-                    <div class="space-y-3 mb-6">
-                        <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-3 rounded-xl font-semibold transition-all flex items-center justify-between">
-                            <span><i class="fas fa-shopping-bag mr-3 text-purple-600"></i>Mes commandes</span>
-                            <i class="fas fa-chevron-right text-gray-400"></i>
-                        </button>
-                        <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-3 rounded-xl font-semibold transition-all flex items-center justify-between">
-                            <span><i class="fas fa-heart mr-3 text-pink-600"></i>Mes favoris</span>
-                            <i class="fas fa-chevron-right text-gray-400"></i>
-                        </button>
-                        <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-3 rounded-xl font-semibold transition-all flex items-center justify-between">
-                            <span><i class="fas fa-cog mr-3 text-blue-600"></i>Paramètres</span>
-                            <i class="fas fa-chevron-right text-gray-400"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Logout Button -->
-                    <button onclick="logout()" class="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-4 rounded-xl font-bold transition-all transform hover:scale-[1.02] shadow-lg hover:shadow-xl flex items-center justify-center">
-                        <i class="fas fa-sign-out-alt mr-3 text-xl"></i>
-                        Se déconnecter
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Contact Section -->
-    <section id="contact" class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16 relative overflow-hidden">
-        <!-- Formes décoratives -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style="animation-delay: 1s;"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <!-- En-tête -->
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-black mb-4">Contactez-Nous</h2>
-                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Notre équipe est disponible pour répondre à toutes vos questions</p>
-            </div>
-            
-            <!-- Cartes de contact -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-all transform hover:scale-105 hover:shadow-2xl">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
-                        <i class="fab fa-whatsapp text-3xl"></i>
+    <section id="contact" class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-whatsapp text-2xl"></i>
                     </div>
                     <h4 class="text-xl font-bold mb-2">WhatsApp</h4>
-                    <p class="text-gray-400 text-sm mb-3">Commandez directement</p>
-                    <a href="https://wa.me/2250150241670" class="text-green-400 hover:text-green-300 font-bold text-lg transition-colors">+225 01 50 24 16 70</a>
+                    <p class="text-gray-300">+225 01 50 24 16 70</p>
                 </div>
                 
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-all transform hover:scale-105 hover:shadow-2xl">
-                    <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
-                        <i class="fas fa-envelope text-3xl"></i>
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-2xl"></i>
                     </div>
                     <h4 class="text-xl font-bold mb-2">Email</h4>
-                    <p class="text-gray-400 text-sm mb-3">Écrivez-nous</p>
-                    <a href="mailto:PrestigeShopExpress@gmail.com" class="text-orange-400 hover:text-orange-300 font-bold text-sm break-all transition-colors">PrestigeShopExpress@gmail.com</a>
+                    <p class="text-gray-300">PrestigeShopExpress@gmail.com</p>
                 </div>
                 
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-all transform hover:scale-105 hover:shadow-2xl">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
-                        <i class="fas fa-map-marker-alt text-3xl"></i>
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-2xl"></i>
                     </div>
                     <h4 class="text-xl font-bold mb-2">Localisation</h4>
-                    <p class="text-gray-400 text-sm mb-3">Nous trouver</p>
-                    <p class="text-blue-400 font-bold text-lg">Abidjan, Côte d'Ivoire</p>
+                    <p class="text-gray-300">Abidjan, Côte d'Ivoire</p>
                 </div>
             </div>
             
             <!-- Social Media Section -->
-            <div class="text-center mb-12">
-                <h4 class="text-3xl font-black mb-8">Rejoignez Notre Communauté</h4>
-                <div class="flex flex-wrap justify-center gap-6">
-                    <a href="https://www.facebook.com/EmileAfanou" target="_blank" class="group">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 rounded-2xl flex items-center justify-center transition-all transform group-hover:scale-110 group-hover:rotate-6 shadow-xl">
-                            <i class="fab fa-facebook-f text-white text-2xl"></i>
+            <div class="text-center mt-12">
+                <h4 class="text-2xl font-bold mb-6">Suivez-nous sur les réseaux sociaux</h4>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://www.facebook.com/Emile Afanou" class="group">
+                        <div class="w-14 h-14 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-all transform group-hover:scale-110">
+                            <i class="fab fa-facebook-f text-white text-xl"></i>
                         </div>
-                        <p class="text-sm mt-3 text-gray-400 group-hover:text-white transition-colors font-semibold">Facebook</p>
+                        <p class="text-sm mt-2 text-gray-300 group-hover:text-white transition-colors">Facebook</p>
                     </a>
                     
-                    <a href="https://www.instagram.com/EmileAfanou" target="_blank" class="group">
-                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 hover:from-purple-600 hover:via-pink-600 hover:to-orange-600 rounded-2xl flex items-center justify-center transition-all transform group-hover:scale-110 group-hover:rotate-6 shadow-xl">
-                            <i class="fab fa-instagram text-white text-2xl"></i>
+                    <a href="https://www.instagram.com/ Emile Afanou" class="group">
+                        <div class="w-14 h-14 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 rounded-full flex items-center justify-center transition-all transform group-hover:scale-110">
+                            <i class="fab fa-instagram text-white text-xl"></i>
                         </div>
-                        <p class="text-sm mt-3 text-gray-400 group-hover:text-white transition-colors font-semibold">Instagram</p>
+                        <p class="text-sm mt-2 text-gray-300 group-hover:text-white transition-colors">Instagram</p>
                     </a>
                     
-                    <a href="https://www.tiktok.com/@EmileAfanou" target="_blank" class="group">
-                        <div class="w-16 h-16 bg-gradient-to-br from-gray-800 to-black hover:from-gray-900 hover:to-black rounded-2xl flex items-center justify-center transition-all transform group-hover:scale-110 group-hover:rotate-6 shadow-xl">
-                            <i class="fab fa-tiktok text-white text-2xl"></i>
+                    <a href="https://www.tiktok.com/Emile Afanou" class="group">
+                        <div class="w-14 h-14 bg-black hover:bg-gray-900 rounded-full flex items-center justify-center transition-all transform group-hover:scale-110">
+                            <i class="fab fa-tiktok text-white text-xl"></i>
                         </div>
-                        <p class="text-sm mt-3 text-gray-400 group-hover:text-white transition-colors font-semibold">TikTok</p>
+                        <p class="text-sm mt-2 text-gray-300 group-hover:text-white transition-colors">TikTok</p>
                     </a>
                     
-                    <a href="https://wa.me/2250150241670" target="_blank" class="group">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 rounded-2xl flex items-center justify-center transition-all transform group-hover:scale-110 group-hover:rotate-6 shadow-xl">
-                            <i class="fab fa-whatsapp text-white text-2xl"></i>
+                    <a href="#" class="group">
+                        <div class="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center transition-all transform group-hover:scale-110">
+                            <i class="fab fa-whatsapp text-white text-xl"></i>
                         </div>
-                        <p class="text-sm mt-3 text-gray-400 group-hover:text-white transition-colors font-semibold">WhatsApp</p>
+                        <p class="text-sm mt-2 text-gray-300 group-hover:text-white transition-colors">WhatsApp</p>
                     </a>
                 </div>
+            </div>
+            
+            <div class="text-center mt-12 pt-8 border-t border-gray-700">
+                <div class="mb-4">
+                    <p class="text-2xl font-bold text-yellow-300 mb-2">✨ "Shoppez malin. Shoppez Prestige" ✨</p>
+                    <p class="text-gray-300 italic">Ensemble, construisons votre avenir avec les meilleurs produits</p>
+                </div>
+                <p>&copy; 2024 Digit Shop Express. Tous droits réservés.</p>
             </div>
         </div>
     </section>
-    
-    <!-- Footer Moderne -->
-    <footer class="bg-gray-950 text-white py-12 border-t border-gray-800">
-        <div class="container mx-auto px-4">
-            <!-- Grille principale -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <!-- À propos -->
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-12 h-12 rounded-full overflow-hidden bg-white shadow-lg">
-                            <img src="images/prestige shop.png" alt="Logo" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-xl font-bold">Prestige Shop</h3>
-                    </div>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4">Votre boutique en ligne de confiance pour des produits de qualité en Côte d'Ivoire.</p>
-                    <p class="text-orange-400 font-bold text-sm">✨ Shoppez malin, Shoppez Prestige</p>
-                </div>
-                
-                <!-- Liens rapides -->
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-orange-400">Liens Rapides</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#accueil" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Accueil</a></li>
-                        <li><a href="#produits" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Nos Produits</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Contact</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>À propos</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Catégories -->
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-orange-400">Catégories</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#produits" onclick="filterProducts('educatif')" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-graduation-cap mr-2 text-blue-400"></i>Éducatif</a></li>
-                        <li><a href="#produits" onclick="filterProducts('electronique')" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-laptop mr-2 text-green-400"></i>Électronique</a></li>
-                        <li><a href="#produits" onclick="filterProducts('mode')" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-tshirt mr-2 text-pink-400"></i>Mode</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Newsletter -->
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-orange-400">Restez Informé</h4>
-                    <p class="text-gray-400 text-sm mb-4">Recevez nos offres spéciales</p>
-                    <div class="flex gap-2">
-                        <input type="email" placeholder="Votre email" class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all">
-                        <button class="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-lg transition-all transform hover:scale-105">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-2">En vous inscrivant, vous acceptez notre politique de confidentialité</p>
-                </div>
-            </div>
-            
-            <!-- Copyright -->
-            <div class="border-t border-gray-800 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p class="text-gray-400 text-sm text-center md:text-left">
-                        &copy; 2024 <span class="text-orange-400 font-bold">Prestige Shop Express</span>. Tous droits réservés.
-                    </p>
-                    <div class="flex items-center gap-4 text-sm text-gray-400">
-                        <a href="#" class="hover:text-white transition-colors">Conditions d'utilisation</a>
-                        <span>•</span>
-                        <a href="#" class="hover:text-white transition-colors">Politique de confidentialité</a>
-                    </div>
-                </div>
-                <p class="text-center text-gray-500 text-xs mt-4">Développé avec ❤️ en Côte d'Ivoire</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
-        // ========== BARRE DE PROMOTION ==========
-        function closePromoBar() {
-            const promoBar = document.getElementById('promo-bar');
-            promoBar.style.transform = 'translateY(-100%)';
-            setTimeout(() => {
-                promoBar.style.display = 'none';
-            }, 300);
-            // Sauvegarder dans localStorage pour ne pas réafficher
-            localStorage.setItem('promoBarClosed', 'true');
-        }
-        
-        // Vérifier si la barre a déjà été fermée
-        window.addEventListener('DOMContentLoaded', () => {
-            const promoBarClosed = localStorage.getItem('promoBarClosed');
-            if (promoBarClosed === 'true') {
-                document.getElementById('promo-bar').style.display = 'none';
-            }
-        });
-        
-        // ========== BOUTON RETOUR EN HAUT ==========
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // ========== GESTION AUTHENTIFICATION ==========
-        function checkAuth() {
-            const isLoggedIn = localStorage.getItem('userLoggedIn') || sessionStorage.getItem('userLoggedIn');
-            const userFullname = localStorage.getItem('userFullname') || sessionStorage.getItem('userFullname');
-            const userEmail = localStorage.getItem('userEmail') || sessionStorage.getItem('userEmail');
-            
-            if (isLoggedIn === 'true' && userFullname) {
-                // Desktop - Afficher le bouton profil
-                document.getElementById('auth-buttons').classList.add('hidden');
-                document.getElementById('user-menu-btn').classList.remove('hidden');
-                document.getElementById('user-fullname-header').textContent = userFullname;
-                
-                // Mobile - Afficher le profil
-                document.getElementById('mobile-auth-buttons').classList.add('hidden');
-                document.getElementById('mobile-user-profile').classList.remove('hidden');
-                document.getElementById('mobile-user-fullname').textContent = userFullname;
-                document.getElementById('mobile-user-email').textContent = userEmail;
-            } else {
-                // Desktop - Afficher les boutons connexion/inscription
-                document.getElementById('auth-buttons').classList.remove('hidden');
-                document.getElementById('user-menu-btn').classList.add('hidden');
-                
-                // Mobile - Afficher les boutons
-                document.getElementById('mobile-auth-buttons').classList.remove('hidden');
-                document.getElementById('mobile-user-profile').classList.add('hidden');
-            }
-        }
-        
-        // Ouvrir la modale utilisateur
-        function openUserModal() {
-            const userFullname = localStorage.getItem('userFullname') || sessionStorage.getItem('userFullname');
-            const userEmail = localStorage.getItem('userEmail') || sessionStorage.getItem('userEmail');
-            const userPhone = localStorage.getItem('userPhone') || sessionStorage.getItem('userPhone');
-            
-            document.getElementById('modal-user-fullname').textContent = userFullname || 'Non renseigné';
-            document.getElementById('modal-user-email').textContent = userEmail || 'Non renseigné';
-            document.getElementById('modal-user-phone').textContent = userPhone || 'Non renseigné';
-            
-            document.getElementById('user-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        // Fermer la modale utilisateur
-        function closeUserModal() {
-            document.getElementById('user-modal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-        
-        function logout() {
-            closeUserModal();
-            if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
-                localStorage.removeItem('userLoggedIn');
-                localStorage.removeItem('userEmail');
-                localStorage.removeItem('userFullname');
-                localStorage.removeItem('userPhone');
-                sessionStorage.removeItem('userLoggedIn');
-                sessionStorage.removeItem('userEmail');
-                sessionStorage.removeItem('userFullname');
-                sessionStorage.removeItem('userPhone');
-                
-                // Rediriger vers welcome.html
-                window.location.href = 'welcome.html';
-            }
-        }
-        
-        window.addEventListener('DOMContentLoaded', () => {
-            const isLoggedIn = localStorage.getItem('userLoggedIn') || sessionStorage.getItem('userLoggedIn');
-            
-            // Si non connecté, rediriger vers welcome.html
-            if (isLoggedIn !== 'true') {
-                window.location.href = 'welcome.html';
-                return;
-            }
-            
-            // Si connecté, afficher le profil
-            checkAuth();
-        });
-        
         // Configuration
         const WHATSAPP_NUMBER = "+2250150241670"; // Remplacez par votre numéro WhatsApp
         
@@ -3314,7 +2786,7 @@ function loadMoreProducts() {
             displaySearchResults(results, query, isMobile);
         }
         
-        // Affichage des résultats de recherche - VERSION AMÉLIORÉE
+        // Affichage des résultats de recherche
         function displaySearchResults(results, query, isMobile = false) {
             const resultsContainer = isMobile ? 
                 document.getElementById('mobile-search-content') : 
@@ -3322,55 +2794,72 @@ function loadMoreProducts() {
             
             if (results.length === 0) {
                 resultsContainer.innerHTML = `
-                    <div class="p-6 text-center text-gray-500">
-                        <div class="bg-gray-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-search text-4xl text-gray-300"></i>
-                        </div>
-                        <p class="font-bold text-lg mb-2">Aucun produit trouvé</p>
+                    <div class="p-4 text-center text-gray-500">
+                        <i class="fas fa-search text-3xl mb-2 text-gray-300"></i>
+                        <p class="font-medium">Aucun produit trouvé</p>
                         <p class="text-sm">Essayez avec d'autres mots-clés</p>
-                        <p class="text-xs mt-2 text-gray-400">Suggestions: fournitures, électronique, mode</p>
                     </div>
                 `;
             } else {
-                // Limiter à 5 résultats pour l'aperçu rapide
-                const displayResults = results.slice(0, 5);
-                
                 resultsContainer.innerHTML = `
-                    <div class="${isMobile ? 'p-2' : 'p-3'}">
-                        <!-- En-tête des résultats -->
-                        <div class="flex items-center justify-between mb-4 px-2">
-                            <div class="flex items-center space-x-2">
-                                <div class="bg-purple-100 p-2 rounded-lg">
-                                    <i class="fas fa-search text-purple-600"></i>
+                    <div class="p-2">
+                        <div class="text-sm text-gray-600 mb-3 px-2">
+                            <i class="fas fa-search mr-1"></i>
+                            ${results.length} résultat${results.length > 1 ? 's' : ''} pour "${query}"
+                        </div>
+                        ${results.map(product => `
+                            <div class="search-result-item flex items-center space-x-3 p-3 ${isMobile ? 'active:bg-purple-50' : 'hover:bg-gray-50'} rounded-lg cursor-pointer transition-all duration-200 border border-transparent ${isMobile ? 'hover:border-purple-200 hover:shadow-md' : ''}"
+                                 data-product-id="${product.id}"
+                                 data-is-mobile="${isMobile}"
+                                 ${isMobile ? 'ontouchstart="handleSearchResultTouch(this, true)" ontouchend="handleSearchResultTouch(this, false)"' : ''}
+                                 onclick="selectSearchResult(${product.id}, ${isMobile})">
+                                <div class="relative flex-shrink-0">
+                                    <img src="${product.images[0]}" alt="${product.name}" 
+                                         class="w-12 h-12 object-cover rounded-lg border-2 border-gray-100">
+                                    ${product.images.length > 1 ? `
+                                        <div class="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                                            ${product.images.length}
+                                        </div>
+                                    ` : ''}
                                 </div>
-                                <div>
-                                    <p class="font-bold text-gray-800">${results.length} résultat${results.length > 1 ? 's' : ''}</p>
-                                    <p class="text-xs text-gray-500">pour "${query}"</p>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-semibold text-gray-800 ${isMobile ? 'text-base' : 'text-sm'} truncate">${highlightSearchTerm(product.name, query)}</h4>
+                                    <p class="text-sm text-gray-600 truncate ${isMobile ? 'mt-1' : ''}">${highlightSearchTerm(product.description, query)}</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-purple-600 font-bold ${isMobile ? 'text-base' : 'text-sm'}">${product.price.toLocaleString()} FCFA</span>
+                                        <span class="text-xs bg-${getCategoryColor(product.category)} text-white px-2 py-1 rounded-full">
+                                            ${getCategoryName(product.category)}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 flex flex-col space-y-2">
+                                    <button onclick="event.stopPropagation(); addToCartFromSearch(${product.id}, ${isMobile})" 
+                                            ontouchstart="event.stopPropagation()"
+                                            ontouchend="event.stopPropagation()"
+                                            class="bg-purple-100 hover:bg-purple-200 active:bg-purple-300 text-purple-600 ${isMobile ? 'p-3' : 'p-2'} rounded-full transition-all transform active:scale-95"
+                                            title="Ajouter au panier">
+                                        <i class="fas fa-cart-plus ${isMobile ? 'text-base' : 'text-sm'}"></i>
+                                    </button>
+                                    ${isMobile ? `
+                                        <button onclick="event.stopPropagation(); openImageZoom(${product.id}, 0); hideSearchResults(true)" 
+                                                ontouchstart="event.stopPropagation()"
+                                                ontouchend="event.stopPropagation()"
+                                                class="bg-blue-100 hover:bg-blue-200 active:bg-blue-300 text-blue-600 p-3 rounded-full transition-all transform active:scale-95"
+                                                title="Voir les images">
+                                            <i class="fas fa-images text-base"></i>
+                                        </button>
+                                    ` : ''}
                                 </div>
                             </div>
-                            ${results.length > 5 ? `
+                        `).join('')}
+                        
+                        ${results.length > 3 ? `
+                            <div class="p-3 border-t border-gray-200 text-center">
                                 <button onclick="showAllResults('${query}', ${isMobile})" 
-                                        class="text-purple-600 hover:text-purple-700 text-xs font-medium">
-                                    Tout voir →
-                                </button>
-                            ` : ''}
-                        </div>
-                        
-                        <!-- Filtres rapides par catégorie (si plusieurs catégories) -->
-                        ${getSearchCategoryFilters(results, query, isMobile)}
-                        
-                        <!-- Liste de cartes produits - Style Amazon -->
-                        <div class="flex flex-col gap-3">
-                            ${displayResults.map(product => createSearchProductCard(product, query, isMobile)).join('')}
-                        </div>
-                        
-                        <!-- Bouton voir tous les résultats -->
-                        ${results.length > 5 ? `
-                            <div class="mt-4 pt-3 border-t border-gray-200">
-                                <button onclick="showAllResults('${query}', ${isMobile})" 
-                                        class="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white py-3 px-4 rounded-xl font-bold transition-all transform active:scale-95 shadow-lg">
-                                    <i class="fas fa-th mr-2"></i>
-                                    Voir tous les ${results.length} résultats
+                                        ${isMobile ? 'ontouchstart="this.style.transform=\'scale(0.95)\'" ontouchend="this.style.transform=\'scale(1)\'"' : ''}
+                                        class="text-purple-600 hover:text-purple-700 active:text-purple-800 font-medium ${isMobile ? 'text-base py-3 px-6' : 'text-sm'} bg-purple-50 hover:bg-purple-100 rounded-lg transition-all">
+                                    Voir tous les résultats (${results.length})
+                                    <i class="fas fa-arrow-right ml-2"></i>
                                 </button>
                             </div>
                         ` : ''}
@@ -3391,170 +2880,12 @@ function loadMoreProducts() {
             }
         }
         
-        // Créer des filtres rapides par catégorie pour les résultats de recherche
-        function getSearchCategoryFilters(results, query, isMobile = false) {
-            // Compter les produits par catégorie
-            const categoryCounts = {};
-            results.forEach(product => {
-                categoryCounts[product.category] = (categoryCounts[product.category] || 0) + 1;
-            });
-            
-            const categories = Object.keys(categoryCounts);
-            
-            // N'afficher les filtres que s'il y a plusieurs catégories
-            if (categories.length <= 1) return '';
-            
-            return `
-                <div class="mb-3 px-2">
-                    <div class="flex flex-wrap gap-2">
-                        ${categories.map(category => `
-                            <button onclick="filterSearchResults('${category}', '${query}', ${isMobile})" 
-                                    class="search-category-filter bg-${getCategoryColor(category)} bg-opacity-10 hover:bg-opacity-20 text-${getCategoryColor(category).replace('500', '700')} px-3 py-1.5 rounded-full text-xs font-semibold transition-all border border-${getCategoryColor(category)} border-opacity-30">
-                                <i class="fas fa-${category === 'educatif' ? 'graduation-cap' : category === 'electronique' ? 'laptop' : 'tshirt'} mr-1"></i>
-                                ${getCategoryName(category)} (${categoryCounts[category]})
-                            </button>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        }
-        
-        // Filtrer les résultats de recherche par catégorie
-        function filterSearchResults(category, query, isMobile = false) {
-            const results = searchProducts(query).filter(p => p.category === category);
-            displaySearchResults(results, query, isMobile);
-        }
-        
-        // Créer une carte produit pour les résultats de recherche - STYLE AMAZON
-        function createSearchProductCard(product, query, isMobile = false) {
-            const rating = (4.2 + Math.random() * 0.8).toFixed(1);
-            const reviewCount = Math.floor(Math.random() * 100) + 15;
-            const discount = Math.random() > 0.6 ? Math.floor(Math.random() * 30) + 10 : 0;
-            const originalPrice = discount > 0 ? Math.floor(product.price / (1 - discount / 100)) : product.price;
-            
-            return `
-                <div class="search-result-card bg-white rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-200 overflow-hidden group"
-                     data-product-id="${product.id}">
-                    
-                    <div class="flex ${isMobile ? 'flex-col' : 'flex-row'} gap-3 p-3">
-                        <!-- Image Section - Style Amazon -->
-                        <div class="relative ${isMobile ? 'w-full h-48' : 'w-48 h-48'} flex-shrink-0 bg-white flex items-center justify-center cursor-pointer"
-                             onclick="openImageZoom(${product.id}, 0)">
-                            <img src="${product.images[0]}" 
-                                 alt="${product.name}" 
-                                 class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300">
-                            
-                            <!-- Badge réduction -->
-                            ${discount > 0 ? `
-                                <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
-                                    -${discount}%
-                                </div>
-                            ` : ''}
-                            
-                            <!-- Badge catégorie -->
-                            <div class="absolute top-2 right-2">
-                                <span class="bg-${getCategoryColor(product.category)} bg-opacity-90 text-white px-2 py-1 rounded text-xs font-semibold">
-                                    ${getCategoryName(product.category)}
-                                </span>
-                            </div>
-                            
-                            <!-- Indicateur multi-images -->
-                            ${product.images.length > 1 ? `
-                                <div class="absolute bottom-2 left-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs flex items-center gap-1">
-                                    <i class="fas fa-images"></i>
-                                    <span>${product.images.length}</span>
-                                </div>
-                            ` : ''}
-                        </div>
-                        
-                        <!-- Contenu - Style Amazon -->
-                        <div class="flex-1 flex flex-col justify-between min-w-0">
-                            <!-- Titre et description -->
-                            <div>
-                                <h3 class="text-base font-medium text-gray-900 hover:text-orange-600 cursor-pointer mb-1 line-clamp-2"
-                                    onclick="openImageZoom(${product.id}, 0)">
-                                    ${highlightSearchTerm(product.name, query)}
-                                </h3>
-                                
-                                <!-- Rating Amazon style -->
-                                <div class="flex items-center gap-2 mb-2">
-                                    <div class="flex items-center">
-                                        ${[1,2,3,4,5].map(star => `
-                                            <i class="fas fa-star text-xs ${star <= Math.floor(rating) ? 'text-orange-400' : star - 0.5 <= rating ? 'fa-star-half-alt text-orange-400' : 'text-gray-300'}"></i>
-                                        `).join('')}
-                                    </div>
-                                    <span class="text-sm text-blue-600 hover:text-orange-600 cursor-pointer">${reviewCount}</span>
-                                </div>
-                                
-                                <!-- Description -->
-                                <p class="text-sm text-gray-600 mb-2 line-clamp-2">
-                                    ${highlightSearchTerm(product.description, query)}
-                                </p>
-                                
-                                <!-- Badges de livraison et disponibilité -->
-                                <div class="flex flex-wrap gap-2 mb-2">
-                                    ${Math.random() > 0.5 ? `
-                                        <span class="text-xs bg-teal-50 text-teal-700 px-2 py-1 rounded-full font-medium">
-                                            <i class="fas fa-shipping-fast mr-1"></i>Livraison rapide
-                                        </span>
-                                    ` : ''}
-                                    <span class="text-xs ${Math.random() > 0.3 ? 'text-green-600' : 'text-orange-600'} font-semibold">
-                                        ${Math.random() > 0.3 ? 'En stock' : 'Stock limité'}
-                                    </span>
-                                </div>
-                            </div>
-                            
-                            <!-- Prix et action - Style Amazon -->
-                            <div class="flex items-end justify-between gap-3 mt-2">
-                                <div class="flex-1">
-                                    <!-- Prix -->
-                                    <div class="flex items-baseline gap-2 mb-1">
-                                        <span class="text-2xl font-bold text-gray-900">${product.price.toLocaleString()}</span>
-                                        <span class="text-sm text-gray-600">FCFA</span>
-                                    </div>
-                                    ${discount > 0 ? `
-                                        <div class="flex items-center gap-2">
-                                            <span class="text-xs text-gray-500 line-through">${originalPrice.toLocaleString()} FCFA</span>
-                                            <span class="text-xs text-red-600 font-semibold">(-${discount}%)</span>
-                                        </div>
-                                    ` : ''}
-                                </div>
-                                
-                                <!-- Bouton Ajouter au panier - Style Amazon -->
-                                <button onclick="addToCartFromSearch(${product.id}, ${isMobile}); event.stopPropagation();" 
-                                        class="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all transform active:scale-95 shadow-md hover:shadow-lg whitespace-nowrap">
-                                    <i class="fas fa-shopping-cart mr-1"></i>
-                                    Ajouter
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        // Surligner les termes de recherche - VERSION AMÉLIORÉE
+        // Surligner les termes de recherche
         function highlightSearchTerm(text, term) {
-            if (!term || term.length < 1) return text;
+            if (!term || term.length < 2) return text;
             
-            // Échapper les caractères spéciaux regex
-            const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const regex = new RegExp(`(${escapedTerm})`, 'gi');
+            const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
             return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>');
-        }
-        
-        // Afficher un indicateur de chargement pendant la recherche
-        function showSearchLoading(isMobile = false) {
-            const resultsContainer = isMobile ? 
-                document.getElementById('mobile-search-content') : 
-                document.getElementById('search-content');
-            
-            resultsContainer.innerHTML = `
-                <div class="p-8 text-center">
-                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-purple-200 border-t-purple-600 mb-4"></div>
-                    <p class="text-gray-600 font-medium">Recherche en cours...</p>
-                </div>
-            `;
         }
         
         // Gestionnaire de touch pour les résultats de recherche mobile
@@ -3667,41 +2998,33 @@ function loadMoreProducts() {
             });
         }
         
-        // Ajouter au panier depuis la recherche avec feedback - CORRIGÉ
+        // Ajouter au panier depuis la recherche avec feedback
         function addToCartFromSearch(productId, isMobile = false) {
-            // Ajouter le produit au panier
             addToCart(productId);
             
-            // Animation du bouton (utiliser window.event pour compatibilité)
-            const button = window.event ? window.event.target.closest('button') : null;
-            if (button) {
-                // Sauvegarder les styles originaux
-                const originalBg = button.style.backgroundColor;
-                const originalText = button.innerHTML;
-                
-                // Animation de succès
-                button.style.transform = 'scale(1.05)';
-                button.style.backgroundColor = '#10b981';
-                button.innerHTML = '<i class="fas fa-check mr-1"></i>Ajouté !';
-                
+            // Feedback visuel spécifique pour mobile
+            if (isMobile) {
                 // Feedback haptique
                 if (window.navigator && window.navigator.vibrate) {
-                    window.navigator.vibrate([50, 30, 50]);
+                    window.navigator.vibrate([50, 50, 50]);
                 }
                 
-                // Retour à la normale après 1 seconde
-                setTimeout(() => {
-                    button.style.transform = '';
-                    button.style.backgroundColor = originalBg;
-                    button.innerHTML = originalText;
-                }, 1000);
-            }
-            
-            // Notification
-            if (isMobile) {
-                showMobileNotification('✅ Produit ajouté au panier !', 'success');
-            } else {
-                showNotification('✅ Produit ajouté au panier !', 'success');
+                // Animation du bouton
+                const button = event.target.closest('button');
+                if (button) {
+                    button.style.transform = 'scale(1.2)';
+                    button.style.backgroundColor = '#10b981';
+                    button.style.color = 'white';
+                    
+                    setTimeout(() => {
+                        button.style.transform = '';
+                        button.style.backgroundColor = '';
+                        button.style.color = '';
+                    }, 300);
+                }
+                
+                // Notification optimisée pour mobile
+                showMobileNotification('✅ Ajouté au panier !', 'success');
             }
         }
         
@@ -3795,7 +3118,7 @@ function loadMoreProducts() {
             });
         }
         
-        // Afficher tous les résultats - VERSION AMÉLIORÉE
+        // Afficher tous les résultats
         function showAllResults(query, isMobile = false) {
             hideSearchResults(isMobile);
             
@@ -3822,53 +3145,19 @@ function loadMoreProducts() {
                     initializeCarousel(product.id);
                 });
                 
-                // Créer un en-tête de résultats de recherche amélioré
+                // Mettre à jour le bouton "Voir plus" pour les résultats de recherche
                 const loadMoreContainer = document.getElementById('load-more-container');
                 if (loadMoreContainer) {
-                    // Compter les catégories
-                    const categoryCounts = {};
-                    results.forEach(product => {
-                        categoryCounts[product.category] = (categoryCounts[product.category] || 0) + 1;
-                    });
-                    
                     loadMoreContainer.innerHTML = `
-                        <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl p-6 shadow-lg border border-purple-100">
-                            <!-- En-tête -->
-                            <div class="text-center mb-4">
-                                <div class="inline-flex items-center space-x-3 bg-white px-6 py-3 rounded-full shadow-md mb-3">
-                                    <i class="fas fa-search text-purple-600 text-xl"></i>
-                                    <span class="font-bold text-gray-800 text-lg">Résultats de recherche</span>
-                                </div>
-                                <p class="text-gray-700 font-semibold text-xl">
-                                    ✨ ${results.length} produit${results.length > 1 ? 's' : ''} trouvé${results.length > 1 ? 's' : ''} pour 
-                                    <span class="text-purple-600">"${query}"</span>
-                                </p>
+                        <div class="text-center">
+                            <div class="text-gray-600 font-semibold mb-4">
+                                ✨ ${results.length} résultat${results.length > 1 ? 's' : ''} trouvé${results.length > 1 ? 's' : ''} pour "${query}"
                             </div>
-                            
-                            <!-- Statistiques par catégorie -->
-                            <div class="flex flex-wrap justify-center gap-3 mb-4">
-                                ${Object.keys(categoryCounts).map(category => `
-                                    <div class="bg-white px-4 py-2 rounded-full shadow-md border border-${getCategoryColor(category)} border-opacity-30">
-                                        <i class="fas fa-${category === 'educatif' ? 'graduation-cap' : category === 'electronique' ? 'laptop' : 'tshirt'} text-${getCategoryColor(category)} mr-2"></i>
-                                        <span class="font-semibold text-gray-700">${getCategoryName(category)}: </span>
-                                        <span class="font-bold text-${getCategoryColor(category)}">${categoryCounts[category]}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            
-                            <!-- Boutons d'action -->
-                            <div class="flex flex-wrap justify-center gap-3">
-                                <button onclick="clearSearch(); clearMobileSearch()" 
-                                        class="bg-white hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-xl font-bold transition-all shadow-md hover:shadow-lg transform hover:scale-105">
-                                    <i class="fas fa-times mr-2"></i>
-                                    Effacer la recherche
-                                </button>
-                                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
-                                        class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-md hover:shadow-lg transform hover:scale-105">
-                                    <i class="fas fa-arrow-up mr-2"></i>
-                                    Retour en haut
-                                </button>
-                            </div>
+                            <button onclick="clearSearch(); clearMobileSearch()" 
+                                    class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-medium transition-all">
+                                <i class="fas fa-times mr-2"></i>
+                                Effacer la recherche
+                            </button>
                         </div>
                     `;
                 }
@@ -3876,8 +3165,8 @@ function loadMoreProducts() {
                 // Faire défiler vers les produits
                 document.getElementById('produits').scrollIntoView({ behavior: 'smooth' });
                 
-                // Afficher un message de résultats avec animation
-                showNotification(`🎉 ${results.length} produit${results.length > 1 ? 's' : ''} trouvé${results.length > 1 ? 's' : ''} pour "${query}"`, 'success');
+                // Afficher un message de résultats
+                showNotification(`${results.length} produit${results.length > 1 ? 's' : ''} trouvé${results.length > 1 ? 's' : ''} pour "${query}"`, 'success');
             }
         }
         
