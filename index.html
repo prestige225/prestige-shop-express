@@ -962,9 +962,30 @@ carouselInterval = setInterval(showNextImage, 5000);
                     <i class="fas fa-laptop mr-2"></i>
                     Électronique
                 </button>
-                <button onclick="filterProducts('mode')" class="category-btn gradient-purple text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-all">
+                <button onclick="toggleModeSubcategories()" class="category-btn gradient-purple text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-all">
                     <i class="fas fa-tshirt mr-2"></i>
                     Mode
+                    <i id="mode-chevron" class="fas fa-chevron-down ml-2 transition-transform"></i>
+                </button>
+            </div>
+            
+            <!-- Sous-catégories Mode -->
+            <div id="mode-subcategories" class="hidden flex flex-wrap justify-center gap-3 mb-8 animate-slideDown">
+                <button onclick="filterProducts('mode')" class="subcategory-btn bg-white border-2 border-pink-400 text-pink-600 px-5 py-2.5 rounded-full font-semibold hover:bg-pink-50 transition-all transform hover:scale-105">
+                    <i class="fas fa-th mr-2"></i>
+                    Tous Mode
+                </button>
+                <button onclick="filterProducts('mode-homme')" class="subcategory-btn bg-white border-2 border-blue-400 text-blue-600 px-5 py-2.5 rounded-full font-semibold hover:bg-blue-50 transition-all transform hover:scale-105">
+                    <i class="fas fa-male mr-2"></i>
+                    Homme
+                </button>
+                <button onclick="filterProducts('mode-femme')" class="subcategory-btn bg-white border-2 border-pink-400 text-pink-600 px-5 py-2.5 rounded-full font-semibold hover:bg-pink-50 transition-all transform hover:scale-105">
+                    <i class="fas fa-female mr-2"></i>
+                    Femme
+                </button>
+                <button onclick="filterProducts('mode-enfants')" class="subcategory-btn bg-white border-2 border-purple-400 text-purple-600 px-5 py-2.5 rounded-full font-semibold hover:bg-purple-50 transition-all transform hover:scale-105">
+                    <i class="fas fa-child mr-2"></i>
+                    Enfants
                 </button>
             </div>
             
@@ -1605,6 +1626,7 @@ carouselInterval = setInterval(showNextImage, 5000);
                 name: "Baskets Adidas Tendance Noir & Rose – Style audacieux et unique",
                 price: 24500,
                 category: "mode",
+                subcategory: "femme",
                 images: [
                     "imageprestige/adg.jpg",
                     "imageprestige/adi3.jpg",
@@ -1617,6 +1639,7 @@ carouselInterval = setInterval(showNextImage, 5000);
                 name: "Baskets Rétro Élégantes – L'icône du style urbain",
                 price: 28000,
                 category: "mode",
+                subcategory: "homme",
                 images: [
                     "imageprestige/AE86.jpg",
                     "imageprestige/AE8612.jpg",
@@ -1629,6 +1652,7 @@ carouselInterval = setInterval(showNextImage, 5000);
                 name: "Baskets Hautes Élégance Poudrée – Chic et streetwear",
                 price: 23750,
                 category: "mode",
+                subcategory: "femme",
                 images: [
                     "imageprestige/airf.jpg",
                     "imageprestige/aif.jpg"
@@ -1642,6 +1666,7 @@ carouselInterval = setInterval(showNextImage, 5000);
                 name: "Baskets Blanches Pures – L'icône du style intemporel",
                 price: 25250,
                 category: "mode",
+                subcategory: "homme",
                 images: [
                     "imageprestige/airh.jpg",
                     "imageprestige/airh1.jpg"
@@ -1678,6 +1703,7 @@ carouselInterval = setInterval(showNextImage, 5000);
                 name: "Sac à dos urbain antivol – style, confort et sécurité au quotidien.",
                 price: 12500,
                 category: "mode",
+                subcategory: "homme",
                 images: [
                     "imageprestige/sacp1.jpg",
                     "imageprestige/sacp2.jpg"
@@ -1700,6 +1726,7 @@ carouselInterval = setInterval(showNextImage, 5000);
                 name: "Sac à dos Fantaisie – Affichez votre personnalité",
                 price: 8500,
                 category: "mode",
+                subcategory: "enfants",
                 images: [
                     "imageprestige/sac1.jpg",
                     "imageprestige/sac2.jpg"
@@ -1749,6 +1776,7 @@ carouselInterval = setInterval(showNextImage, 5000);
                 name: "Sac à dos Fantaisie LNX – Douceur et originalité",
                 price: 8500,
                 category: "mode",
+                subcategory: "enfants",
                 images: [
                  "imageprestige/LXN1.jpg",
                  "imageprestige/sac4.jpg",
@@ -1762,6 +1790,7 @@ carouselInterval = setInterval(showNextImage, 5000);
                 name: "Sac à dos Fantaisie LNX – Douceur et originalité",
                 price: 8500,
                 category: "mode",
+                subcategory: "enfants",
                 images: [
                  "imageprestige/LNXN1.jpg",
                  "imageprestige/LNXN2.jpg"
@@ -1884,7 +1913,17 @@ function displayProducts(filter = 'all', reset = true) {
     }
     
     const grid = document.getElementById('products-grid');
-    let filteredProducts = filter === 'all' ? products : products.filter(p => p.category === filter);
+    let filteredProducts;
+    
+    // Gérer les sous-catégories mode
+    if (filter.startsWith('mode-')) {
+        const subcategory = filter.replace('mode-', '');
+        filteredProducts = products.filter(p => p.category === 'mode' && p.subcategory === subcategory);
+    } else if (filter === 'all') {
+        filteredProducts = products;
+    } else {
+        filteredProducts = products.filter(p => p.category === filter);
+    }
     
     filteredProducts = sortProductsArray(filteredProducts, currentSort);
     
@@ -1928,7 +1967,17 @@ window.addEventListener('scroll', () => {
 function loadMoreProducts() {
     if (isLoadingMore) return;
     
-    const filteredProducts = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
+    let filteredProducts;
+    // Gérer les sous-catégories mode
+    if (currentFilter.startsWith('mode-')) {
+        const subcategory = currentFilter.replace('mode-', '');
+        filteredProducts = products.filter(p => p.category === 'mode' && p.subcategory === subcategory);
+    } else if (currentFilter === 'all') {
+        filteredProducts = products;
+    } else {
+        filteredProducts = products.filter(p => p.category === currentFilter);
+    }
+    
     if (currentPage * productsPerPage >= filteredProducts.length) return; // Plus de produits
     
     isLoadingMore = true;
@@ -1986,19 +2035,77 @@ function loadMoreProducts() {
             showNotification(`${sortNames[sortType]} appliqué !`, 'success');
         }
 
+        // Toggle des sous-catégories Mode
+        function toggleModeSubcategories() {
+            const subcategoriesDiv = document.getElementById('mode-subcategories');
+            const chevron = document.getElementById('mode-chevron');
+            
+            if (subcategoriesDiv.classList.contains('hidden')) {
+                // Afficher les sous-catégories
+                subcategoriesDiv.classList.remove('hidden');
+                chevron.style.transform = 'rotate(180deg)';
+                
+                // Afficher tous les produits mode par défaut
+                filterProducts('mode');
+            } else {
+                // Masquer les sous-catégories
+                subcategoriesDiv.classList.add('hidden');
+                chevron.style.transform = 'rotate(0deg)';
+            }
+        }
+
         // Filtrage des produits
         function filterProducts(category) {
             currentFilter = category;
             currentPage = 1; // Reset à la première page
             displayProducts(category, true);
             
-            // Mise à jour des boutons actifs
+            // Mise à jour des boutons actifs pour les catégories principales
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.classList.remove('active', 'bg-purple-600');
             });
-            event.target.classList.add('active');
-            if (category === 'all') {
-                event.target.classList.add('bg-purple-600');
+            
+            // Mise à jour des boutons de sous-catégories
+            document.querySelectorAll('.subcategory-btn').forEach(btn => {
+                btn.classList.remove('ring-4', 'ring-pink-300');
+            });
+            
+            // Si c'est une sous-catégorie mode, activer le bouton correspondant
+            if (category.startsWith('mode-')) {
+                const subcategoriesDiv = document.getElementById('mode-subcategories');
+                const chevron = document.getElementById('mode-chevron');
+                if (subcategoriesDiv.classList.contains('hidden')) {
+                    subcategoriesDiv.classList.remove('hidden');
+                    chevron.style.transform = 'rotate(180deg)';
+                }
+                if (event && event.target) {
+                    event.target.classList.add('ring-4', 'ring-pink-300');
+                }
+            } else if (category === 'mode') {
+                // Afficher les sous-catégories si on clique sur Mode
+                const subcategoriesDiv = document.getElementById('mode-subcategories');
+                const chevron = document.getElementById('mode-chevron');
+                if (subcategoriesDiv.classList.contains('hidden')) {
+                    subcategoriesDiv.classList.remove('hidden');
+                    chevron.style.transform = 'rotate(180deg)';
+                }
+                if (event && event.target) {
+                    event.target.classList.add('ring-4', 'ring-pink-300');
+                }
+            } else {
+                // Pour les autres catégories, masquer les sous-catégories mode
+                const subcategoriesDiv = document.getElementById('mode-subcategories');
+                const chevron = document.getElementById('mode-chevron');
+                if (!subcategoriesDiv.classList.contains('hidden')) {
+                    subcategoriesDiv.classList.add('hidden');
+                    chevron.style.transform = 'rotate(0deg)';
+                }
+                if (event && event.target) {
+                    event.target.classList.add('active');
+                    if (category === 'all') {
+                        event.target.classList.add('bg-purple-600');
+                    }
+                }
             }
             
             // Faire défiler vers les produits
