@@ -3160,25 +3160,16 @@ if (images && images.length > 0) {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify(commandeData)
                     });
-                    
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -3189,18 +3180,7 @@ if (images && images.length > 0) {
                     }
                 } catch (error) {
                     console.error('❌ Erreur connexion serveur:', error);
-                    console.error('🔍 Détails de l\'erreur:', {
-                        name: error.name,
-                        message: error.message,
-                        stack: error.stack
-                    });
-                    
-                    // Vérifier si c'est une erreur de réseau
-                    if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                        showNotification('⚠️ Impossible de joindre le serveur. Vérifiez votre connexion internet ou réessayez plus tard.', 'error');
-                    } else {
-                        showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
-                    }
+                    showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
                 }
             } else {
                 console.warn('⚠️ Utilisateur non connecté, commande non enregistrée en BDD');
@@ -4296,31 +4276,16 @@ function loadMoreProducts() {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    // Ajout d'un timeout pour la requête
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 secondes timeout
-
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(commandeData),
-                        signal: controller.signal
+                        body: JSON.stringify(commandeData)
                     });
-                    
-                    clearTimeout(timeoutId);
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);

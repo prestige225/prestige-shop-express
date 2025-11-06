@@ -2765,7 +2765,7 @@ if (images && images.length > 0) {
             
             // Récupérer les commandes depuis la base de données
             try {
-                const response = await fetch(`${API_BASE_URL}/commandes/user/${userId}`);
+                const response = await fetch(`http://localhost:5000/api/commandes/user/${userId}`);
                 const data = await response.json();
                 
                 if (data.success) {
@@ -3160,25 +3160,16 @@ if (images && images.length > 0) {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify(commandeData)
                     });
-                    
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -3189,18 +3180,7 @@ if (images && images.length > 0) {
                     }
                 } catch (error) {
                     console.error('❌ Erreur connexion serveur:', error);
-                    console.error('🔍 Détails de l\'erreur:', {
-                        name: error.name,
-                        message: error.message,
-                        stack: error.stack
-                    });
-                    
-                    // Vérifier si c'est une erreur de réseau
-                    if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                        showNotification('⚠️ Impossible de joindre le serveur. Vérifiez votre connexion internet ou réessayez plus tard.', 'error');
-                    } else {
-                        showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
-                    }
+                    showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
                 }
             } else {
                 console.warn('⚠️ Utilisateur non connecté, commande non enregistrée en BDD');
@@ -4283,7 +4263,7 @@ function loadMoreProducts() {
                         nom: item.name,
                         quantite: item.quantity,
                         prix: item.price,
-                        image: item.image || (item.images && item.images[0]) || '/images/prestige shop.png'  // Ajouter l'image
+                        image: item.images[0]  // Ajouter l'image
                     }));
 
                     const commandeData = {
@@ -4296,31 +4276,16 @@ function loadMoreProducts() {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    // Ajout d'un timeout pour la requête
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 secondes timeout
-
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(commandeData),
-                        signal: controller.signal
+                        body: JSON.stringify(commandeData)
                     });
-                    
-                    clearTimeout(timeoutId);
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -6662,9 +6627,7 @@ function loadMoreProducts() {
                         id: product.id,
                         name: product.name,
                         price: product.price,
-                        description: product.description,
                         image: product.images && product.images.length > 0 ? product.images[0] : '/images/prestige shop.png',
-                        images: product.images || [],
                         quantity: 1
                     });
                 }
@@ -7182,7 +7145,6 @@ Commandez sur Digit Shop Express !`;
     
     <!-- ========== CHATBOT ASSISTANT IA ========== -->
     <script src="chatbot-widget.js"></script>
-    <script src="api-config.js"></script>
     
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9696453bb45cc13d',t:'MTc1NDIyODg4NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

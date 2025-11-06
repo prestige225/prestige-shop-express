@@ -4296,31 +4296,16 @@ function loadMoreProducts() {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    // Ajout d'un timeout pour la requête
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 secondes timeout
-
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(commandeData),
-                        signal: controller.signal
+                        body: JSON.stringify(commandeData)
                     });
-                    
-                    clearTimeout(timeoutId);
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);

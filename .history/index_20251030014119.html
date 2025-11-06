@@ -277,404 +277,6 @@
             }
         }
         
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); 
-            }
-            50% { 
-                transform: scale(1.01); 
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
-            }
-        }
-        
-        /* Rotation pour l'effet festif */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Effet de scintillement pour les fêtes */
-        @keyframes sparkle {
-            0%, 100% { 
-                opacity: 0.7; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.1); 
-            }
-        }
-        
-        /* Animation de défilement pour le texte */
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        /* Animation de la main qui clique */
-        @keyframes handClick {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            50% { 
-                transform: translateY(5px) rotate(-10deg); 
-            }
-        }
-        
-        /* Animation de brillance */
-        @keyframes shimmer {
-            0% { 
-                transform: translateX(-100%); 
-                opacity: 0.2; 
-            }
-            50% { 
-                opacity: 0.4; 
-            }
-            100% { 
-                transform: translateX(100%); 
-                opacity: 0; 
-            }
-        }
-        
-        /* Effet de confettis festifs */
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Styles pour les bannières de catégories */
-        .category-banner {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.8s ease-out;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .category-banner:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-banner:hover::before {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out;
-        }
-        
-        .category-banner-all {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: bannerPulse 2s ease-in-out infinite;
-            transition: all 0.3s ease;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .category-banner-all:hover {
-            transform: scale(1.02);
-        }
-        
-        .category-banner-all::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-        
-        /* Effet de scintillement pour les icônes festives */
-        .festive-icon {
-            animation: sparkle 1.5s ease-in-out infinite;
-        }
-        
-        .festive-icon:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-        
-        .festive-icon:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        
-        /* Animation de la main qui clique */
-        .animate-bounce {
-            animation: handClick 1s ease-in-out infinite;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-banner .absolute.inset-0,
-        .category-banner-all .absolute.inset-0 {
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.2) 50%, 
-                transparent 100%);
-        }
-        
-        /* Style pour le bouton avec effet de brillance */
-        .category-banner button,
-        .category-banner-all button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Effet de neige pour les fêtes */
-        .snowflake {
-            position: absolute;
-            top: -20px;
-            color: #fff;
-            font-size: 20px;
-            animation: fall linear forwards;
-            user-select: none;
-            pointer-events: none;
-            z-index: 100;
-        }
-        
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-            }
-        }
-        
-        .gradient-purple {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        }
-        
-        
-        .product-card {
-            transition: all 0.3s ease;
-            transform: translateY(0);
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-        
-        .category-btn {
-            transition: all 0.3s ease;
-        }
-        
-        .category-btn.active {
-            transform: scale(1.05);
-        }
-        
-        .category-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-        
-        /* Animation d'apparition décalée pour chaque carte */
-        .category-card:nth-child(1) { animation-delay: 0.1s; }
-        .category-card:nth-child(2) { animation-delay: 0.2s; }
-        .category-card:nth-child(3) { animation-delay: 0.3s; }
-        .category-card:nth-child(4) { animation-delay: 0.4s; }
-        
-        .category-card:hover {
-            transform: translateY(-8px) scale(1.08);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Animation de l'icône au survol */
-        .category-card:hover i {
-            transform: scale(1.2) rotate(5deg);
-            transition: transform 0.3s ease;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-card:hover::after {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out infinite;
-        }
-        
-        /* Bordure animée pour la carte active */
-        .category-card.active::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border: 4px solid rgba(255, 255, 255, 0.9);
-            border-radius: 1rem;
-            pointer-events: none;
-            animation: pulse-border 2s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-        
-        /* Badge qui pulse pour attirer l'attention */
-        .category-card .badge-pulse {
-            animation: badge-pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        @keyframes pulse-border {
-            0%, 100% {
-                border-color: rgba(255, 255, 255, 0.9);
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            }
-            50% {
-                border-color: rgba(255, 255, 255, 0.5);
-                box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
-            }
-        }
-        
-        @keyframes badge-pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.9;
-            }
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate-slideDown {
-            animation: slideDown 0.4s ease-out;
-        }
-        
-        /* Animations pour les sous-catégories */
-        .subcategory-btn {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .subcategory-btn:hover {
-            transform: translateY(-3px) scale(1.08);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Effet d'onde au clic */
-        .subcategory-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .subcategory-btn:active::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        /* Animation pour les icônes des sous-catégories */
-        .subcategory-btn:hover i {
-            animation: bounce 0.5s ease;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            25% { transform: translateY(-5px); }
-            50% { transform: translateY(-2px); }
-            75% { transform: translateY(-3px); }
-        }
-        
-        /* Animation des badges promotionnels */
-        .promo-badge {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        
-        /* Animation scintillante pour les badges */
-        .sparkle {
-            animation: sparkle 2s ease-in-out infinite;
-        }
-        
-        @keyframes sparkle {
-            0%, 100% { opacity: 1; filter: brightness(1); }
-            50% { opacity: 0.8; filter: brightness(1.3); }
-        }
-        
-        /* Animation pour la bannière de catégorie */
-        .category-banner-animate {
-            animation: bannerSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        @keyframes bannerSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
         /* Animation de l'icône dans la bannière */
         .banner-icon {
             animation: iconRotate 0.8s ease-out;
@@ -733,212 +335,6 @@
                 transform: translateY(-20px) translateX(10px);
                 opacity: 0.6;
             }
-        }
-        
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); 
-            }
-            50% { 
-                transform: scale(1.01); 
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
-            }
-        }
-        
-        /* Rotation pour l'effet festif */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Effet de scintillement pour les fêtes */
-        @keyframes sparkle {
-            0%, 100% { 
-                opacity: 0.7; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.1); 
-            }
-        }
-        
-        /* Animation de défilement pour le texte */
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        /* Animation de la main qui clique */
-        @keyframes handClick {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            50% { 
-                transform: translateY(5px) rotate(-10deg); 
-            }
-        }
-        
-        /* Animation de brillance */
-        @keyframes shimmer {
-            0% { 
-                transform: translateX(-100%); 
-                opacity: 0.2; 
-            }
-            50% { 
-                opacity: 0.4; 
-            }
-            100% { 
-                transform: translateX(100%); 
-                opacity: 0; 
-            }
-        }
-        
-        /* Effet de neige pour les fêtes */
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-            }
-        }
-        
-        /* Styles pour les confettis de fête */
-        .confetti-piece {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: #f00;
-            top: -10px;
-            opacity: 0;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Styles pour les bannières de catégories */
-        .category-banner {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.8s ease-out;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .category-banner:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-banner:hover::before {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out;
-        }
-        
-        .category-banner-all {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: bannerPulse 2s ease-in-out infinite;
-            transition: all 0.3s ease;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .category-banner-all:hover {
-            transform: scale(1.02);
-        }
-        
-        .category-banner-all::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-        
-        /* Effet de scintillement pour les icônes festives */
-        .festive-icon {
-            animation: sparkle 1.5s ease-in-out infinite;
-        }
-        
-        .festive-icon:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-        
-        .festive-icon:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        
-        /* Animation de la main qui clique */
-        .animate-bounce {
-            animation: handClick 1s ease-in-out infinite;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-banner .absolute.inset-0,
-        .category-banner-all .absolute.inset-0 {
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.2) 50%, 
-                transparent 100%);
-        }
-        
-        /* Style pour le bouton avec effet de brillance */
-        .category-banner button,
-        .category-banner-all button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Effet de neige pour les fêtes */
-        .snowflake {
-            position: absolute;
-            top: -20px;
-            color: #fff;
-            font-size: 20px;
-            animation: fall linear forwards;
-            user-select: none;
-            pointer-events: none;
-            z-index: 100;
         }
         
         /* Animation pour le texte de la bannière */
@@ -1972,7 +1368,7 @@ if (images && images.length > 0) {
             
             <!-- Category Filters avec Bannières -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-                <!-- Toute les catégories -->
+                <!-- Toutes les catégories -->
                 <button onclick="filterProducts('all')" class="category-card active group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-br from-purple-600 via-purple-700 to-blue-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
@@ -1981,10 +1377,6 @@ if (images && images.length > 0) {
                         </div>
                         <h3 class="text-xl font-bold mb-2">Tous les Produits</h3>
                         <p class="text-sm opacity-90">Découvrez toute notre collection</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                 </button>
                 
@@ -1997,10 +1389,6 @@ if (images && images.length > 0) {
                         </div>
                         <h3 class="text-xl font-bold mb-2">Éducatif</h3>
                         <p class="text-sm opacity-90">Fournitures scolaires & plus</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-400 text-blue-900 text-xs font-bold px-2 py-1 rounded-full badge-pulse promo-badge">⭐ Populaire</div>
                 </button>
@@ -2014,10 +1402,6 @@ if (images && images.length > 0) {
                         </div>
                         <h3 class="text-xl font-bold mb-2">Électronique</h3>
                         <p class="text-sm opacity-90">High-tech & accessoires</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse sparkle">🔥 Promo</div>
                 </button>
@@ -2031,10 +1415,6 @@ if (images && images.length > 0) {
                         </div>
                         <h3 class="text-xl font-bold mb-2">Fast Food</h3>
                         <p class="text-sm opacity-90">Burgers & snacks</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-300 text-red-900 text-xs font-bold px-2 py-1 rounded-full promo-badge float">🍔 Nouveau</div>
                 </button>
@@ -2051,10 +1431,6 @@ if (images && images.length > 0) {
                             <i class="fas fa-chevron-down ml-2 transition-transform text-sm"></i>
                         </h3>
                         <p class="text-sm opacity-90">Tendances & style</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-300 text-purple-900 text-xs font-bold px-2 py-1 rounded-full promo-badge float">✨ Nouveau</div>
                 </button>
@@ -2765,7 +2141,7 @@ if (images && images.length > 0) {
             
             // Récupérer les commandes depuis la base de données
             try {
-                const response = await fetch(`${API_BASE_URL}/commandes/user/${userId}`);
+                const response = await fetch(`http://localhost:5000/api/commandes/user/${userId}`);
                 const data = await response.json();
                 
                 if (data.success) {
@@ -3160,25 +2536,16 @@ if (images && images.length > 0) {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify(commandeData)
                     });
-                    
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -3189,18 +2556,7 @@ if (images && images.length > 0) {
                     }
                 } catch (error) {
                     console.error('❌ Erreur connexion serveur:', error);
-                    console.error('🔍 Détails de l\'erreur:', {
-                        name: error.name,
-                        message: error.message,
-                        stack: error.stack
-                    });
-                    
-                    // Vérifier si c'est une erreur de réseau
-                    if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                        showNotification('⚠️ Impossible de joindre le serveur. Vérifiez votre connexion internet ou réessayez plus tard.', 'error');
-                    } else {
-                        showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
-                    }
+                    showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
                 }
             } else {
                 console.warn('⚠️ Utilisateur non connecté, commande non enregistrée en BDD');
@@ -3664,14 +3020,50 @@ let isSearchFocused = false;
 let productsPerPage = 8; // Nombre de produits par page
 let currentPage = 1;
 let isLoadingMore = false;
+let allProducts = []; // Stocker tous les produits récupérés
 
 // Initialisation
 document.addEventListener('DOMContentLoaded', function() {
-    displayProducts();
+    fetchProducts(); // Récupérer les produits depuis le backend
     updateCartUI();
     checkAuth();
     showCategoryBanner('all'); // Afficher la bannière par défaut
 });
+
+// Fonction pour récupérer les produits depuis le backend
+async function fetchProducts() {
+    try {
+        const response = await fetch('http://localhost:5000/api/produits');
+        const data = await response.json();
+        
+        if (data.success) {
+            // Convertir les produits du backend au format attendu par le frontend
+            allProducts = data.produits.map(produit => ({
+                id: produit.id,
+                name: produit.nom,
+                price: parseFloat(produit.prix),
+                category: produit.categorie || 'autres',
+                images: Array.isArray(produit.images_urls) ? produit.images_urls : 
+                       (produit.image_url ? [produit.image_url] : ['/images/prestige shop.png']),
+                description: produit.description || 'Aucune description disponible',
+                stock: produit.stock || 0,
+                status: produit.statut || 'actif'
+            }));
+            
+            displayProducts();
+        } else {
+            console.error('Erreur lors de la récupération des produits:', data.message);
+            // En cas d'erreur, utiliser les produits statiques
+            allProducts = products;
+            displayProducts();
+        }
+    } catch (error) {
+        console.error('Erreur réseau lors de la récupération des produits:', error);
+        // En cas d'erreur réseau, utiliser les produits statiques
+        allProducts = products;
+        displayProducts();
+    }
+}
 
 // Fonction de tri des produits
 function sortProductsArray(productsArray, sortType) {
@@ -4195,7 +3587,7 @@ function loadMoreProducts() {
                         <!-- Image du produit -->
                         <div class="flex-shrink-0 relative">
                             <div class="w-24 h-24 rounded-xl overflow-hidden border-2 border-gray-200">
-                                <img src="${item.image || (item.images && item.images[0]) || '/images/prestige shop.png'}" alt="${item.name}" 
+                                <img src="${item.images[0]}" alt="${item.name}" 
                                      class="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform" 
                                      onclick="openImageZoom(${item.id}, 0)">
                             </div>
@@ -4283,7 +3675,7 @@ function loadMoreProducts() {
                         nom: item.name,
                         quantite: item.quantity,
                         prix: item.price,
-                        image: item.image || (item.images && item.images[0]) || '/images/prestige shop.png'  // Ajouter l'image
+                        image: item.images[0]  // Ajouter l'image
                     }));
 
                     const commandeData = {
@@ -4296,31 +3688,16 @@ function loadMoreProducts() {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    // Ajout d'un timeout pour la requête
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 secondes timeout
-
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(commandeData),
-                        signal: controller.signal
+                        body: JSON.stringify(commandeData)
                     });
-                    
-                    clearTimeout(timeoutId);
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -6491,200 +5868,6 @@ function loadMoreProducts() {
             });
         }
         
-        // Fonction pour créer un effet de confettis de fête
-        function createFestiveConfetti() {
-            const confettiColors = [
-                '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
-                '#ff00ff', '#00ffff', '#ff9900', '#ff66cc',
-                '#66ff66', '#6666ff', '#ffcc00', '#cc66ff'
-            ];
-            
-            const container = document.body;
-            
-            // Créer 150 confettis
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
-                
-                // Propriétés aléatoires
-                const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                const size = Math.random() * 10 + 5;
-                const left = Math.random() * 100;
-                const animationDuration = Math.random() * 3 + 2;
-                const animationDelay = Math.random() * 2;
-                const shape = Math.random() > 0.5 ? '50%' : '0';
-                
-                // Appliquer les styles
-                confetti.style.backgroundColor = color;
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.left = `${left}vw`;
-                confetti.style.borderRadius = shape;
-                confetti.style.animation = `confetti-fall ${animationDuration}s ease-in ${animationDelay}s forwards`;
-                
-                // Ajouter au document
-                container.appendChild(confetti);
-                
-                // Supprimer après l'animation
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.parentNode.removeChild(confetti);
-                    }
-                }, (animationDuration + animationDelay) * 1000);
-            }
-        }
-        
-        // Ajouter au panier avec effet de confettis de fête
-        function addToCart(productId) {
-            // Vérifier si le produit existe déjà dans le panier
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                // Incrémenter la quantité
-                existingItem.quantity += 1;
-            } else {
-                // Ajouter un nouveau produit au panier
-                const product = allProducts.find(p => p.id === productId);
-                if (product) {
-                    cart.push({
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        image: product.images && product.images.length > 0 ? product.images[0] : '/images/prestige shop.png',
-                        quantity: 1
-                    });
-                }
-            }
-            
-            // Mettre à jour l'interface utilisateur
-            updateCartUI();
-            
-            // Créer l'effet de confettis de fête
-            createFestiveConfetti();
-            
-            // Sauvegarder dans localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Feedback haptique
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate([50, 30, 50]);
-            }
-        }
-        
-        // Mettre à jour l'interface du panier
-        function updateCartUI() {
-            // Mettre à jour le badge du panier flottant
-            const cartBadge = document.getElementById('cart-float-badge');
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            
-            if (totalItems > 0) {
-                cartBadge.textContent = totalItems;
-                cartBadge.classList.remove('hidden');
-            } else {
-                cartBadge.classList.add('hidden');
-            }
-            
-            // Mettre à jour le total dans le panier modal
-            const cartTotal = document.getElementById('cart-total');
-            if (cartTotal) {
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                cartTotal.textContent = total.toFixed(2) + ' FCFA';
-            }
-            
-            // Mettre à jour le badge du bouton panier dans le header
-            const headerCartBadge = document.getElementById('cart-badge');
-            if (headerCartBadge) {
-                if (totalItems > 0) {
-                    headerCartBadge.textContent = totalItems;
-                    headerCartBadge.classList.remove('hidden');
-                } else {
-                    headerCartBadge.classList.add('hidden');
-                }
-            }
-        }
-        
-        // Fonction pour créer un effet de confettis de fête
-        function createFestiveConfetti() {
-            const confettiColors = [
-                '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
-                '#ff00ff', '#00ffff', '#ff9900', '#ff66cc',
-                '#66ff66', '#6666ff', '#ffcc00', '#cc66ff'
-            ];
-            
-            const container = document.body;
-            
-            // Créer 150 confettis
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
-                
-                // Propriétés aléatoires
-                const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                const size = Math.random() * 10 + 5;
-                const left = Math.random() * 100;
-                const animationDuration = Math.random() * 3 + 2;
-                const animationDelay = Math.random() * 2;
-                const shape = Math.random() > 0.5 ? '50%' : '0';
-                
-                // Appliquer les styles
-                confetti.style.backgroundColor = color;
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.left = `${left}vw`;
-                confetti.style.borderRadius = shape;
-                confetti.style.animation = `confetti-fall ${animationDuration}s ease-in ${animationDelay}s forwards`;
-                
-                // Ajouter au document
-                container.appendChild(confetti);
-                
-                // Supprimer après l'animation
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.parentNode.removeChild(confetti);
-                    }
-                }, (animationDuration + animationDelay) * 1000);
-            }
-        }
-        
-        // Ajouter au panier avec effet de confettis de fête
-        function addToCart(productId) {
-            // Vérifier si le produit existe déjà dans le panier
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                // Incrémenter la quantité
-                existingItem.quantity += 1;
-            } else {
-                // Ajouter un nouveau produit au panier
-                const product = products.find(p => p.id === productId);
-                if (product) {
-                    cart.push({
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        description: product.description,
-                        image: product.images && product.images.length > 0 ? product.images[0] : '/images/prestige shop.png',
-                        images: product.images || [],
-                        quantity: 1
-                    });
-                }
-            }
-            
-            // Mettre à jour l'interface utilisateur
-            updateCartUI();
-            
-            // Créer l'effet de confettis de fête
-            createFestiveConfetti();
-            
-            // Sauvegarder dans localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Feedback haptique
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate([50, 30, 50]);
-            }
-        }
-        
         // Vue rapide du produit avec produits similaires en dessous
         function quickView(productId) {
             const product = products.find(p => p.id === productId);
@@ -7182,7 +6365,6 @@ Commandez sur Digit Shop Express !`;
     
     <!-- ========== CHATBOT ASSISTANT IA ========== -->
     <script src="chatbot-widget.js"></script>
-    <script src="api-config.js"></script>
     
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9696453bb45cc13d',t:'MTc1NDIyODg4NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

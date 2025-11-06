@@ -277,404 +277,6 @@
             }
         }
         
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); 
-            }
-            50% { 
-                transform: scale(1.01); 
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
-            }
-        }
-        
-        /* Rotation pour l'effet festif */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Effet de scintillement pour les fêtes */
-        @keyframes sparkle {
-            0%, 100% { 
-                opacity: 0.7; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.1); 
-            }
-        }
-        
-        /* Animation de défilement pour le texte */
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        /* Animation de la main qui clique */
-        @keyframes handClick {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            50% { 
-                transform: translateY(5px) rotate(-10deg); 
-            }
-        }
-        
-        /* Animation de brillance */
-        @keyframes shimmer {
-            0% { 
-                transform: translateX(-100%); 
-                opacity: 0.2; 
-            }
-            50% { 
-                opacity: 0.4; 
-            }
-            100% { 
-                transform: translateX(100%); 
-                opacity: 0; 
-            }
-        }
-        
-        /* Effet de confettis festifs */
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Styles pour les bannières de catégories */
-        .category-banner {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.8s ease-out;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .category-banner:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-banner:hover::before {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out;
-        }
-        
-        .category-banner-all {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: bannerPulse 2s ease-in-out infinite;
-            transition: all 0.3s ease;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .category-banner-all:hover {
-            transform: scale(1.02);
-        }
-        
-        .category-banner-all::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-        
-        /* Effet de scintillement pour les icônes festives */
-        .festive-icon {
-            animation: sparkle 1.5s ease-in-out infinite;
-        }
-        
-        .festive-icon:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-        
-        .festive-icon:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        
-        /* Animation de la main qui clique */
-        .animate-bounce {
-            animation: handClick 1s ease-in-out infinite;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-banner .absolute.inset-0,
-        .category-banner-all .absolute.inset-0 {
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.2) 50%, 
-                transparent 100%);
-        }
-        
-        /* Style pour le bouton avec effet de brillance */
-        .category-banner button,
-        .category-banner-all button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Effet de neige pour les fêtes */
-        .snowflake {
-            position: absolute;
-            top: -20px;
-            color: #fff;
-            font-size: 20px;
-            animation: fall linear forwards;
-            user-select: none;
-            pointer-events: none;
-            z-index: 100;
-        }
-        
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-            }
-        }
-        
-        .gradient-purple {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        }
-        
-        
-        .product-card {
-            transition: all 0.3s ease;
-            transform: translateY(0);
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-        
-        .category-btn {
-            transition: all 0.3s ease;
-        }
-        
-        .category-btn.active {
-            transform: scale(1.05);
-        }
-        
-        .category-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-        
-        /* Animation d'apparition décalée pour chaque carte */
-        .category-card:nth-child(1) { animation-delay: 0.1s; }
-        .category-card:nth-child(2) { animation-delay: 0.2s; }
-        .category-card:nth-child(3) { animation-delay: 0.3s; }
-        .category-card:nth-child(4) { animation-delay: 0.4s; }
-        
-        .category-card:hover {
-            transform: translateY(-8px) scale(1.08);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Animation de l'icône au survol */
-        .category-card:hover i {
-            transform: scale(1.2) rotate(5deg);
-            transition: transform 0.3s ease;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-card:hover::after {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out infinite;
-        }
-        
-        /* Bordure animée pour la carte active */
-        .category-card.active::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border: 4px solid rgba(255, 255, 255, 0.9);
-            border-radius: 1rem;
-            pointer-events: none;
-            animation: pulse-border 2s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-        
-        /* Badge qui pulse pour attirer l'attention */
-        .category-card .badge-pulse {
-            animation: badge-pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        @keyframes pulse-border {
-            0%, 100% {
-                border-color: rgba(255, 255, 255, 0.9);
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            }
-            50% {
-                border-color: rgba(255, 255, 255, 0.5);
-                box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
-            }
-        }
-        
-        @keyframes badge-pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.9;
-            }
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate-slideDown {
-            animation: slideDown 0.4s ease-out;
-        }
-        
-        /* Animations pour les sous-catégories */
-        .subcategory-btn {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .subcategory-btn:hover {
-            transform: translateY(-3px) scale(1.08);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Effet d'onde au clic */
-        .subcategory-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .subcategory-btn:active::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        /* Animation pour les icônes des sous-catégories */
-        .subcategory-btn:hover i {
-            animation: bounce 0.5s ease;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            25% { transform: translateY(-5px); }
-            50% { transform: translateY(-2px); }
-            75% { transform: translateY(-3px); }
-        }
-        
-        /* Animation des badges promotionnels */
-        .promo-badge {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        
-        /* Animation scintillante pour les badges */
-        .sparkle {
-            animation: sparkle 2s ease-in-out infinite;
-        }
-        
-        @keyframes sparkle {
-            0%, 100% { opacity: 1; filter: brightness(1); }
-            50% { opacity: 0.8; filter: brightness(1.3); }
-        }
-        
-        /* Animation pour la bannière de catégorie */
-        .category-banner-animate {
-            animation: bannerSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        @keyframes bannerSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
         /* Animation de l'icône dans la bannière */
         .banner-icon {
             animation: iconRotate 0.8s ease-out;
@@ -733,212 +335,6 @@
                 transform: translateY(-20px) translateX(10px);
                 opacity: 0.6;
             }
-        }
-        
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); 
-            }
-            50% { 
-                transform: scale(1.01); 
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
-            }
-        }
-        
-        /* Rotation pour l'effet festif */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Effet de scintillement pour les fêtes */
-        @keyframes sparkle {
-            0%, 100% { 
-                opacity: 0.7; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.1); 
-            }
-        }
-        
-        /* Animation de défilement pour le texte */
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        /* Animation de la main qui clique */
-        @keyframes handClick {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            50% { 
-                transform: translateY(5px) rotate(-10deg); 
-            }
-        }
-        
-        /* Animation de brillance */
-        @keyframes shimmer {
-            0% { 
-                transform: translateX(-100%); 
-                opacity: 0.2; 
-            }
-            50% { 
-                opacity: 0.4; 
-            }
-            100% { 
-                transform: translateX(100%); 
-                opacity: 0; 
-            }
-        }
-        
-        /* Effet de neige pour les fêtes */
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-            }
-        }
-        
-        /* Styles pour les confettis de fête */
-        .confetti-piece {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: #f00;
-            top: -10px;
-            opacity: 0;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Styles pour les bannières de catégories */
-        .category-banner {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.8s ease-out;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .category-banner:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-banner:hover::before {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out;
-        }
-        
-        .category-banner-all {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: bannerPulse 2s ease-in-out infinite;
-            transition: all 0.3s ease;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .category-banner-all:hover {
-            transform: scale(1.02);
-        }
-        
-        .category-banner-all::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-        
-        /* Effet de scintillement pour les icônes festives */
-        .festive-icon {
-            animation: sparkle 1.5s ease-in-out infinite;
-        }
-        
-        .festive-icon:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-        
-        .festive-icon:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        
-        /* Animation de la main qui clique */
-        .animate-bounce {
-            animation: handClick 1s ease-in-out infinite;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-banner .absolute.inset-0,
-        .category-banner-all .absolute.inset-0 {
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.2) 50%, 
-                transparent 100%);
-        }
-        
-        /* Style pour le bouton avec effet de brillance */
-        .category-banner button,
-        .category-banner-all button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Effet de neige pour les fêtes */
-        .snowflake {
-            position: absolute;
-            top: -20px;
-            color: #fff;
-            font-size: 20px;
-            animation: fall linear forwards;
-            user-select: none;
-            pointer-events: none;
-            z-index: 100;
         }
         
         /* Animation pour le texte de la bannière */
@@ -1605,7 +1001,7 @@
                </div>
            </div>
            <button onclick="closePromoBar()" class="ml-4 text-white hover:text-gray-200 transition-colors relative z-20">
-               <i class="fas fa-times text-xl"></i>
+               <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Fermer" class="w-5 h-5 object-contain">
            </button>
        </div>
    </div>
@@ -1637,29 +1033,29 @@
                 <!-- Boutons Connexion/Inscription (si non connecté) -->
                 <div id="auth-buttons" class="hidden md:flex items-center space-x-2">
                     <a href="login.html" class="flex items-center space-x-2 bg-white border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-4 py-2 rounded-lg font-semibold transition-all">
-                        <i class="fas fa-sign-in-alt"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Connexion" class="w-5 h-5 object-contain">
                         <span class="hidden lg:inline">Connexion</span>
                     </a>
                     <a href="register.html" class="flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-md">
-                        <i class="fas fa-user-plus"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Inscription" class="w-5 h-5 object-contain">
                         <span class="hidden lg:inline">Inscription</span>
                     </a>
                 </div>
                 
                 <!-- Bouton Profil utilisateur (si connecté) -->
                 <button id="user-menu-btn" onclick="openUserModal()" class="hidden md:flex items-center space-x-2 bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg transition-all">
-                    <i class="fas fa-user"></i>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Profil" class="w-5 h-5 object-contain">
                     <span id="user-fullname-header" class="text-sm font-semibold text-gray-800 hidden lg:inline"></span>
-                    <i class="fas fa-chevron-down text-xs"></i>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Flèche" class="w-3 h-3 object-contain">
                 </button>
 
                 <button onclick="toggleCart()" class="relative bg-purple-100 hover:bg-purple-200 p-2 md:p-3 rounded-full transition-colors flex-shrink-0">
-                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Panier" class="w-5 h-5 object-contain">
                     <span id="cart-badge" class="absolute -top-1 -right-1 md:-top-2 md:-right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center hidden">0</span>
                 </button>
 
                 <button onclick="toggleMobileMenu()" class="md:hidden bg-gray-100 hover:bg-gray-200 p-2 rounded-lg transition-colors">
-                    <i class="fas fa-bars text-xl"></i>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Menu" class="w-5 h-5 object-contain">
                 </button>
             </div>
         </div>
@@ -1675,15 +1071,15 @@
                        onfocus="showSearchResults()"
                        onblur="hideSearchResults()">
                 <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-                    <i class="fas fa-search"></i>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Rechercher" class="w-5 h-5 object-contain">
                 </div>
                 <button onclick="clearSearch()"
                         id="clear-search"
                         class="absolute right-16 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden transition-colors">
-                    <i class="fas fa-times"></i>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Effacer" class="w-5 h-5 object-contain">
                 </button>
                 <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-lg transition-all font-semibold">
-                    <i class="fas fa-search mr-1"></i>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Rechercher" class="w-4 h-4 object-contain mr-1">
                     <span class="hidden md:inline">Rechercher</span>
                 </button>
             </div>
@@ -1702,11 +1098,11 @@
                        oninput="handleMobileSearch()"
                        onfocus="showMobileSearchResults()"
                        onblur="hideMobileSearchResults()">
-                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Rechercher" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 object-contain">
                 <button onclick="clearMobileSearch()"
                         id="mobile-clear-search"
                         class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden">
-                    <i class="fas fa-times"></i>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Effacer" class="w-5 h-5 object-contain">
                 </button>
             </div>
             <div id="mobile-search-results" class="hidden mt-2">
@@ -1721,7 +1117,7 @@
                 <div id="mobile-user-profile" class="hidden bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4 mb-3 border border-purple-200">
                     <div class="flex items-center space-x-3 mb-3">
                         <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-user text-white text-xl"></i>
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Profil" class="w-5 h-5 object-contain">
                         </div>
                         <div class="flex-1">
                             <p class="font-bold text-gray-900" id="mobile-user-fullname"></p>
@@ -1729,7 +1125,7 @@
                         </div>
                     </div>
                     <button onclick="logout()" class="w-full bg-red-100 hover:bg-red-200 text-red-600 px-4 py-2.5 rounded-lg font-semibold transition-all flex items-center justify-center">
-                        <i class="fas fa-sign-out-alt mr-2"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Déconnexion" class="w-5 h-5 object-contain mr-2">
                         Déconnexion
                     </button>
                 </div>
@@ -1737,23 +1133,23 @@
                 <!-- Boutons connexion/inscription mobile (si non connecté) -->
                 <div id="mobile-auth-buttons" class="hidden space-y-2 mb-3">
                     <a href="login.html" class="block w-full bg-white border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-4 py-3 rounded-lg font-bold transition-all text-center">
-                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Connexion" class="w-5 h-5 object-contain mr-2">
                         Connexion
                     </a>
                     <a href="register.html" class="block w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-3 rounded-lg font-bold transition-all text-center shadow-lg">
-                        <i class="fas fa-user-plus mr-2"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Inscription" class="w-5 h-5 object-contain mr-2">
                         Créer un compte
                     </a>
                 </div>
                 
                 <a href="#accueil" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
-                    <i class="fas fa-home mr-3 text-purple-600"></i> Accueil
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Accueil" class="w-5 h-5 object-contain mr-3 text-purple-600"> Accueil
                 </a>
                 <a href="#produits" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
-                    <i class="fas fa-box mr-3 text-purple-600"></i> Produits
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Produits" class="w-5 h-5 object-contain mr-3 text-purple-600"> Produits
                 </a>
                 <a href="#contact" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
-                    <i class="fas fa-envelope mr-3 text-purple-600"></i> Contact
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Contact" class="w-5 h-5 object-contain mr-3 text-purple-600"> Contact
                 </a>
             </div>
         </div>
@@ -1822,7 +1218,7 @@
         <div class="max-w-4xl mx-auto text-center">
             <!-- Badge promotionnel festif -->
             <div class="inline-flex items-center bg-gradient-to-r from-red-600 to-green-600 text-white px-6 py-3 rounded-full font-bold text-sm mb-6 shadow-2xl animate-bounce">
-                <i class="fas fa-gift text-lg mr-2"></i>
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Cadeau" class="w-5 h-5 object-contain mr-2">
                 🎄 OFFRES SPÉCIALES FÊTES DE DÉCEMBRE 🎁
             </div>
             
@@ -1842,7 +1238,7 @@
             <!-- Boutons CTA festifs -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <a href="#produits" class="bg-gradient-to-r from-red-600 to-green-600 hover:from-red-700 hover:to-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-2xl transition-all transform hover:scale-105 inline-flex items-center justify-center">
-                    <i class="fas fa-gifts text-lg mr-2"></i>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Cadeaux" class="w-5 h-5 object-contain mr-2">
                     Découvrir nos cadeaux
                 </a>
                 <a href="#contact" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all transform hover:scale-105 inline-flex items-center justify-center">
@@ -1855,7 +1251,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
                 <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all transform hover:scale-105">
                     <div class="bg-gradient-to-r from-red-500 to-green-500 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-truck text-xl"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Livraison" class="w-5 h-5 object-contain">
                     </div>
                     <h3 class="text-white font-bold text-lg mb-2">Livraison Rapide</h3>
                     <p class="text-gray-200 text-sm">Recevez vos commandes en 24-48h partout en Côte d'Ivoire</p>
@@ -1863,7 +1259,7 @@
                 
                 <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all transform hover:scale-105">
                     <div class="bg-gradient-to-r from-green-500 to-red-500 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-shield-alt text-xl"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Qualité" class="w-5 h-5 object-contain">
                     </div>
                     <h3 class="text-white font-bold text-lg mb-2">Qualité Garantie</h3>
                     <p class="text-gray-200 text-sm">Produits authentiques et certifiés, satisfaction garantie</p>
@@ -1871,7 +1267,7 @@
                 
                 <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all transform hover:scale-105">
                     <div class="bg-gradient-to-r from-yellow-500 to-green-500 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-headset text-xl"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Support" class="w-5 h-5 object-contain">
                     </div>
                     <h3 class="text-white font-bold text-lg mb-2">Support 24/7</h3>
                     <p class="text-gray-200 text-sm">Notre équipe à votre écoute via WhatsApp et téléphone</p>
@@ -1972,19 +1368,15 @@ if (images && images.length > 0) {
             
             <!-- Category Filters avec Bannières -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-                <!-- Toute les catégories -->
+                <!-- Toutes les catégories -->
                 <button onclick="filterProducts('all')" class="category-card active group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-br from-purple-600 via-purple-700 to-blue-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
                         <div class="flex justify-center mb-3">
-                            <i class="fas fa-th-large text-4xl"></i>
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Tous les produits" class="w-16 h-16 object-contain rounded-lg">
                         </div>
                         <h3 class="text-xl font-bold mb-2">Tous les Produits</h3>
                         <p class="text-sm opacity-90">Découvrez toute notre collection</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                 </button>
                 
@@ -1993,14 +1385,10 @@ if (images && images.length > 0) {
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-500 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
                         <div class="flex justify-center mb-3">
-                            <i class="fas fa-graduation-cap text-4xl"></i>
+                            <img src="https://images.unsplash.com/photo-1590857652129-825d4c181ff5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Éducatif" class="w-16 h-16 object-contain rounded-lg">
                         </div>
                         <h3 class="text-xl font-bold mb-2">Éducatif</h3>
                         <p class="text-sm opacity-90">Fournitures scolaires & plus</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-400 text-blue-900 text-xs font-bold px-2 py-1 rounded-full badge-pulse promo-badge">⭐ Populaire</div>
                 </button>
@@ -2010,14 +1398,10 @@ if (images && images.length > 0) {
                     <div class="absolute inset-0 bg-gradient-to-br from-green-500 via-green-600 to-teal-500 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
                         <div class="flex justify-center mb-3">
-                            <i class="fas fa-laptop text-4xl"></i>
+                            <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Électronique" class="w-16 h-16 object-contain rounded-lg">
                         </div>
                         <h3 class="text-xl font-bold mb-2">Électronique</h3>
                         <p class="text-sm opacity-90">High-tech & accessoires</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse sparkle">🔥 Promo</div>
                 </button>
@@ -2027,14 +1411,10 @@ if (images && images.length > 0) {
                     <div class="absolute inset-0 bg-gradient-to-br from-orange-500 via-red-600 to-orange-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
                         <div class="flex justify-center mb-3">
-                            <i class="fas fa-hamburger text-4xl"></i>
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Fast Food" class="w-16 h-16 object-contain rounded-lg">
                         </div>
                         <h3 class="text-xl font-bold mb-2">Fast Food</h3>
                         <p class="text-sm opacity-90">Burgers & snacks</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-300 text-red-900 text-xs font-bold px-2 py-1 rounded-full promo-badge float">🍔 Nouveau</div>
                 </button>
@@ -2044,17 +1424,13 @@ if (images && images.length > 0) {
                     <div class="absolute inset-0 bg-gradient-to-br from-pink-500 via-purple-600 to-pink-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
                         <div class="flex justify-center mb-3">
-                            <i class="fas fa-tshirt text-4xl"></i>
+                            <img src="https://images.unsplash.com/photo-1521334884684-d80222895326?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Mode" class="w-16 h-16 object-contain rounded-lg">
                         </div>
                         <h3 class="text-xl font-bold mb-2 flex items-center justify-center">
                             Mode
-                            <i class="fas fa-chevron-down ml-2 transition-transform text-sm"></i>
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Flèche" class="ml-2 transition-transform w-3 h-3 object-contain">
                         </h3>
                         <p class="text-sm opacity-90">Tendances & style</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-300 text-purple-900 text-xs font-bold px-2 py-1 rounded-full promo-badge float">✨ Nouveau</div>
                 </button>
@@ -2065,31 +1441,31 @@ if (images && images.length > 0) {
             <div id="mode-subcategories" class="hidden mb-8 animate-slideDown">
                 <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-6 border-2 border-pink-200">
                     <h4 class="text-center text-xl font-bold text-gray-800 mb-4 flex items-center justify-center">
-                        <i class="fas fa-tags mr-2"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Tags" class="w-5 h-5 object-contain mr-2">
                         Catégories Mode
                     </h4>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <button onclick="filterProducts('mode')" class="subcategory-btn bg-white border-2 border-pink-400 text-pink-600 px-4 py-3 rounded-xl font-semibold hover:bg-pink-50 transition-all transform hover:scale-105 shadow-md">
                             <div class="flex justify-center mb-2">
-                                <i class="fas fa-tshirt text-2xl"></i>
+                                <img src="https://images.unsplash.com/photo-1521334884684-d80222895326?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=50&h=50&q=80" alt="Tous Mode" class="w-10 h-10 object-contain rounded">
                             </div>
                             <div class="text-sm">Tous Mode</div>
                         </button>
                         <button onclick="filterProducts('mode-homme')" class="subcategory-btn bg-white border-2 border-blue-400 text-blue-600 px-4 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-md">
                             <div class="flex justify-center mb-2">
-                                <i class="fas fa-male text-2xl"></i>
+                                <img src="https://images.unsplash.com/photo-1529973702732-317a0051c370?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=50&h=50&q=80" alt="Homme" class="w-10 h-10 object-contain rounded">
                             </div>
                             <div class="text-sm">Homme</div>
                         </button>
                         <button onclick="filterProducts('mode-femme')" class="subcategory-btn bg-white border-2 border-pink-500 text-pink-600 px-4 py-3 rounded-xl font-semibold hover:bg-pink-50 transition-all transform hover:scale-105 shadow-md">
                             <div class="flex justify-center mb-2">
-                                <i class="fas fa-female text-2xl"></i>
+                                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=50&h=50&q=80" alt="Femme" class="w-10 h-10 object-contain rounded">
                             </div>
                             <div class="text-sm">Femme</div>
                         </button>
                         <button onclick="filterProducts('mode-enfants')" class="subcategory-btn bg-white border-2 border-purple-400 text-purple-600 px-4 py-3 rounded-xl font-semibold hover:bg-purple-50 transition-all transform hover:scale-105 shadow-md">
                             <div class="flex justify-center mb-2">
-                                <i class="fas fa-child text-2xl"></i>
+                                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=50&h=50&q=80" alt="Enfants" class="w-10 h-10 object-contain rounded">
                             </div>
                             <div class="text-sm">Enfants</div>
                         </button>
@@ -2103,29 +1479,29 @@ if (images && images.length > 0) {
             <!-- Sort Options -->
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 bg-white rounded-2xl shadow-lg p-6">
                 <div class="flex items-center space-x-3">
-                    <i class="fas fa-sort-amount-down mr-2"></i>
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Trier" class="w-5 h-5 object-contain">
                     <span class="font-semibold text-gray-800">Trier par :</span>
                 </div>
                 
                 <div class="flex flex-wrap gap-2 justify-center sm:justify-end">
                     <button onclick="sortProducts('default')" class="sort-btn active bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-medium hover:bg-purple-200 transition-all text-sm">
-                        <i class="fas fa-star mr-1"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Étoile" class="w-4 h-4 object-contain mr-1">
                         Par défaut
                     </button>
                     <button onclick="sortProducts('name-asc')" class="sort-btn bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition-all text-sm">
-                        <i class="fas fa-sort-alpha-down mr-1"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Tri A-Z" class="w-4 h-4 object-contain mr-1">
                         Nom A-Z
                     </button>
                     <button onclick="sortProducts('name-desc')" class="sort-btn bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition-all text-sm">
-                        <i class="fas fa-sort-alpha-up mr-1"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Tri Z-A" class="w-4 h-4 object-contain mr-1">
                         Nom Z-A
                     </button>
                     <button onclick="sortProducts('price-asc')" class="sort-btn bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition-all text-sm">
-                        <i class="fas fa-sort-numeric-down mr-1"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Tri 1-9" class="w-4 h-4 object-contain mr-1">
                         Prix croissant
                     </button>
                     <button onclick="sortProducts('price-desc')" class="sort-btn bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition-all text-sm">
-                        <i class="fas fa-sort-numeric-up mr-1"></i>
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Tri 9-1" class="w-4 h-4 object-contain mr-1">
                         Prix décroissant
                     </button>
                 </div>
@@ -2148,7 +1524,7 @@ if (images && images.length > 0) {
     
     <!-- Bouton Retour en Haut -->
     <button id="back-to-top" class="back-to-top fixed bottom-24 left-6 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white p-4 rounded-full shadow-2xl transition-all transform hover:scale-110 z-50">
-        <i class="fas fa-arrow-up text-xl"></i>
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Retour en haut" class="w-5 h-5 object-contain">
     </button>
 
     <!-- Cart Modal -->
@@ -2160,7 +1536,7 @@ if (images && images.length > 0) {
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-3">
                             <div class="bg-white bg-opacity-20 p-2 rounded-full">
-                                <i class="fas fa-shopping-cart text-xl sm:text-2xl"></i>
+                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Panier" class="w-5 h-5 object-contain">
                             </div>
                             <div>
                                 <h3 class="text-xl sm:text-2xl font-bold">Mon Panier</h3>
@@ -2168,7 +1544,7 @@ if (images && images.length > 0) {
                             </div>
                         </div>
                         <button onclick="toggleCart()" class="text-white hover:text-gray-200 text-xl sm:text-2xl p-3 hover:bg-white hover:bg-opacity-20 rounded-full transition-all">
-                            <i class="fas fa-times"></i>
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Fermer" class="w-5 h-5 object-contain">
                         </button>
                     </div>
                 </div>
@@ -2179,12 +1555,12 @@ if (images && images.length > 0) {
                         <!-- Empty State -->
                         <div class="text-center text-gray-500 py-12 sm:py-16">
                             <div class="bg-gray-100 w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-shopping-cart text-3xl sm:text-4xl text-gray-300"></i>
+                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Panier vide" class="w-5 h-5 object-contain">
                             </div>
                             <h5 class="text-lg sm:text-xl font-semibold mb-2">Votre panier est vide</h5>
                             <p class="text-sm mb-6">Découvrez nos produits et ajoutez vos favoris</p>
                             <button onclick="toggleCart()" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105">
-                                <i class="fas fa-shopping-bag mr-2"></i>
+                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Sac" class="w-5 h-5 object-contain mr-2">
                                 Continuer mes achats
                             </button>
                         </div>
@@ -2213,7 +1589,7 @@ if (images && images.length > 0) {
                         <!-- Customer Form -->
                         <div class="bg-white rounded-xl p-4 mb-4 shadow-sm">
                             <h4 class="font-bold text-gray-800 mb-4 flex items-center">
-                                <i class="fas fa-user mr-2 text-purple-600"></i>
+                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Utilisateur" class="w-5 h-5 object-contain mr-2">
                                 Informations de livraison
                             </h4>
                             <div class="space-y-3">
@@ -2275,9 +1651,9 @@ if (images && images.length > 0) {
                         </button>
                         
                         <div class="text-xs text-gray-500 text-center flex items-center justify-center space-x-4 bg-white rounded-lg p-3">
-                            <span><i class="fas fa-truck mr-1"></i> Livraison gratuite</span>
-                            <span><i class="fas fa-clock mr-1"></i> Sous 24h</span>
-                            <span><i class="fas fa-shield-alt mr-1"></i> Sécurisé</span>
+                            <span><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Livraison" class="w-4 h-4 object-contain mr-1"> Livraison gratuite</span>
+                            <span><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Horloge" class="w-4 h-4 object-contain mr-1"> Sous 24h</span>
+                            <span><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Bouclier" class="w-4 h-4 object-contain mr-1"> Sécurisé</span>
                         </div>
                     </div>
                 </div>
@@ -2312,7 +1688,7 @@ if (images && images.length > 0) {
                         <div class="bg-purple-50 rounded-xl p-4 border border-purple-200">
                             <div class="flex items-center space-x-3 mb-3">
                                 <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-user text-white"></i>
+                                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Utilisateur" class="w-5 h-5 object-contain">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-xs text-gray-500 mb-1">Nom complet</p>
@@ -2505,19 +1881,19 @@ if (images && images.length > 0) {
                     <h4 class="text-lg font-bold mb-4 text-orange-400">Liens Rapides</h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="#accueil" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-home mr-2"></i>
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Accueil" class="w-5 h-5 object-contain mr-2">
                             Accueil
                         </a></li>
                         <li><a href="#produits" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-box mr-2"></i>
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Produits" class="w-5 h-5 object-contain mr-2">
                             Nos Produits
                         </a></li>
                         <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-envelope mr-2"></i>
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Contact" class="w-5 h-5 object-contain mr-2">
                             Contact
                         </a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-info-circle mr-2"></i>
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="À propos" class="w-5 h-5 object-contain mr-2">
                             À propos
                         </a></li>
                     </ul>
@@ -2528,19 +1904,19 @@ if (images && images.length > 0) {
                     <h4 class="text-lg font-bold mb-4 text-orange-400">Catégories</h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="#produits" onclick="filterProducts('educatif')" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-graduation-cap mr-2"></i>
+                            <img src="https://images.unsplash.com/photo-1590857652129-825d4c181ff5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Éducatif" class="w-5 h-5 object-contain mr-2">
                             Éducatif
                         </a></li>
                         <li><a href="#produits" onclick="filterProducts('electronique')" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-laptop mr-2"></i>
+                            <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Électronique" class="w-5 h-5 object-contain mr-2">
                             Électronique
                         </a></li>
                         <li><a href="#produits" onclick="filterProducts('fastfood')" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-hamburger mr-2"></i>
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Fast Food" class="w-5 h-5 object-contain mr-2">
                             Fast Food
                         </a></li>
                         <li><a href="#produits" onclick="filterProducts('mode')" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-tshirt mr-2"></i>
+                            <img src="https://images.unsplash.com/photo-1521334884684-d80222895326?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Mode" class="w-5 h-5 object-contain mr-2">
                             Mode
                         </a></li>
                     </ul>
@@ -2553,7 +1929,7 @@ if (images && images.length > 0) {
                     <div class="flex gap-2">
                         <input type="email" placeholder="Votre email" class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all">
                         <button class="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-lg transition-all transform hover:scale-105">
-                            <i class="fas fa-paper-plane"></i>
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Envoyer" class="w-5 h-5 object-contain">
                         </button>
                     </div>
                     <p class="text-xs text-gray-500 mt-2">En vous inscrivant, vous acceptez notre politique de confidentialité</p>
@@ -2765,7 +2141,7 @@ if (images && images.length > 0) {
             
             // Récupérer les commandes depuis la base de données
             try {
-                const response = await fetch(`${API_BASE_URL}/commandes/user/${userId}`);
+                const response = await fetch(`http://localhost:5000/api/commandes/user/${userId}`);
                 const data = await response.json();
                 
                 if (data.success) {
@@ -2957,28 +2333,28 @@ if (images && images.length > 0) {
                     <div class="p-4 bg-gray-50 border-b border-gray-200">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                             <div class="flex items-start space-x-2">
-                                <i class="fas fa-user text-gray-500 mt-1"></i>
+                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Client" class="w-5 h-5 object-contain mt-1">
                                 <div>
                                     <p class="text-gray-500 text-xs">Client</p>
                                     <p class="font-semibold text-gray-800">${order.customerName}</p>
                                 </div>
                             </div>
                             <div class="flex items-start space-x-2">
-                                <i class="fas fa-phone text-gray-500 mt-1"></i>
+                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Téléphone" class="w-5 h-5 object-contain mt-1">
                                 <div>
                                     <p class="text-gray-500 text-xs">Téléphone</p>
                                     <p class="font-semibold text-gray-800">${order.customerPhone}</p>
                                 </div>
                             </div>
                             <div class="flex items-start space-x-2">
-                                <i class="fas fa-map-marker-alt text-gray-500 mt-1"></i>
+                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Adresse" class="w-5 h-5 object-contain mt-1">
                                 <div>
                                     <p class="text-gray-500 text-xs">Adresse</p>
                                     <p class="font-semibold text-gray-800">${order.customerAddress}</p>
                                 </div>
                             </div>
                             <div class="flex items-start space-x-2">
-                                <i class="fas fa-city text-gray-500 mt-1"></i>
+                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=20&h=20&q=80" alt="Ville" class="w-5 h-5 object-contain mt-1">
                                 <div>
                                     <p class="text-gray-500 text-xs">Ville</p>
                                     <p class="font-semibold text-gray-800">${order.customerCity}</p>
@@ -3160,25 +2536,16 @@ if (images && images.length > 0) {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify(commandeData)
                     });
-                    
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -3189,18 +2556,7 @@ if (images && images.length > 0) {
                     }
                 } catch (error) {
                     console.error('❌ Erreur connexion serveur:', error);
-                    console.error('🔍 Détails de l\'erreur:', {
-                        name: error.name,
-                        message: error.message,
-                        stack: error.stack
-                    });
-                    
-                    // Vérifier si c'est une erreur de réseau
-                    if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                        showNotification('⚠️ Impossible de joindre le serveur. Vérifiez votre connexion internet ou réessayez plus tard.', 'error');
-                    } else {
-                        showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
-                    }
+                    showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
                 }
             } else {
                 console.warn('⚠️ Utilisateur non connecté, commande non enregistrée en BDD');
@@ -4023,7 +3379,7 @@ function loadMoreProducts() {
                     <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
                         <div class="flex items-center gap-6">
                             <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-xl banner-icon">
-                                ${getCategoryIcon(category)}
+                                <img src="${banner.image}" alt="${banner.title}" class="w-16 h-16 object-contain rounded-lg">
                             </div>
                             <div>
                                 <h3 class="text-3xl md:text-4xl font-black mb-2 animate-fadeIn">${banner.title}</h3>
@@ -4062,20 +3418,6 @@ function loadMoreProducts() {
                 'fastfood': 'Fast Food'
             };
             return names[category] || category;
-        }
-
-        function getCategoryIcon(category) {
-            const icons = {
-                'all': '<i class="fas fa-th-large text-4xl"></i>',
-                'educatif': '<i class="fas fa-graduation-cap text-4xl"></i>',
-                'electronique': '<i class="fas fa-laptop text-4xl"></i>',
-                'mode': '<i class="fas fa-tshirt text-4xl"></i>',
-                'mode-homme': '<i class="fas fa-male text-4xl"></i>',
-                'mode-femme': '<i class="fas fa-female text-4xl"></i>',
-                'mode-enfants': '<i class="fas fa-child text-4xl"></i>',
-                'fastfood': '<i class="fas fa-hamburger text-4xl"></i>'
-            };
-            return icons[category] || '<i class="fas fa-box text-4xl"></i>';
         }
 
         // Ajouter au panier
@@ -4195,7 +3537,7 @@ function loadMoreProducts() {
                         <!-- Image du produit -->
                         <div class="flex-shrink-0 relative">
                             <div class="w-24 h-24 rounded-xl overflow-hidden border-2 border-gray-200">
-                                <img src="${item.image || (item.images && item.images[0]) || '/images/prestige shop.png'}" alt="${item.name}" 
+                                <img src="${item.images[0]}" alt="${item.name}" 
                                      class="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform" 
                                      onclick="openImageZoom(${item.id}, 0)">
                             </div>
@@ -4283,7 +3625,7 @@ function loadMoreProducts() {
                         nom: item.name,
                         quantite: item.quantity,
                         prix: item.price,
-                        image: item.image || (item.images && item.images[0]) || '/images/prestige shop.png'  // Ajouter l'image
+                        image: item.images[0]  // Ajouter l'image
                     }));
 
                     const commandeData = {
@@ -4296,31 +3638,16 @@ function loadMoreProducts() {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    // Ajout d'un timeout pour la requête
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 secondes timeout
-
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(commandeData),
-                        signal: controller.signal
+                        body: JSON.stringify(commandeData)
                     });
-                    
-                    clearTimeout(timeoutId);
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -5720,7 +5047,7 @@ function loadMoreProducts() {
                         <!-- Badge catégorie - Style App -->
                         <div class="absolute top-2 left-2" style="top: ${discount > 0 ? '32px' : '8px'}">
                             <span class="bg-${getCategoryColor(product.category)} text-white px-2 py-1 rounded-lg text-xs font-bold shadow-md backdrop-blur-sm border border-white border-opacity-20 flex items-center">
-                                ${getCategoryIcon(product.category)}
+                                <img src="${categoryImages[product.category] || categoryImages['educatif']}" alt="${getCategoryName(product.category)}" class="w-4 h-4 object-contain mr-1 rounded">
                                 ${getCategoryName(product.category)}
                             </span>
                         </div>
@@ -6491,200 +5818,6 @@ function loadMoreProducts() {
             });
         }
         
-        // Fonction pour créer un effet de confettis de fête
-        function createFestiveConfetti() {
-            const confettiColors = [
-                '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
-                '#ff00ff', '#00ffff', '#ff9900', '#ff66cc',
-                '#66ff66', '#6666ff', '#ffcc00', '#cc66ff'
-            ];
-            
-            const container = document.body;
-            
-            // Créer 150 confettis
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
-                
-                // Propriétés aléatoires
-                const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                const size = Math.random() * 10 + 5;
-                const left = Math.random() * 100;
-                const animationDuration = Math.random() * 3 + 2;
-                const animationDelay = Math.random() * 2;
-                const shape = Math.random() > 0.5 ? '50%' : '0';
-                
-                // Appliquer les styles
-                confetti.style.backgroundColor = color;
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.left = `${left}vw`;
-                confetti.style.borderRadius = shape;
-                confetti.style.animation = `confetti-fall ${animationDuration}s ease-in ${animationDelay}s forwards`;
-                
-                // Ajouter au document
-                container.appendChild(confetti);
-                
-                // Supprimer après l'animation
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.parentNode.removeChild(confetti);
-                    }
-                }, (animationDuration + animationDelay) * 1000);
-            }
-        }
-        
-        // Ajouter au panier avec effet de confettis de fête
-        function addToCart(productId) {
-            // Vérifier si le produit existe déjà dans le panier
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                // Incrémenter la quantité
-                existingItem.quantity += 1;
-            } else {
-                // Ajouter un nouveau produit au panier
-                const product = allProducts.find(p => p.id === productId);
-                if (product) {
-                    cart.push({
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        image: product.images && product.images.length > 0 ? product.images[0] : '/images/prestige shop.png',
-                        quantity: 1
-                    });
-                }
-            }
-            
-            // Mettre à jour l'interface utilisateur
-            updateCartUI();
-            
-            // Créer l'effet de confettis de fête
-            createFestiveConfetti();
-            
-            // Sauvegarder dans localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Feedback haptique
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate([50, 30, 50]);
-            }
-        }
-        
-        // Mettre à jour l'interface du panier
-        function updateCartUI() {
-            // Mettre à jour le badge du panier flottant
-            const cartBadge = document.getElementById('cart-float-badge');
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            
-            if (totalItems > 0) {
-                cartBadge.textContent = totalItems;
-                cartBadge.classList.remove('hidden');
-            } else {
-                cartBadge.classList.add('hidden');
-            }
-            
-            // Mettre à jour le total dans le panier modal
-            const cartTotal = document.getElementById('cart-total');
-            if (cartTotal) {
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                cartTotal.textContent = total.toFixed(2) + ' FCFA';
-            }
-            
-            // Mettre à jour le badge du bouton panier dans le header
-            const headerCartBadge = document.getElementById('cart-badge');
-            if (headerCartBadge) {
-                if (totalItems > 0) {
-                    headerCartBadge.textContent = totalItems;
-                    headerCartBadge.classList.remove('hidden');
-                } else {
-                    headerCartBadge.classList.add('hidden');
-                }
-            }
-        }
-        
-        // Fonction pour créer un effet de confettis de fête
-        function createFestiveConfetti() {
-            const confettiColors = [
-                '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
-                '#ff00ff', '#00ffff', '#ff9900', '#ff66cc',
-                '#66ff66', '#6666ff', '#ffcc00', '#cc66ff'
-            ];
-            
-            const container = document.body;
-            
-            // Créer 150 confettis
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
-                
-                // Propriétés aléatoires
-                const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                const size = Math.random() * 10 + 5;
-                const left = Math.random() * 100;
-                const animationDuration = Math.random() * 3 + 2;
-                const animationDelay = Math.random() * 2;
-                const shape = Math.random() > 0.5 ? '50%' : '0';
-                
-                // Appliquer les styles
-                confetti.style.backgroundColor = color;
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.left = `${left}vw`;
-                confetti.style.borderRadius = shape;
-                confetti.style.animation = `confetti-fall ${animationDuration}s ease-in ${animationDelay}s forwards`;
-                
-                // Ajouter au document
-                container.appendChild(confetti);
-                
-                // Supprimer après l'animation
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.parentNode.removeChild(confetti);
-                    }
-                }, (animationDuration + animationDelay) * 1000);
-            }
-        }
-        
-        // Ajouter au panier avec effet de confettis de fête
-        function addToCart(productId) {
-            // Vérifier si le produit existe déjà dans le panier
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                // Incrémenter la quantité
-                existingItem.quantity += 1;
-            } else {
-                // Ajouter un nouveau produit au panier
-                const product = products.find(p => p.id === productId);
-                if (product) {
-                    cart.push({
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        description: product.description,
-                        image: product.images && product.images.length > 0 ? product.images[0] : '/images/prestige shop.png',
-                        images: product.images || [],
-                        quantity: 1
-                    });
-                }
-            }
-            
-            // Mettre à jour l'interface utilisateur
-            updateCartUI();
-            
-            // Créer l'effet de confettis de fête
-            createFestiveConfetti();
-            
-            // Sauvegarder dans localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Feedback haptique
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate([50, 30, 50]);
-            }
-        }
-        
         // Vue rapide du produit avec produits similaires en dessous
         function quickView(productId) {
             const product = products.find(p => p.id === productId);
@@ -7182,7 +6315,6 @@ Commandez sur Digit Shop Express !`;
     
     <!-- ========== CHATBOT ASSISTANT IA ========== -->
     <script src="chatbot-widget.js"></script>
-    <script src="api-config.js"></script>
     
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9696453bb45cc13d',t:'MTc1NDIyODg4NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

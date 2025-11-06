@@ -277,404 +277,6 @@
             }
         }
         
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); 
-            }
-            50% { 
-                transform: scale(1.01); 
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
-            }
-        }
-        
-        /* Rotation pour l'effet festif */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Effet de scintillement pour les fêtes */
-        @keyframes sparkle {
-            0%, 100% { 
-                opacity: 0.7; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.1); 
-            }
-        }
-        
-        /* Animation de défilement pour le texte */
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        /* Animation de la main qui clique */
-        @keyframes handClick {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            50% { 
-                transform: translateY(5px) rotate(-10deg); 
-            }
-        }
-        
-        /* Animation de brillance */
-        @keyframes shimmer {
-            0% { 
-                transform: translateX(-100%); 
-                opacity: 0.2; 
-            }
-            50% { 
-                opacity: 0.4; 
-            }
-            100% { 
-                transform: translateX(100%); 
-                opacity: 0; 
-            }
-        }
-        
-        /* Effet de confettis festifs */
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Styles pour les bannières de catégories */
-        .category-banner {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.8s ease-out;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .category-banner:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-banner:hover::before {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out;
-        }
-        
-        .category-banner-all {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: bannerPulse 2s ease-in-out infinite;
-            transition: all 0.3s ease;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .category-banner-all:hover {
-            transform: scale(1.02);
-        }
-        
-        .category-banner-all::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-        
-        /* Effet de scintillement pour les icônes festives */
-        .festive-icon {
-            animation: sparkle 1.5s ease-in-out infinite;
-        }
-        
-        .festive-icon:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-        
-        .festive-icon:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        
-        /* Animation de la main qui clique */
-        .animate-bounce {
-            animation: handClick 1s ease-in-out infinite;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-banner .absolute.inset-0,
-        .category-banner-all .absolute.inset-0 {
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.2) 50%, 
-                transparent 100%);
-        }
-        
-        /* Style pour le bouton avec effet de brillance */
-        .category-banner button,
-        .category-banner-all button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Effet de neige pour les fêtes */
-        .snowflake {
-            position: absolute;
-            top: -20px;
-            color: #fff;
-            font-size: 20px;
-            animation: fall linear forwards;
-            user-select: none;
-            pointer-events: none;
-            z-index: 100;
-        }
-        
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-            }
-        }
-        
-        .gradient-purple {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        }
-        
-        
-        .product-card {
-            transition: all 0.3s ease;
-            transform: translateY(0);
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-        
-        .category-btn {
-            transition: all 0.3s ease;
-        }
-        
-        .category-btn.active {
-            transform: scale(1.05);
-        }
-        
-        .category-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-        
-        /* Animation d'apparition décalée pour chaque carte */
-        .category-card:nth-child(1) { animation-delay: 0.1s; }
-        .category-card:nth-child(2) { animation-delay: 0.2s; }
-        .category-card:nth-child(3) { animation-delay: 0.3s; }
-        .category-card:nth-child(4) { animation-delay: 0.4s; }
-        
-        .category-card:hover {
-            transform: translateY(-8px) scale(1.08);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Animation de l'icône au survol */
-        .category-card:hover i {
-            transform: scale(1.2) rotate(5deg);
-            transition: transform 0.3s ease;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-card:hover::after {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out infinite;
-        }
-        
-        /* Bordure animée pour la carte active */
-        .category-card.active::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border: 4px solid rgba(255, 255, 255, 0.9);
-            border-radius: 1rem;
-            pointer-events: none;
-            animation: pulse-border 2s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-        
-        /* Badge qui pulse pour attirer l'attention */
-        .category-card .badge-pulse {
-            animation: badge-pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        @keyframes pulse-border {
-            0%, 100% {
-                border-color: rgba(255, 255, 255, 0.9);
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            }
-            50% {
-                border-color: rgba(255, 255, 255, 0.5);
-                box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
-            }
-        }
-        
-        @keyframes badge-pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.9;
-            }
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate-slideDown {
-            animation: slideDown 0.4s ease-out;
-        }
-        
-        /* Animations pour les sous-catégories */
-        .subcategory-btn {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .subcategory-btn:hover {
-            transform: translateY(-3px) scale(1.08);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Effet d'onde au clic */
-        .subcategory-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .subcategory-btn:active::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        /* Animation pour les icônes des sous-catégories */
-        .subcategory-btn:hover i {
-            animation: bounce 0.5s ease;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            25% { transform: translateY(-5px); }
-            50% { transform: translateY(-2px); }
-            75% { transform: translateY(-3px); }
-        }
-        
-        /* Animation des badges promotionnels */
-        .promo-badge {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        
-        /* Animation scintillante pour les badges */
-        .sparkle {
-            animation: sparkle 2s ease-in-out infinite;
-        }
-        
-        @keyframes sparkle {
-            0%, 100% { opacity: 1; filter: brightness(1); }
-            50% { opacity: 0.8; filter: brightness(1.3); }
-        }
-        
-        /* Animation pour la bannière de catégorie */
-        .category-banner-animate {
-            animation: bannerSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        @keyframes bannerSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
         /* Animation de l'icône dans la bannière */
         .banner-icon {
             animation: iconRotate 0.8s ease-out;
@@ -733,212 +335,6 @@
                 transform: translateY(-20px) translateX(10px);
                 opacity: 0.6;
             }
-        }
-        
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); 
-            }
-            50% { 
-                transform: scale(1.01); 
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
-            }
-        }
-        
-        /* Rotation pour l'effet festif */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Effet de scintillement pour les fêtes */
-        @keyframes sparkle {
-            0%, 100% { 
-                opacity: 0.7; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.1); 
-            }
-        }
-        
-        /* Animation de défilement pour le texte */
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        /* Animation de la main qui clique */
-        @keyframes handClick {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            50% { 
-                transform: translateY(5px) rotate(-10deg); 
-            }
-        }
-        
-        /* Animation de brillance */
-        @keyframes shimmer {
-            0% { 
-                transform: translateX(-100%); 
-                opacity: 0.2; 
-            }
-            50% { 
-                opacity: 0.4; 
-            }
-            100% { 
-                transform: translateX(100%); 
-                opacity: 0; 
-            }
-        }
-        
-        /* Effet de neige pour les fêtes */
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-            }
-        }
-        
-        /* Styles pour les confettis de fête */
-        .confetti-piece {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: #f00;
-            top: -10px;
-            opacity: 0;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Styles pour les bannières de catégories */
-        .category-banner {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.8s ease-out;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .category-banner:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-banner:hover::before {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out;
-        }
-        
-        .category-banner-all {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: bannerPulse 2s ease-in-out infinite;
-            transition: all 0.3s ease;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .category-banner-all:hover {
-            transform: scale(1.02);
-        }
-        
-        .category-banner-all::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-        
-        /* Effet de scintillement pour les icônes festives */
-        .festive-icon {
-            animation: sparkle 1.5s ease-in-out infinite;
-        }
-        
-        .festive-icon:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-        
-        .festive-icon:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        
-        /* Animation de la main qui clique */
-        .animate-bounce {
-            animation: handClick 1s ease-in-out infinite;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-banner .absolute.inset-0,
-        .category-banner-all .absolute.inset-0 {
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.2) 50%, 
-                transparent 100%);
-        }
-        
-        /* Style pour le bouton avec effet de brillance */
-        .category-banner button,
-        .category-banner-all button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Effet de neige pour les fêtes */
-        .snowflake {
-            position: absolute;
-            top: -20px;
-            color: #fff;
-            font-size: 20px;
-            animation: fall linear forwards;
-            user-select: none;
-            pointer-events: none;
-            z-index: 100;
         }
         
         /* Animation pour le texte de la bannière */
@@ -1648,18 +1044,18 @@
                 
                 <!-- Bouton Profil utilisateur (si connecté) -->
                 <button id="user-menu-btn" onclick="openUserModal()" class="hidden md:flex items-center space-x-2 bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg transition-all">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-user-circle text-purple-600 text-2xl"></i>
                     <span id="user-fullname-header" class="text-sm font-semibold text-gray-800 hidden lg:inline"></span>
-                    <i class="fas fa-chevron-down text-xs"></i>
+                    <i class="fas fa-chevron-down text-gray-600 text-sm"></i>
                 </button>
 
                 <button onclick="toggleCart()" class="relative bg-purple-100 hover:bg-purple-200 p-2 md:p-3 rounded-full transition-colors flex-shrink-0">
-                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <i class="fas fa-shopping-cart text-purple-600 text-lg md:text-xl"></i>
                     <span id="cart-badge" class="absolute -top-1 -right-1 md:-top-2 md:-right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center hidden">0</span>
                 </button>
 
                 <button onclick="toggleMobileMenu()" class="md:hidden bg-gray-100 hover:bg-gray-200 p-2 rounded-lg transition-colors">
-                    <i class="fas fa-bars text-xl"></i>
+                    <i class="fas fa-bars text-gray-700 text-lg"></i>
                 </button>
             </div>
         </div>
@@ -1675,12 +1071,12 @@
                        onfocus="showSearchResults()"
                        onblur="hideSearchResults()">
                 <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-                    <i class="fas fa-search"></i>
+                    <i class="fas fa-search text-lg"></i>
                 </div>
                 <button onclick="clearSearch()"
                         id="clear-search"
                         class="absolute right-16 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden transition-colors">
-                    <i class="fas fa-times"></i>
+                    <i class="fas fa-times-circle text-lg"></i>
                 </button>
                 <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-lg transition-all font-semibold">
                     <i class="fas fa-search mr-1"></i>
@@ -1702,11 +1098,11 @@
                        oninput="handleMobileSearch()"
                        onfocus="showMobileSearchResults()"
                        onblur="hideMobileSearchResults()">
-                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"></i>
                 <button onclick="clearMobileSearch()"
                         id="mobile-clear-search"
                         class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden">
-                    <i class="fas fa-times"></i>
+                    <i class="fas fa-times-circle text-lg"></i>
                 </button>
             </div>
             <div id="mobile-search-results" class="hidden mt-2">
@@ -1750,7 +1146,7 @@
                     <i class="fas fa-home mr-3 text-purple-600"></i> Accueil
                 </a>
                 <a href="#produits" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
-                    <i class="fas fa-box mr-3 text-purple-600"></i> Produits
+                    <i class="fas fa-shopping-bag mr-3 text-purple-600"></i> Produits
                 </a>
                 <a href="#contact" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-purple-600 font-medium transition-colors py-2">
                     <i class="fas fa-envelope mr-3 text-purple-600"></i> Contact
@@ -1822,7 +1218,7 @@
         <div class="max-w-4xl mx-auto text-center">
             <!-- Badge promotionnel festif -->
             <div class="inline-flex items-center bg-gradient-to-r from-red-600 to-green-600 text-white px-6 py-3 rounded-full font-bold text-sm mb-6 shadow-2xl animate-bounce">
-                <i class="fas fa-gift text-lg mr-2"></i>
+                <i class="fas fa-gift mr-2"></i>
                 🎄 OFFRES SPÉCIALES FÊTES DE DÉCEMBRE 🎁
             </div>
             
@@ -1842,7 +1238,7 @@
             <!-- Boutons CTA festifs -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <a href="#produits" class="bg-gradient-to-r from-red-600 to-green-600 hover:from-red-700 hover:to-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-2xl transition-all transform hover:scale-105 inline-flex items-center justify-center">
-                    <i class="fas fa-gifts text-lg mr-2"></i>
+                    <i class="fas fa-gifts mr-2"></i>
                     Découvrir nos cadeaux
                 </a>
                 <a href="#contact" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all transform hover:scale-105 inline-flex items-center justify-center">
@@ -1855,7 +1251,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
                 <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all transform hover:scale-105">
                     <div class="bg-gradient-to-r from-red-500 to-green-500 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-truck text-xl"></i>
+                        <i class="fas fa-shipping-fast text-white text-2xl"></i>
                     </div>
                     <h3 class="text-white font-bold text-lg mb-2">Livraison Rapide</h3>
                     <p class="text-gray-200 text-sm">Recevez vos commandes en 24-48h partout en Côte d'Ivoire</p>
@@ -1863,7 +1259,7 @@
                 
                 <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all transform hover:scale-105">
                     <div class="bg-gradient-to-r from-green-500 to-red-500 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-shield-alt text-xl"></i>
+                        <i class="fas fa-shield-check text-white text-2xl"></i>
                     </div>
                     <h3 class="text-white font-bold text-lg mb-2">Qualité Garantie</h3>
                     <p class="text-gray-200 text-sm">Produits authentiques et certifiés, satisfaction garantie</p>
@@ -1871,7 +1267,7 @@
                 
                 <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all transform hover:scale-105">
                     <div class="bg-gradient-to-r from-yellow-500 to-green-500 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-headset text-xl"></i>
+                        <i class="fas fa-headset text-white text-2xl"></i>
                     </div>
                     <h3 class="text-white font-bold text-lg mb-2">Support 24/7</h3>
                     <p class="text-gray-200 text-sm">Notre équipe à votre écoute via WhatsApp et téléphone</p>
@@ -1971,20 +1367,14 @@ if (images && images.length > 0) {
             <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Explorez nos trois catégories soigneusement sélectionnées pour répondre à tous vos besoins</p>
             
             <!-- Category Filters avec Bannières -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-                <!-- Toute les catégories -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <!-- Toutes les catégories -->
                 <button onclick="filterProducts('all')" class="category-card active group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-br from-purple-600 via-purple-700 to-blue-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
-                        <div class="flex justify-center mb-3">
-                            <i class="fas fa-th-large text-4xl"></i>
-                        </div>
+                        <i class="fas fa-th-large text-4xl mb-3"></i>
                         <h3 class="text-xl font-bold mb-2">Tous les Produits</h3>
                         <p class="text-sm opacity-90">Découvrez toute notre collection</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                 </button>
                 
@@ -1992,15 +1382,9 @@ if (images && images.length > 0) {
                 <button onclick="filterProducts('educatif')" class="category-card group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-500 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
-                        <div class="flex justify-center mb-3">
-                            <i class="fas fa-graduation-cap text-4xl"></i>
-                        </div>
+                        <i class="fas fa-graduation-cap text-4xl mb-3"></i>
                         <h3 class="text-xl font-bold mb-2">Éducatif</h3>
                         <p class="text-sm opacity-90">Fournitures scolaires & plus</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-400 text-blue-900 text-xs font-bold px-2 py-1 rounded-full badge-pulse promo-badge">⭐ Populaire</div>
                 </button>
@@ -2009,88 +1393,50 @@ if (images && images.length > 0) {
                 <button onclick="filterProducts('electronique')" class="category-card group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-br from-green-500 via-green-600 to-teal-500 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
-                        <div class="flex justify-center mb-3">
-                            <i class="fas fa-laptop text-4xl"></i>
-                        </div>
+                        <i class="fas fa-laptop text-4xl mb-3"></i>
                         <h3 class="text-xl font-bold mb-2">Électronique</h3>
                         <p class="text-sm opacity-90">High-tech & accessoires</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse sparkle">🔥 Promo</div>
-                </button>
-                
-                <!-- Fast Food -->
-                <button onclick="filterProducts('fastfood')" class="category-card group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-br from-orange-500 via-red-600 to-orange-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="relative p-6 text-white text-center">
-                        <div class="flex justify-center mb-3">
-                            <i class="fas fa-hamburger text-4xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Fast Food</h3>
-                        <p class="text-sm opacity-90">Burgers & snacks</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
-                    </div>
-                    <div class="absolute top-2 right-2 bg-yellow-300 text-red-900 text-xs font-bold px-2 py-1 rounded-full promo-badge float">🍔 Nouveau</div>
                 </button>
                 
                 <!-- Mode -->
                 <button onclick="toggleModeSubcategories()" class="category-card group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-br from-pink-500 via-purple-600 to-pink-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
-                        <div class="flex justify-center mb-3">
-                            <i class="fas fa-tshirt text-4xl"></i>
-                        </div>
+                        <i class="fas fa-tshirt text-4xl mb-3"></i>
                         <h3 class="text-xl font-bold mb-2 flex items-center justify-center">
                             Mode
-                            <i class="fas fa-chevron-down ml-2 transition-transform text-sm"></i>
+                            <i id="mode-chevron" class="fas fa-chevron-down ml-2 transition-transform text-sm"></i>
                         </h3>
                         <p class="text-sm opacity-90">Tendances & style</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-300 text-purple-900 text-xs font-bold px-2 py-1 rounded-full promo-badge float">✨ Nouveau</div>
                 </button>
-            </div>
             </div>
             
             <!-- Sous-catégories Mode -->
             <div id="mode-subcategories" class="hidden mb-8 animate-slideDown">
                 <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-6 border-2 border-pink-200">
                     <h4 class="text-center text-xl font-bold text-gray-800 mb-4 flex items-center justify-center">
-                        <i class="fas fa-tags mr-2"></i>
+                        <i class="fas fa-tags text-pink-600 mr-2"></i>
                         Catégories Mode
                     </h4>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <button onclick="filterProducts('mode')" class="subcategory-btn bg-white border-2 border-pink-400 text-pink-600 px-4 py-3 rounded-xl font-semibold hover:bg-pink-50 transition-all transform hover:scale-105 shadow-md">
-                            <div class="flex justify-center mb-2">
-                                <i class="fas fa-tshirt text-2xl"></i>
-                            </div>
+                            <i class="fas fa-th text-xl mb-2"></i>
                             <div class="text-sm">Tous Mode</div>
                         </button>
                         <button onclick="filterProducts('mode-homme')" class="subcategory-btn bg-white border-2 border-blue-400 text-blue-600 px-4 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-md">
-                            <div class="flex justify-center mb-2">
-                                <i class="fas fa-male text-2xl"></i>
-                            </div>
+                            <i class="fas fa-male text-xl mb-2"></i>
                             <div class="text-sm">Homme</div>
                         </button>
                         <button onclick="filterProducts('mode-femme')" class="subcategory-btn bg-white border-2 border-pink-500 text-pink-600 px-4 py-3 rounded-xl font-semibold hover:bg-pink-50 transition-all transform hover:scale-105 shadow-md">
-                            <div class="flex justify-center mb-2">
-                                <i class="fas fa-female text-2xl"></i>
-                            </div>
+                            <i class="fas fa-female text-xl mb-2"></i>
                             <div class="text-sm">Femme</div>
                         </button>
                         <button onclick="filterProducts('mode-enfants')" class="subcategory-btn bg-white border-2 border-purple-400 text-purple-600 px-4 py-3 rounded-xl font-semibold hover:bg-purple-50 transition-all transform hover:scale-105 shadow-md">
-                            <div class="flex justify-center mb-2">
-                                <i class="fas fa-child text-2xl"></i>
-                            </div>
+                            <i class="fas fa-child text-xl mb-2"></i>
                             <div class="text-sm">Enfants</div>
                         </button>
                     </div>
@@ -2103,7 +1449,7 @@ if (images && images.length > 0) {
             <!-- Sort Options -->
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 bg-white rounded-2xl shadow-lg p-6">
                 <div class="flex items-center space-x-3">
-                    <i class="fas fa-sort-amount-down mr-2"></i>
+                    <i class="fas fa-sort text-purple-600 text-xl"></i>
                     <span class="font-semibold text-gray-800">Trier par :</span>
                 </div>
                 
@@ -2504,22 +1850,10 @@ if (images && images.length > 0) {
                 <div>
                     <h4 class="text-lg font-bold mb-4 text-orange-400">Liens Rapides</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#accueil" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-home mr-2"></i>
-                            Accueil
-                        </a></li>
-                        <li><a href="#produits" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-box mr-2"></i>
-                            Nos Produits
-                        </a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-envelope mr-2"></i>
-                            Contact
-                        </a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-info-circle mr-2"></i>
-                            À propos
-                        </a></li>
+                        <li><a href="#accueil" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Accueil</a></li>
+                        <li><a href="#produits" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Nos Produits</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>À propos</a></li>
                     </ul>
                 </div>
                 
@@ -2527,22 +1861,9 @@ if (images && images.length > 0) {
                 <div>
                     <h4 class="text-lg font-bold mb-4 text-orange-400">Catégories</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#produits" onclick="filterProducts('educatif')" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-graduation-cap mr-2"></i>
-                            Éducatif
-                        </a></li>
-                        <li><a href="#produits" onclick="filterProducts('electronique')" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-laptop mr-2"></i>
-                            Électronique
-                        </a></li>
-                        <li><a href="#produits" onclick="filterProducts('fastfood')" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-hamburger mr-2"></i>
-                            Fast Food
-                        </a></li>
-                        <li><a href="#produits" onclick="filterProducts('mode')" class="text-gray-400 hover:text-white transition-colors flex items-center">
-                            <i class="fas fa-tshirt mr-2"></i>
-                            Mode
-                        </a></li>
+                        <li><a href="#produits" onclick="filterProducts('educatif')" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-graduation-cap mr-2 text-blue-400"></i>Éducatif</a></li>
+                        <li><a href="#produits" onclick="filterProducts('electronique')" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-laptop mr-2 text-green-400"></i>Électronique</a></li>
+                        <li><a href="#produits" onclick="filterProducts('mode')" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-tshirt mr-2 text-pink-400"></i>Mode</a></li>
                     </ul>
                 </div>
                 
@@ -2765,7 +2086,7 @@ if (images && images.length > 0) {
             
             // Récupérer les commandes depuis la base de données
             try {
-                const response = await fetch(`${API_BASE_URL}/commandes/user/${userId}`);
+                const response = await fetch(`http://localhost:5000/api/commandes/user/${userId}`);
                 const data = await response.json();
                 
                 if (data.success) {
@@ -2957,28 +2278,28 @@ if (images && images.length > 0) {
                     <div class="p-4 bg-gray-50 border-b border-gray-200">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                             <div class="flex items-start space-x-2">
-                                <i class="fas fa-user text-gray-500 mt-1"></i>
+                                <i class="fas fa-user text-purple-600 mt-1"></i>
                                 <div>
                                     <p class="text-gray-500 text-xs">Client</p>
                                     <p class="font-semibold text-gray-800">${order.customerName}</p>
                                 </div>
                             </div>
                             <div class="flex items-start space-x-2">
-                                <i class="fas fa-phone text-gray-500 mt-1"></i>
+                                <i class="fas fa-phone text-green-600 mt-1"></i>
                                 <div>
                                     <p class="text-gray-500 text-xs">Téléphone</p>
                                     <p class="font-semibold text-gray-800">${order.customerPhone}</p>
                                 </div>
                             </div>
                             <div class="flex items-start space-x-2">
-                                <i class="fas fa-map-marker-alt text-gray-500 mt-1"></i>
+                                <i class="fas fa-map-marker-alt text-red-600 mt-1"></i>
                                 <div>
                                     <p class="text-gray-500 text-xs">Adresse</p>
                                     <p class="font-semibold text-gray-800">${order.customerAddress}</p>
                                 </div>
                             </div>
                             <div class="flex items-start space-x-2">
-                                <i class="fas fa-city text-gray-500 mt-1"></i>
+                                <i class="fas fa-city text-blue-600 mt-1"></i>
                                 <div>
                                     <p class="text-gray-500 text-xs">Ville</p>
                                     <p class="font-semibold text-gray-800">${order.customerCity}</p>
@@ -3160,25 +2481,16 @@ if (images && images.length > 0) {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify(commandeData)
                     });
-                    
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -3189,18 +2501,7 @@ if (images && images.length > 0) {
                     }
                 } catch (error) {
                     console.error('❌ Erreur connexion serveur:', error);
-                    console.error('🔍 Détails de l\'erreur:', {
-                        name: error.name,
-                        message: error.message,
-                        stack: error.stack
-                    });
-                    
-                    // Vérifier si c'est une erreur de réseau
-                    if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                        showNotification('⚠️ Impossible de joindre le serveur. Vérifiez votre connexion internet ou réessayez plus tard.', 'error');
-                    } else {
-                        showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
-                    }
+                    showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
                 }
             } else {
                 console.warn('⚠️ Utilisateur non connecté, commande non enregistrée en BDD');
@@ -3605,48 +2906,7 @@ if (images && images.length > 0) {
                 ],
                 description: "Performant et élégant, avec écran Liquid Retina HD 6,1, puce A13 Bionic, double appareil photo 12 MP et design raffiné en noir. Stockage 64 Go, parfait pour une utilisation fluide au quotidien."
             },
-            
-            // Catégorie Fast Food
-            {
-                id: 32,
-                name: "Burger Royal Deluxe - Avec Frites & Boisson",
-                price: 2500,
-                category: "fastfood",
-                images: [
-                    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                ],
-                description: "Savoureux burger avec viande de bœuf grillée, fromage cheddar, laitue, tomate, oignon, cornichons et sauce spéciale. Servi avec frites croustillantes et boisson au choix."
-            },
-            {
-                id: 33,
-                name: "Pizza Pepperoni Maxi - Famille",
-                price: 7500,
-                category: "fastfood",
-                images: [
-                    "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                ],
-                description: "Pizza géante au pepperoni épicé, sauce tomate maison, mozzarella fondante et herbes aromatiques. Parfaite pour partager en famille (jusqu'à 4 personnes)."
-            },
-            {
-                id: 34,
-                name: "Wrap Poulet Grillé - Healthy Choice",
-                price: 3200,
-                category: "fastfood",
-                images: [
-                    "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                ],
-                description: "Wrap tendre au poulet grillé, avocat, laitue, tomate et sauce yogurt. Option plus légère pour un repas équilibré et savoureux."
-            },
-            {
-                id: 35,
-                name: "Combo Chicken Wings - 12 Pièces",
-                price: 4500,
-                category: "fastfood",
-                images: [
-                    "https://images.unsplash.com/photo-1606755962773-d324e0a13086?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                ],
-                description: "12 ailes de poulet croustillantes, marinées dans notre sauce spéciale. Servies avec sauce au choix : BBQ, piquante ou fromagère. Accompagnées de frites et boisson."
-            }
+
 
         ];
 
@@ -3916,16 +3176,6 @@ function loadMoreProducts() {
                 }
                 const categoryCards = document.querySelectorAll('.category-card');
                 categoryCards[2]?.classList.add('active');
-            } else if (category === 'fastfood') {
-                // Masquer les sous-catégories mode et activer Fast Food
-                const subcategoriesDiv = document.getElementById('mode-subcategories');
-                const chevron = document.getElementById('mode-chevron');
-                if (!subcategoriesDiv.classList.contains('hidden')) {
-                    subcategoriesDiv.classList.add('hidden');
-                    chevron.style.transform = 'rotate(0deg)';
-                }
-                const categoryCards = document.querySelectorAll('.category-card');
-                categoryCards[3]?.classList.add('active');
             }
             
             // Faire défiler vers les produits
@@ -3944,56 +3194,56 @@ function loadMoreProducts() {
             const banners = {
                 'all': {
                     gradient: 'from-purple-600 via-blue-600 to-purple-600',
-                    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80&q=80',
+                    icon: 'fa-th-large',
                     title: 'Toute Notre Collection',
                     subtitle: 'Découvrez tous nos produits de qualité au meilleur prix',
                     badge: '🎁 Livraison offerte dès 40 000 FCFA'
                 },
                 'educatif': {
                     gradient: 'from-blue-500 via-cyan-500 to-blue-600',
-                    image: 'https://images.unsplash.com/photo-1590857652129-825d4c181ff5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80&q=80',
+                    icon: 'fa-graduation-cap',
                     title: 'Fournitures Éducatives',
                     subtitle: 'Tout pour la réussite scolaire de vos enfants',
                     badge: '📚 Qualité garantie pour l\'école'
                 },
                 'electronique': {
                     gradient: 'from-green-500 via-teal-500 to-green-600',
-                    image: 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80&q=80',
+                    icon: 'fa-laptop',
                     title: 'High-Tech & Électronique',
                     subtitle: 'Les dernières technologies à portée de main',
                     badge: '⚡ Produits garantis 1 an'
                 },
                 'mode': {
                     gradient: 'from-pink-500 via-purple-600 to-pink-600',
-                    image: 'https://images.unsplash.com/photo-1521334884684-d80222895326?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80&q=80',
+                    icon: 'fa-tshirt',
                     title: 'Mode & Tendances',
                     subtitle: 'Restez stylé avec nos collections homme, femme et enfants',
                     badge: '✨ Nouveautés chaque semaine'
                 },
                 'mode-homme': {
                     gradient: 'from-blue-600 via-indigo-600 to-blue-700',
-                    image: 'https://images.unsplash.com/photo-1529973702732-317a0051c370?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80&q=80',
+                    icon: 'fa-male',
                     title: 'Mode Homme',
                     subtitle: 'Style masculin moderne et élégant',
                     badge: '👔 Collection premium'
                 },
                 'mode-femme': {
                     gradient: 'from-pink-500 via-rose-500 to-pink-600',
-                    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80&q=80',
+                    icon: 'fa-female',
                     title: 'Mode Femme',
                     subtitle: 'Élégance et féminité à tous les prix',
                     badge: '👗 Tendances 2024'
                 },
                 'mode-enfants': {
                     gradient: 'from-purple-500 via-violet-500 to-purple-600',
-                    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80&q=80',
+                    icon: 'fa-child',
                     title: 'Mode Enfants',
                     subtitle: 'Confort et style pour vos petits',
                     badge: '🎈 Qualité et douceur'
                 },
                 'fastfood': {
                     gradient: 'from-orange-500 via-red-600 to-orange-600',
-                    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80&q=80',
+                    icon: 'fa-hamburger',
                     title: 'Fast Food',
                     subtitle: 'Burgers, pizzas & snacks savoureux',
                     badge: '🍔 Dégustez maintenant !'
@@ -4023,7 +3273,7 @@ function loadMoreProducts() {
                     <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
                         <div class="flex items-center gap-6">
                             <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-xl banner-icon">
-                                ${getCategoryIcon(category)}
+                                <i class="fas ${banner.icon} text-5xl"></i>
                             </div>
                             <div>
                                 <h3 class="text-3xl md:text-4xl font-black mb-2 animate-fadeIn">${banner.title}</h3>
@@ -4062,20 +3312,6 @@ function loadMoreProducts() {
                 'fastfood': 'Fast Food'
             };
             return names[category] || category;
-        }
-
-        function getCategoryIcon(category) {
-            const icons = {
-                'all': '<i class="fas fa-th-large text-4xl"></i>',
-                'educatif': '<i class="fas fa-graduation-cap text-4xl"></i>',
-                'electronique': '<i class="fas fa-laptop text-4xl"></i>',
-                'mode': '<i class="fas fa-tshirt text-4xl"></i>',
-                'mode-homme': '<i class="fas fa-male text-4xl"></i>',
-                'mode-femme': '<i class="fas fa-female text-4xl"></i>',
-                'mode-enfants': '<i class="fas fa-child text-4xl"></i>',
-                'fastfood': '<i class="fas fa-hamburger text-4xl"></i>'
-            };
-            return icons[category] || '<i class="fas fa-box text-4xl"></i>';
         }
 
         // Ajouter au panier
@@ -4195,7 +3431,7 @@ function loadMoreProducts() {
                         <!-- Image du produit -->
                         <div class="flex-shrink-0 relative">
                             <div class="w-24 h-24 rounded-xl overflow-hidden border-2 border-gray-200">
-                                <img src="${item.image || (item.images && item.images[0]) || '/images/prestige shop.png'}" alt="${item.name}" 
+                                <img src="${item.images[0]}" alt="${item.name}" 
                                      class="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform" 
                                      onclick="openImageZoom(${item.id}, 0)">
                             </div>
@@ -4283,7 +3519,7 @@ function loadMoreProducts() {
                         nom: item.name,
                         quantite: item.quantity,
                         prix: item.price,
-                        image: item.image || (item.images && item.images[0]) || '/images/prestige shop.png'  // Ajouter l'image
+                        image: item.images[0]  // Ajouter l'image
                     }));
 
                     const commandeData = {
@@ -4296,31 +3532,16 @@ function loadMoreProducts() {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    // Ajout d'un timeout pour la requête
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 secondes timeout
-
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(commandeData),
-                        signal: controller.signal
+                        body: JSON.stringify(commandeData)
                     });
-                    
-                    clearTimeout(timeoutId);
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -5679,116 +4900,110 @@ function loadMoreProducts() {
             displaySearchResults(results, query, isMobile);
         }
         
-        // Créer une carte produit pour les résultats de recherche - UNIFORMISÉ
+        // Créer une carte produit pour les résultats de recherche - STYLE AMAZON
         function createSearchProductCard(product, query, isMobile = false) {
             const rating = (4.2 + Math.random() * 0.8).toFixed(1);
             const reviewCount = Math.floor(Math.random() * 100) + 15;
             const discount = Math.random() > 0.6 ? Math.floor(Math.random() * 30) + 10 : 0;
             const originalPrice = discount > 0 ? Math.floor(product.price / (1 - discount / 100)) : product.price;
             
-            // Map categories to images
-            const categoryImages = {
-                'educatif': 'https://images.unsplash.com/photo-1590857652129-825d4c181ff5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=30&h=30&q=80',
-                'electronique': 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=30&h=30&q=80',
-                'mode': 'https://images.unsplash.com/photo-1521334884684-d80222895326?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=30&h=30&q=80',
-                'fastfood': 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=30&h=30&q=80'
-            };
-            
-            // Utiliser le même style que les cartes de produits principales
             return `
-                <div class="search-result-card product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl overflow-hidden flex flex-col h-full border border-gray-100 transition-all duration-300 hover:scale-[1.03] hover:-translate-y-1 group">
-                    <!-- Image Container - Style App Mobile -->
-                    <div class="relative carousel-container h-36 sm:h-40 flex-shrink-0 bg-gradient-to-br from-gray-50 to-gray-100">
-                        <div class="carousel-track" id="carousel-search-${product.id}">
-                            <div class="carousel-slide">
-                                <img src="${product.images[0]}" 
-                                     alt="${product.name}" 
-                                     class="w-full h-full object-cover cursor-pointer transition-all duration-500 group-hover:scale-110"
-                                     onclick="openImageZoom(${product.id}, 0)">
-                            </div>
-                        </div>
-                        
-                        <!-- Badge réduction -->
-                        ${discount > 0 ? `
-                            <div class="absolute top-2 left-2">
-                                <span class="bg-red-600 text-white px-2 py-1 rounded-lg text-xs font-bold shadow-md">
+                <div class="search-result-card bg-white rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-200 overflow-hidden group"
+                     data-product-id="${product.id}">
+                    
+                    <div class="flex ${isMobile ? 'flex-col' : 'flex-row'} gap-3 p-3">
+                        <!-- Image Section - Style Amazon -->
+                        <div class="relative ${isMobile ? 'w-full h-48' : 'w-48 h-48'} flex-shrink-0 bg-white flex items-center justify-center cursor-pointer"
+                             onclick="openImageZoom(${product.id}, 0)">
+                            <img src="${product.images[0]}" 
+                                 alt="${product.name}" 
+                                 class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                            
+                            <!-- Badge réduction -->
+                            ${discount > 0 ? `
+                                <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
                                     -${discount}%
+                                </div>
+                            ` : ''}
+                            
+                            <!-- Badge catégorie -->
+                            <div class="absolute top-2 right-2">
+                                <span class="bg-${getCategoryColor(product.category)} bg-opacity-90 text-white px-2 py-1 rounded text-xs font-semibold">
+                                    ${getCategoryName(product.category)}
                                 </span>
                             </div>
-                        ` : ''}
-                        
-                        <!-- Badge catégorie - Style App -->
-                        <div class="absolute top-2 left-2" style="top: ${discount > 0 ? '32px' : '8px'}">
-                            <span class="bg-${getCategoryColor(product.category)} text-white px-2 py-1 rounded-lg text-xs font-bold shadow-md backdrop-blur-sm border border-white border-opacity-20 flex items-center">
-                                ${getCategoryIcon(product.category)}
-                                ${getCategoryName(product.category)}
-                            </span>
+                            
+                            <!-- Indicateur multi-images -->
+                            ${product.images.length > 1 ? `
+                                <div class="absolute bottom-2 left-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs flex items-center gap-1">
+                                    <i class="fas fa-images"></i>
+                                    <span>${product.images.length}</span>
+                                </div>
+                            ` : ''}
                         </div>
                         
-                        <!-- Indicateur multi-images -->
-                        ${product.images.length > 1 ? `
-                            <div class="absolute bottom-2 left-2">
-                                <div class="bg-black bg-opacity-80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center">
-                                    <i class="fas fa-images mr-1"></i>${product.images.length}
+                        <!-- Contenu - Style Amazon -->
+                        <div class="flex-1 flex flex-col justify-between min-w-0">
+                            <!-- Titre et description -->
+                            <div>
+                                <h3 class="text-base font-medium text-gray-900 hover:text-orange-600 cursor-pointer mb-1 line-clamp-2"
+                                    onclick="openImageZoom(${product.id}, 0)">
+                                    ${highlightSearchTerm(product.name, query)}
+                                </h3>
+                                
+                                <!-- Rating Amazon style -->
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="flex items-center">
+                                        ${[1,2,3,4,5].map(star => `
+                                            <i class="fas fa-star text-xs ${star <= Math.floor(rating) ? 'text-orange-400' : star - 0.5 <= rating ? 'fa-star-half-alt text-orange-400' : 'text-gray-300'}"></i>
+                                        `).join('')}
+                                    </div>
+                                    <span class="text-sm text-blue-600 hover:text-orange-600 cursor-pointer">${reviewCount}</span>
+                                </div>
+                                
+                                <!-- Description -->
+                                <p class="text-sm text-gray-600 mb-2 line-clamp-2">
+                                    ${highlightSearchTerm(product.description, query)}
+                                </p>
+                                
+                                <!-- Badges de livraison et disponibilité -->
+                                <div class="flex flex-wrap gap-2 mb-2">
+                                    ${Math.random() > 0.5 ? `
+                                        <span class="text-xs bg-teal-50 text-teal-700 px-2 py-1 rounded-full font-medium">
+                                            <i class="fas fa-shipping-fast mr-1"></i>Livraison rapide
+                                        </span>
+                                    ` : ''}
+                                    <span class="text-xs ${Math.random() > 0.3 ? 'text-green-600' : 'text-orange-600'} font-semibold">
+                                        ${Math.random() > 0.3 ? 'En stock' : 'Stock limité'}
+                                    </span>
                                 </div>
                             </div>
-                        ` : ''}
-                        
-                        <!-- Bouton zoom -->
-                        <div class="absolute bottom-2 right-2">
-                            <button onclick="openImageZoom(${product.id}, 0)" 
-                                    class="bg-black bg-opacity-80 backdrop-blur-sm text-white p-2 rounded-lg hover:bg-opacity-100 transition-all shadow-lg hover:scale-110">
-                                <i class="fas fa-expand text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Contenu - Style App Mobile Compact -->
-                    <div class="p-3 flex flex-col flex-grow">
-                        <!-- Nom du produit -->
-                        <h3 class="text-sm sm:text-base font-bold text-gray-900 leading-tight mb-2 line-clamp-2 min-h-[2.5rem] flex items-start">
-                            ${highlightSearchTerm(product.name, query)}
-                        </h3>
-                        
-                        <!-- Prix et rating sur la même ligne -->
-                        <div class="flex items-center justify-between mb-2">
-                            <div class="flex flex-col">
-                                <div class="text-lg sm:text-xl font-black text-purple-600">${product.price.toLocaleString()}</div>
-                                <div class="text-xs text-gray-500 font-medium -mt-1">FCFA</div>
-                            </div>
                             
-                            <div class="flex items-center space-x-1 bg-yellow-50 px-2 py-1 rounded-lg">
-                                <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                <span class="text-xs font-bold text-gray-700">${rating}</span>
-                                <span class="text-xs text-gray-500">(${reviewCount})</span>
+                            <!-- Prix et action - Style Amazon -->
+                            <div class="flex items-end justify-between gap-3 mt-2">
+                                <div class="flex-1">
+                                    <!-- Prix -->
+                                    <div class="flex items-baseline gap-2 mb-1">
+                                        <span class="text-2xl font-bold text-gray-900">${product.price.toLocaleString()}</span>
+                                        <span class="text-sm text-gray-600">FCFA</span>
+                                    </div>
+                                    ${discount > 0 ? `
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-xs text-gray-500 line-through">${originalPrice.toLocaleString()} FCFA</span>
+                                            <span class="text-xs text-red-600 font-semibold">(-${discount}%)</span>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                                
+                                <!-- Bouton Ajouter au panier - Style Amazon -->
+                                <button onclick="addToCartFromSearch(${product.id}, ${isMobile}); event.stopPropagation();" 
+                                        class="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all transform active:scale-95 shadow-md hover:shadow-lg whitespace-nowrap">
+                                    <i class="fas fa-shopping-cart mr-1"></i>
+                                    Ajouter
+                                </button>
                             </div>
                         </div>
-                        
-                        <!-- Description compacte -->
-                        <p class="text-gray-600 text-xs sm:text-sm mb-3 line-clamp-2 leading-relaxed flex-grow">
-                            ${highlightSearchTerm(product.description, query)}
-                        </p>
-                        
-                        <!-- Actions - Style App Mobile -->
-                        <div class="flex items-center space-x-2 mt-auto">
-                            <!-- Bouton principal - Plus large -->
-                            <button onclick="addToCartFromSearch(${product.id}, ${isMobile}); event.stopPropagation();" 
-                                    class="flex-1 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all transform active:scale-95 shadow-lg hover:shadow-xl flex items-center justify-center">
-                                <i class="fas fa-cart-plus mr-1.5 text-sm"></i>
-                                <span class="hidden sm:inline">Ajouter</span>
-                                <span class="sm:hidden">+</span>
-                            </button>
-                            
-                            <!-- Bouton vue rapide -->
-                            <button onclick="quickView(${product.id})" 
-                                    class="bg-gray-100 hover:bg-gray-200 text-gray-700 p-2.5 rounded-xl transition-all transform active:scale-95 shadow-md hover:shadow-lg">
-                                <i class="fas fa-eye text-sm"></i>
-                            </button>
-                        </div>
                     </div>
-                    
-                    <!-- Effet de survol - Bordure colorée -->
-                    <div class="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-purple-200 transition-all duration-300 pointer-events-none"></div>
                 </div>
             `;
         }
@@ -6491,200 +5706,6 @@ function loadMoreProducts() {
             });
         }
         
-        // Fonction pour créer un effet de confettis de fête
-        function createFestiveConfetti() {
-            const confettiColors = [
-                '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
-                '#ff00ff', '#00ffff', '#ff9900', '#ff66cc',
-                '#66ff66', '#6666ff', '#ffcc00', '#cc66ff'
-            ];
-            
-            const container = document.body;
-            
-            // Créer 150 confettis
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
-                
-                // Propriétés aléatoires
-                const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                const size = Math.random() * 10 + 5;
-                const left = Math.random() * 100;
-                const animationDuration = Math.random() * 3 + 2;
-                const animationDelay = Math.random() * 2;
-                const shape = Math.random() > 0.5 ? '50%' : '0';
-                
-                // Appliquer les styles
-                confetti.style.backgroundColor = color;
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.left = `${left}vw`;
-                confetti.style.borderRadius = shape;
-                confetti.style.animation = `confetti-fall ${animationDuration}s ease-in ${animationDelay}s forwards`;
-                
-                // Ajouter au document
-                container.appendChild(confetti);
-                
-                // Supprimer après l'animation
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.parentNode.removeChild(confetti);
-                    }
-                }, (animationDuration + animationDelay) * 1000);
-            }
-        }
-        
-        // Ajouter au panier avec effet de confettis de fête
-        function addToCart(productId) {
-            // Vérifier si le produit existe déjà dans le panier
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                // Incrémenter la quantité
-                existingItem.quantity += 1;
-            } else {
-                // Ajouter un nouveau produit au panier
-                const product = allProducts.find(p => p.id === productId);
-                if (product) {
-                    cart.push({
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        image: product.images && product.images.length > 0 ? product.images[0] : '/images/prestige shop.png',
-                        quantity: 1
-                    });
-                }
-            }
-            
-            // Mettre à jour l'interface utilisateur
-            updateCartUI();
-            
-            // Créer l'effet de confettis de fête
-            createFestiveConfetti();
-            
-            // Sauvegarder dans localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Feedback haptique
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate([50, 30, 50]);
-            }
-        }
-        
-        // Mettre à jour l'interface du panier
-        function updateCartUI() {
-            // Mettre à jour le badge du panier flottant
-            const cartBadge = document.getElementById('cart-float-badge');
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            
-            if (totalItems > 0) {
-                cartBadge.textContent = totalItems;
-                cartBadge.classList.remove('hidden');
-            } else {
-                cartBadge.classList.add('hidden');
-            }
-            
-            // Mettre à jour le total dans le panier modal
-            const cartTotal = document.getElementById('cart-total');
-            if (cartTotal) {
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                cartTotal.textContent = total.toFixed(2) + ' FCFA';
-            }
-            
-            // Mettre à jour le badge du bouton panier dans le header
-            const headerCartBadge = document.getElementById('cart-badge');
-            if (headerCartBadge) {
-                if (totalItems > 0) {
-                    headerCartBadge.textContent = totalItems;
-                    headerCartBadge.classList.remove('hidden');
-                } else {
-                    headerCartBadge.classList.add('hidden');
-                }
-            }
-        }
-        
-        // Fonction pour créer un effet de confettis de fête
-        function createFestiveConfetti() {
-            const confettiColors = [
-                '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
-                '#ff00ff', '#00ffff', '#ff9900', '#ff66cc',
-                '#66ff66', '#6666ff', '#ffcc00', '#cc66ff'
-            ];
-            
-            const container = document.body;
-            
-            // Créer 150 confettis
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
-                
-                // Propriétés aléatoires
-                const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                const size = Math.random() * 10 + 5;
-                const left = Math.random() * 100;
-                const animationDuration = Math.random() * 3 + 2;
-                const animationDelay = Math.random() * 2;
-                const shape = Math.random() > 0.5 ? '50%' : '0';
-                
-                // Appliquer les styles
-                confetti.style.backgroundColor = color;
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.left = `${left}vw`;
-                confetti.style.borderRadius = shape;
-                confetti.style.animation = `confetti-fall ${animationDuration}s ease-in ${animationDelay}s forwards`;
-                
-                // Ajouter au document
-                container.appendChild(confetti);
-                
-                // Supprimer après l'animation
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.parentNode.removeChild(confetti);
-                    }
-                }, (animationDuration + animationDelay) * 1000);
-            }
-        }
-        
-        // Ajouter au panier avec effet de confettis de fête
-        function addToCart(productId) {
-            // Vérifier si le produit existe déjà dans le panier
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                // Incrémenter la quantité
-                existingItem.quantity += 1;
-            } else {
-                // Ajouter un nouveau produit au panier
-                const product = products.find(p => p.id === productId);
-                if (product) {
-                    cart.push({
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        description: product.description,
-                        image: product.images && product.images.length > 0 ? product.images[0] : '/images/prestige shop.png',
-                        images: product.images || [],
-                        quantity: 1
-                    });
-                }
-            }
-            
-            // Mettre à jour l'interface utilisateur
-            updateCartUI();
-            
-            // Créer l'effet de confettis de fête
-            createFestiveConfetti();
-            
-            // Sauvegarder dans localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Feedback haptique
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate([50, 30, 50]);
-            }
-        }
-        
         // Vue rapide du produit avec produits similaires en dessous
         function quickView(productId) {
             const product = products.find(p => p.id === productId);
@@ -7182,7 +6203,6 @@ Commandez sur Digit Shop Express !`;
     
     <!-- ========== CHATBOT ASSISTANT IA ========== -->
     <script src="chatbot-widget.js"></script>
-    <script src="api-config.js"></script>
     
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9696453bb45cc13d',t:'MTc1NDIyODg4NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

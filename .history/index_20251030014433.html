@@ -277,404 +277,6 @@
             }
         }
         
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); 
-            }
-            50% { 
-                transform: scale(1.01); 
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
-            }
-        }
-        
-        /* Rotation pour l'effet festif */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Effet de scintillement pour les fêtes */
-        @keyframes sparkle {
-            0%, 100% { 
-                opacity: 0.7; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.1); 
-            }
-        }
-        
-        /* Animation de défilement pour le texte */
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        /* Animation de la main qui clique */
-        @keyframes handClick {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            50% { 
-                transform: translateY(5px) rotate(-10deg); 
-            }
-        }
-        
-        /* Animation de brillance */
-        @keyframes shimmer {
-            0% { 
-                transform: translateX(-100%); 
-                opacity: 0.2; 
-            }
-            50% { 
-                opacity: 0.4; 
-            }
-            100% { 
-                transform: translateX(100%); 
-                opacity: 0; 
-            }
-        }
-        
-        /* Effet de confettis festifs */
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Styles pour les bannières de catégories */
-        .category-banner {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.8s ease-out;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .category-banner:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-banner:hover::before {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out;
-        }
-        
-        .category-banner-all {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: bannerPulse 2s ease-in-out infinite;
-            transition: all 0.3s ease;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .category-banner-all:hover {
-            transform: scale(1.02);
-        }
-        
-        .category-banner-all::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-        
-        /* Effet de scintillement pour les icônes festives */
-        .festive-icon {
-            animation: sparkle 1.5s ease-in-out infinite;
-        }
-        
-        .festive-icon:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-        
-        .festive-icon:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        
-        /* Animation de la main qui clique */
-        .animate-bounce {
-            animation: handClick 1s ease-in-out infinite;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-banner .absolute.inset-0,
-        .category-banner-all .absolute.inset-0 {
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.2) 50%, 
-                transparent 100%);
-        }
-        
-        /* Style pour le bouton avec effet de brillance */
-        .category-banner button,
-        .category-banner-all button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Effet de neige pour les fêtes */
-        .snowflake {
-            position: absolute;
-            top: -20px;
-            color: #fff;
-            font-size: 20px;
-            animation: fall linear forwards;
-            user-select: none;
-            pointer-events: none;
-            z-index: 100;
-        }
-        
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-            }
-        }
-        
-        .gradient-purple {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        }
-        
-        
-        .product-card {
-            transition: all 0.3s ease;
-            transform: translateY(0);
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-        
-        .category-btn {
-            transition: all 0.3s ease;
-        }
-        
-        .category-btn.active {
-            transform: scale(1.05);
-        }
-        
-        .category-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-        
-        /* Animation d'apparition décalée pour chaque carte */
-        .category-card:nth-child(1) { animation-delay: 0.1s; }
-        .category-card:nth-child(2) { animation-delay: 0.2s; }
-        .category-card:nth-child(3) { animation-delay: 0.3s; }
-        .category-card:nth-child(4) { animation-delay: 0.4s; }
-        
-        .category-card:hover {
-            transform: translateY(-8px) scale(1.08);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Animation de l'icône au survol */
-        .category-card:hover i {
-            transform: scale(1.2) rotate(5deg);
-            transition: transform 0.3s ease;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-card:hover::after {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out infinite;
-        }
-        
-        /* Bordure animée pour la carte active */
-        .category-card.active::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border: 4px solid rgba(255, 255, 255, 0.9);
-            border-radius: 1rem;
-            pointer-events: none;
-            animation: pulse-border 2s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-        
-        /* Badge qui pulse pour attirer l'attention */
-        .category-card .badge-pulse {
-            animation: badge-pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        @keyframes pulse-border {
-            0%, 100% {
-                border-color: rgba(255, 255, 255, 0.9);
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            }
-            50% {
-                border-color: rgba(255, 255, 255, 0.5);
-                box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
-            }
-        }
-        
-        @keyframes badge-pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.9;
-            }
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate-slideDown {
-            animation: slideDown 0.4s ease-out;
-        }
-        
-        /* Animations pour les sous-catégories */
-        .subcategory-btn {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .subcategory-btn:hover {
-            transform: translateY(-3px) scale(1.08);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Effet d'onde au clic */
-        .subcategory-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .subcategory-btn:active::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        /* Animation pour les icônes des sous-catégories */
-        .subcategory-btn:hover i {
-            animation: bounce 0.5s ease;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            25% { transform: translateY(-5px); }
-            50% { transform: translateY(-2px); }
-            75% { transform: translateY(-3px); }
-        }
-        
-        /* Animation des badges promotionnels */
-        .promo-badge {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        
-        /* Animation scintillante pour les badges */
-        .sparkle {
-            animation: sparkle 2s ease-in-out infinite;
-        }
-        
-        @keyframes sparkle {
-            0%, 100% { opacity: 1; filter: brightness(1); }
-            50% { opacity: 0.8; filter: brightness(1.3); }
-        }
-        
-        /* Animation pour la bannière de catégorie */
-        .category-banner-animate {
-            animation: bannerSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        @keyframes bannerSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
         /* Animation de l'icône dans la bannière */
         .banner-icon {
             animation: iconRotate 0.8s ease-out;
@@ -733,212 +335,6 @@
                 transform: translateY(-20px) translateX(10px);
                 opacity: 0.6;
             }
-        }
-        
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
-        /* Animation spéciale pour la bannière "Tous les produits" */
-        @keyframes bannerPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); 
-            }
-            50% { 
-                transform: scale(1.01); 
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
-            }
-        }
-        
-        /* Rotation pour l'effet festif */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Effet de scintillement pour les fêtes */
-        @keyframes sparkle {
-            0%, 100% { 
-                opacity: 0.7; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.1); 
-            }
-        }
-        
-        /* Animation de défilement pour le texte */
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        /* Animation de la main qui clique */
-        @keyframes handClick {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            50% { 
-                transform: translateY(5px) rotate(-10deg); 
-            }
-        }
-        
-        /* Animation de brillance */
-        @keyframes shimmer {
-            0% { 
-                transform: translateX(-100%); 
-                opacity: 0.2; 
-            }
-            50% { 
-                opacity: 0.4; 
-            }
-            100% { 
-                transform: translateX(100%); 
-                opacity: 0; 
-            }
-        }
-        
-        /* Effet de neige pour les fêtes */
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-            }
-        }
-        
-        /* Styles pour les confettis de fête */
-        .confetti-piece {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: #f00;
-            top: -10px;
-            opacity: 0;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Styles pour les bannières de catégories */
-        .category-banner {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.8s ease-out;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .category-banner:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .category-banner:hover::before {
-            opacity: 1;
-            animation: shine 1.5s ease-in-out;
-        }
-        
-        .category-banner-all {
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: bannerPulse 2s ease-in-out infinite;
-            transition: all 0.3s ease;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .category-banner-all:hover {
-            transform: scale(1.02);
-        }
-        
-        .category-banner-all::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-        
-        /* Effet de scintillement pour les icônes festives */
-        .festive-icon {
-            animation: sparkle 1.5s ease-in-out infinite;
-        }
-        
-        .festive-icon:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-        
-        .festive-icon:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        
-        /* Animation de la main qui clique */
-        .animate-bounce {
-            animation: handClick 1s ease-in-out infinite;
-        }
-        
-        /* Effet de brillance au survol */
-        .category-banner .absolute.inset-0,
-        .category-banner-all .absolute.inset-0 {
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.2) 50%, 
-                transparent 100%);
-        }
-        
-        /* Style pour le bouton avec effet de brillance */
-        .category-banner button,
-        .category-banner-all button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Effet de neige pour les fêtes */
-        .snowflake {
-            position: absolute;
-            top: -20px;
-            color: #fff;
-            font-size: 20px;
-            animation: fall linear forwards;
-            user-select: none;
-            pointer-events: none;
-            z-index: 100;
         }
         
         /* Animation pour le texte de la bannière */
@@ -1972,7 +1368,7 @@ if (images && images.length > 0) {
             
             <!-- Category Filters avec Bannières -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-                <!-- Toute les catégories -->
+                <!-- Toutes les catégories -->
                 <button onclick="filterProducts('all')" class="category-card active group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-br from-purple-600 via-purple-700 to-blue-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
                     <div class="relative p-6 text-white text-center">
@@ -1981,10 +1377,6 @@ if (images && images.length > 0) {
                         </div>
                         <h3 class="text-xl font-bold mb-2">Tous les Produits</h3>
                         <p class="text-sm opacity-90">Découvrez toute notre collection</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                 </button>
                 
@@ -1997,10 +1389,6 @@ if (images && images.length > 0) {
                         </div>
                         <h3 class="text-xl font-bold mb-2">Éducatif</h3>
                         <p class="text-sm opacity-90">Fournitures scolaires & plus</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-400 text-blue-900 text-xs font-bold px-2 py-1 rounded-full badge-pulse promo-badge">⭐ Populaire</div>
                 </button>
@@ -2014,10 +1402,6 @@ if (images && images.length > 0) {
                         </div>
                         <h3 class="text-xl font-bold mb-2">Électronique</h3>
                         <p class="text-sm opacity-90">High-tech & accessoires</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse sparkle">🔥 Promo</div>
                 </button>
@@ -2031,10 +1415,6 @@ if (images && images.length > 0) {
                         </div>
                         <h3 class="text-xl font-bold mb-2">Fast Food</h3>
                         <p class="text-sm opacity-90">Burgers & snacks</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-300 text-red-900 text-xs font-bold px-2 py-1 rounded-full promo-badge float">🍔 Nouveau</div>
                 </button>
@@ -2051,10 +1431,6 @@ if (images && images.length > 0) {
                             <i class="fas fa-chevron-down ml-2 transition-transform text-sm"></i>
                         </h3>
                         <p class="text-sm opacity-90">Tendances & style</p>
-                        <!-- Icône de main qui indique le clic -->
-                        <div class="absolute top-2 right-2 text-yellow-300 animate-bounce">
-                            <i class="fas fa-hand-pointer text-2xl"></i>
-                        </div>
                     </div>
                     <div class="absolute top-2 right-2 bg-yellow-300 text-purple-900 text-xs font-bold px-2 py-1 rounded-full promo-badge float">✨ Nouveau</div>
                 </button>
@@ -2765,7 +2141,7 @@ if (images && images.length > 0) {
             
             // Récupérer les commandes depuis la base de données
             try {
-                const response = await fetch(`${API_BASE_URL}/commandes/user/${userId}`);
+                const response = await fetch(`http://localhost:5000/api/commandes/user/${userId}`);
                 const data = await response.json();
                 
                 if (data.success) {
@@ -3160,25 +2536,16 @@ if (images && images.length > 0) {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify(commandeData)
                     });
-                    
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -3189,18 +2556,7 @@ if (images && images.length > 0) {
                     }
                 } catch (error) {
                     console.error('❌ Erreur connexion serveur:', error);
-                    console.error('🔍 Détails de l\'erreur:', {
-                        name: error.name,
-                        message: error.message,
-                        stack: error.stack
-                    });
-                    
-                    // Vérifier si c'est une erreur de réseau
-                    if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                        showNotification('⚠️ Impossible de joindre le serveur. Vérifiez votre connexion internet ou réessayez plus tard.', 'error');
-                    } else {
-                        showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
-                    }
+                    showNotification('⚠️ Serveur inaccessible, commande envoyée sur WhatsApp', 'info');
                 }
             } else {
                 console.warn('⚠️ Utilisateur non connecté, commande non enregistrée en BDD');
@@ -3664,14 +3020,50 @@ let isSearchFocused = false;
 let productsPerPage = 8; // Nombre de produits par page
 let currentPage = 1;
 let isLoadingMore = false;
+let allProducts = []; // Stocker tous les produits récupérés
 
 // Initialisation
 document.addEventListener('DOMContentLoaded', function() {
-    displayProducts();
+    fetchProducts(); // Récupérer les produits depuis le backend
     updateCartUI();
     checkAuth();
     showCategoryBanner('all'); // Afficher la bannière par défaut
 });
+
+// Fonction pour récupérer les produits depuis le backend
+async function fetchProducts() {
+    try {
+        const response = await fetch('http://localhost:5000/api/produits');
+        const data = await response.json();
+        
+        if (data.success) {
+            // Convertir les produits du backend au format attendu par le frontend
+            allProducts = data.produits.map(produit => ({
+                id: produit.id,
+                name: produit.nom,
+                price: parseFloat(produit.prix),
+                category: produit.categorie || 'autres',
+                images: Array.isArray(produit.images_urls) ? produit.images_urls : 
+                       (produit.image_url ? [produit.image_url] : ['/images/prestige shop.png']),
+                description: produit.description || 'Aucune description disponible',
+                stock: produit.stock || 0,
+                status: produit.statut || 'actif'
+            }));
+            
+            displayProducts();
+        } else {
+            console.error('Erreur lors de la récupération des produits:', data.message);
+            // En cas d'erreur, utiliser les produits statiques
+            allProducts = products;
+            displayProducts();
+        }
+    } catch (error) {
+        console.error('Erreur réseau lors de la récupération des produits:', error);
+        // En cas d'erreur réseau, utiliser les produits statiques
+        allProducts = products;
+        displayProducts();
+    }
+}
 
 // Fonction de tri des produits
 function sortProductsArray(productsArray, sortType) {
@@ -3699,11 +3091,11 @@ function displayProducts(filter = 'all', reset = true) {
     // Gérer les sous-catégories mode
     if (filter.startsWith('mode-')) {
         const subcategory = filter.replace('mode-', '');
-        filteredProducts = products.filter(p => p.category === 'mode' && p.subcategory === subcategory);
+        filteredProducts = allProducts.filter(p => p.category === 'mode' && p.subcategory === subcategory);
     } else if (filter === 'all') {
-        filteredProducts = products;
+        filteredProducts = allProducts;
     } else {
-        filteredProducts = products.filter(p => p.category === filter);
+        filteredProducts = allProducts.filter(p => p.category === filter);
     }
     
     filteredProducts = sortProductsArray(filteredProducts, currentSort);
@@ -3752,11 +3144,11 @@ function loadMoreProducts() {
     // Gérer les sous-catégories mode
     if (currentFilter.startsWith('mode-')) {
         const subcategory = currentFilter.replace('mode-', '');
-        filteredProducts = products.filter(p => p.category === 'mode' && p.subcategory === subcategory);
+        filteredProducts = allProducts.filter(p => p.category === 'mode' && p.subcategory === subcategory);
     } else if (currentFilter === 'all') {
-        filteredProducts = products;
+        filteredProducts = allProducts;
     } else {
-        filteredProducts = products.filter(p => p.category === currentFilter);
+        filteredProducts = allProducts.filter(p => p.category === currentFilter);
     }
     
     if (currentPage * productsPerPage >= filteredProducts.length) return; // Plus de produits
@@ -3785,88 +3177,85 @@ function loadMoreProducts() {
     isLoadingMore = false;
 }
 
-
-
-
-       
-
-        // Fonction de tri des produits
-        function sortProducts(sortType) {
-            currentSort = sortType;
-            currentPage = 1; // Reset à la première page
-            displayProducts(currentFilter, true);
-            
-            // Mise à jour des boutons actifs
-            document.querySelectorAll('.sort-btn').forEach(btn => {
-                btn.classList.remove('active', 'bg-purple-100', 'text-purple-700');
-                btn.classList.add('bg-gray-100', 'text-gray-700');
-            });
-            event.target.classList.remove('bg-gray-100', 'text-gray-700');
-            event.target.classList.add('active', 'bg-purple-100', 'text-purple-700');
-            
-            // Notification du tri appliqué
-            const sortNames = {
-                'default': 'Tri par défaut',
-                'name-asc': 'Tri par nom A-Z',
-                'name-desc': 'Tri par nom Z-A',
-                'price-asc': 'Tri par prix croissant',
-                'price-desc': 'Tri par prix décroissant'
-            };
-            
-            showNotification(`${sortNames[sortType]} appliqué !`, 'success');
+// Fonction de tri des produits
+function sortProducts(sortType) {
+    currentSort = sortType;
+    currentPage = 1; // Reset à la première page
+    displayProducts(currentFilter, true);
+    
+    // Mise à jour des boutons actifs
+    document.querySelectorAll('.sort-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-purple-100', 'text-purple-700');
+        btn.classList.add('bg-gray-100', 'text-gray-700');
+    });
+    
+    // Trouver le bouton cliqué et le mettre en surbrillance
+    const sortButtons = document.querySelectorAll('.sort-btn');
+    sortButtons.forEach(btn => {
+        if (btn.getAttribute('data-sort') === sortType) {
+            btn.classList.remove('bg-gray-100', 'text-gray-700');
+            btn.classList.add('active', 'bg-purple-100', 'text-purple-700');
         }
+    });
+    
+    // Notification du tri appliqué
+    const sortNames = {
+        'default': 'Tri par défaut',
+        'name-asc': 'Tri par nom A-Z',
+        'name-desc': 'Tri par nom Z-A',
+        'price-asc': 'Tri par prix croissant',
+        'price-desc': 'Tri par prix décroissant'
+    };
+    
+    showNotification(`${sortNames[sortType]} appliqué !`, 'success');
+}
 
-        // Toggle des sous-catégories Mode
-        function toggleModeSubcategories() {
-            const subcategoriesDiv = document.getElementById('mode-subcategories');
-            const chevron = document.getElementById('mode-chevron');
-            
-            if (subcategoriesDiv.classList.contains('hidden')) {
-                // Afficher les sous-catégories
-                subcategoriesDiv.classList.remove('hidden');
-                chevron.style.transform = 'rotate(180deg)';
-                
-                // Afficher tous les produits mode par défaut
-                filterProducts('mode');
-            } else {
-                // Masquer les sous-catégories
-                subcategoriesDiv.classList.add('hidden');
-                chevron.style.transform = 'rotate(0deg)';
-            }
+// Toggle des sous-catégories Mode
+function toggleModeSubcategories() {
+    const subcategoriesDiv = document.getElementById('mode-subcategories');
+    const chevron = document.getElementById('mode-chevron');
+    
+    if (subcategoriesDiv.classList.contains('hidden')) {
+        // Afficher les sous-catégories
+        subcategoriesDiv.classList.remove('hidden');
+        chevron.style.transform = 'rotate(180deg)';
+        
+        // Afficher tous les produits mode par défaut
+        filterProducts('mode');
+    } else {
+        // Masquer les sous-catégories
+        subcategoriesDiv.classList.add('hidden');
+        chevron.style.transform = 'rotate(0deg)';
+    }
+}
+
+// Filtrage des produits
+function filterProducts(category) {
+    currentFilter = category;
+    currentPage = 1; // Reset à la première page
+    displayProducts(category, true);
+    
+    // Mise à jour des boutons actifs pour les catégories principales
+    document.querySelectorAll('.category-card').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Mise à jour des boutons de sous-catégories
+    document.querySelectorAll('.subcategory-btn').forEach(btn => {
+        btn.classList.remove('ring-4', 'ring-pink-300', 'bg-pink-100', 'bg-blue-100', 'bg-purple-100');
+    });
+    
+    // Afficher la bannière de catégorie
+    showCategoryBanner(category);
+    
+    // Si c'est une sous-catégorie mode, activer le bouton correspondant
+    if (category.startsWith('mode-')) {
+        const subcategoriesDiv = document.getElementById('mode-subcategories');
+        const chevron = document.getElementById('mode-chevron');
+        if (subcategoriesDiv.classList.contains('hidden')) {
+            subcategoriesDiv.classList.remove('hidden');
+            chevron.style.transform = 'rotate(180deg)';
         }
-
-        // Filtrage des produits
-        function filterProducts(category) {
-            currentFilter = category;
-            currentPage = 1; // Reset à la première page
-            displayProducts(category, true);
-            
-            // Mise à jour des boutons actifs pour les catégories principales
-            document.querySelectorAll('.category-card').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Mise à jour des boutons de sous-catégories
-            document.querySelectorAll('.subcategory-btn').forEach(btn => {
-                btn.classList.remove('ring-4', 'ring-pink-300', 'bg-pink-100', 'bg-blue-100', 'bg-purple-100');
-            });
-            
-            // Afficher la bannière de catégorie
-            showCategoryBanner(category);
-            
-            // Si c'est une sous-catégorie mode, activer le bouton correspondant
-            if (category.startsWith('mode-')) {
-                const subcategoriesDiv = document.getElementById('mode-subcategories');
-                const chevron = document.getElementById('mode-chevron');
-                if (subcategoriesDiv.classList.contains('hidden')) {
-                    subcategoriesDiv.classList.remove('hidden');
-                    chevron.style.transform = 'rotate(180deg)';
-                }
-                // Activer la carte Mode principale
-                const modeButtons = document.querySelectorAll('.category-card');
-                modeButtons[3]?.classList.add('active'); // 4ème bouton = Mode
-                
-                if (event && event.target) {
                     event.target.classList.add('ring-4');
                     if (category === 'mode-homme') {
                         event.target.classList.add('ring-blue-300', 'bg-blue-100');
@@ -4195,7 +3584,7 @@ function loadMoreProducts() {
                         <!-- Image du produit -->
                         <div class="flex-shrink-0 relative">
                             <div class="w-24 h-24 rounded-xl overflow-hidden border-2 border-gray-200">
-                                <img src="${item.image || (item.images && item.images[0]) || '/images/prestige shop.png'}" alt="${item.name}" 
+                                <img src="${item.images[0]}" alt="${item.name}" 
                                      class="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform" 
                                      onclick="openImageZoom(${item.id}, 0)">
                             </div>
@@ -4283,7 +3672,7 @@ function loadMoreProducts() {
                         nom: item.name,
                         quantite: item.quantity,
                         prix: item.price,
-                        image: item.image || (item.images && item.images[0]) || '/images/prestige shop.png'  // Ajouter l'image
+                        image: item.images[0]  // Ajouter l'image
                     }));
 
                     const commandeData = {
@@ -4296,31 +3685,16 @@ function loadMoreProducts() {
                     };
 
                     console.log('📤 Envoi de la commande au serveur...', commandeData);
-                    console.log('🌐 URL de l\'API:', `${API_BASE_URL}/commandes`);
 
-                    // Ajout d'un timeout pour la requête
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 secondes timeout
-
-                    const response = await fetch(`${API_BASE_URL}/commandes`, {
+                    const response = await fetch('http://localhost:5000/api/commandes', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(commandeData),
-                        signal: controller.signal
+                        body: JSON.stringify(commandeData)
                     });
-                    
-                    clearTimeout(timeoutId);
-                    console.log('📥 Réponse HTTP:', response.status, response.statusText);
-                    
-                    // Vérifier si la réponse est OK
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
+
                     const result = await response.json();
-                    console.log('📥 Données reçues:', result);
 
                     if (result.success) {
                         console.log('✅ Commande enregistrée dans MySQL:', result.numero_commande);
@@ -6491,200 +5865,6 @@ function loadMoreProducts() {
             });
         }
         
-        // Fonction pour créer un effet de confettis de fête
-        function createFestiveConfetti() {
-            const confettiColors = [
-                '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
-                '#ff00ff', '#00ffff', '#ff9900', '#ff66cc',
-                '#66ff66', '#6666ff', '#ffcc00', '#cc66ff'
-            ];
-            
-            const container = document.body;
-            
-            // Créer 150 confettis
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
-                
-                // Propriétés aléatoires
-                const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                const size = Math.random() * 10 + 5;
-                const left = Math.random() * 100;
-                const animationDuration = Math.random() * 3 + 2;
-                const animationDelay = Math.random() * 2;
-                const shape = Math.random() > 0.5 ? '50%' : '0';
-                
-                // Appliquer les styles
-                confetti.style.backgroundColor = color;
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.left = `${left}vw`;
-                confetti.style.borderRadius = shape;
-                confetti.style.animation = `confetti-fall ${animationDuration}s ease-in ${animationDelay}s forwards`;
-                
-                // Ajouter au document
-                container.appendChild(confetti);
-                
-                // Supprimer après l'animation
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.parentNode.removeChild(confetti);
-                    }
-                }, (animationDuration + animationDelay) * 1000);
-            }
-        }
-        
-        // Ajouter au panier avec effet de confettis de fête
-        function addToCart(productId) {
-            // Vérifier si le produit existe déjà dans le panier
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                // Incrémenter la quantité
-                existingItem.quantity += 1;
-            } else {
-                // Ajouter un nouveau produit au panier
-                const product = allProducts.find(p => p.id === productId);
-                if (product) {
-                    cart.push({
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        image: product.images && product.images.length > 0 ? product.images[0] : '/images/prestige shop.png',
-                        quantity: 1
-                    });
-                }
-            }
-            
-            // Mettre à jour l'interface utilisateur
-            updateCartUI();
-            
-            // Créer l'effet de confettis de fête
-            createFestiveConfetti();
-            
-            // Sauvegarder dans localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Feedback haptique
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate([50, 30, 50]);
-            }
-        }
-        
-        // Mettre à jour l'interface du panier
-        function updateCartUI() {
-            // Mettre à jour le badge du panier flottant
-            const cartBadge = document.getElementById('cart-float-badge');
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            
-            if (totalItems > 0) {
-                cartBadge.textContent = totalItems;
-                cartBadge.classList.remove('hidden');
-            } else {
-                cartBadge.classList.add('hidden');
-            }
-            
-            // Mettre à jour le total dans le panier modal
-            const cartTotal = document.getElementById('cart-total');
-            if (cartTotal) {
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                cartTotal.textContent = total.toFixed(2) + ' FCFA';
-            }
-            
-            // Mettre à jour le badge du bouton panier dans le header
-            const headerCartBadge = document.getElementById('cart-badge');
-            if (headerCartBadge) {
-                if (totalItems > 0) {
-                    headerCartBadge.textContent = totalItems;
-                    headerCartBadge.classList.remove('hidden');
-                } else {
-                    headerCartBadge.classList.add('hidden');
-                }
-            }
-        }
-        
-        // Fonction pour créer un effet de confettis de fête
-        function createFestiveConfetti() {
-            const confettiColors = [
-                '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
-                '#ff00ff', '#00ffff', '#ff9900', '#ff66cc',
-                '#66ff66', '#6666ff', '#ffcc00', '#cc66ff'
-            ];
-            
-            const container = document.body;
-            
-            // Créer 150 confettis
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
-                
-                // Propriétés aléatoires
-                const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                const size = Math.random() * 10 + 5;
-                const left = Math.random() * 100;
-                const animationDuration = Math.random() * 3 + 2;
-                const animationDelay = Math.random() * 2;
-                const shape = Math.random() > 0.5 ? '50%' : '0';
-                
-                // Appliquer les styles
-                confetti.style.backgroundColor = color;
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.left = `${left}vw`;
-                confetti.style.borderRadius = shape;
-                confetti.style.animation = `confetti-fall ${animationDuration}s ease-in ${animationDelay}s forwards`;
-                
-                // Ajouter au document
-                container.appendChild(confetti);
-                
-                // Supprimer après l'animation
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.parentNode.removeChild(confetti);
-                    }
-                }, (animationDuration + animationDelay) * 1000);
-            }
-        }
-        
-        // Ajouter au panier avec effet de confettis de fête
-        function addToCart(productId) {
-            // Vérifier si le produit existe déjà dans le panier
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                // Incrémenter la quantité
-                existingItem.quantity += 1;
-            } else {
-                // Ajouter un nouveau produit au panier
-                const product = products.find(p => p.id === productId);
-                if (product) {
-                    cart.push({
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        description: product.description,
-                        image: product.images && product.images.length > 0 ? product.images[0] : '/images/prestige shop.png',
-                        images: product.images || [],
-                        quantity: 1
-                    });
-                }
-            }
-            
-            // Mettre à jour l'interface utilisateur
-            updateCartUI();
-            
-            // Créer l'effet de confettis de fête
-            createFestiveConfetti();
-            
-            // Sauvegarder dans localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Feedback haptique
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate([50, 30, 50]);
-            }
-        }
-        
         // Vue rapide du produit avec produits similaires en dessous
         function quickView(productId) {
             const product = products.find(p => p.id === productId);
@@ -7074,10 +6254,208 @@ Commandez sur Digit Shop Express !`;
             }, 500);
         });
 
+// Fonction pour afficher les détails d'un produit dans une modale
+function showProductDetails(productId) {
+    const product = allProducts.find(p => p.id == productId);
+    if (!product) return;
+    
+    // Créer le contenu de la modale
+    const modalContent = `
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="text-2xl font-bold text-gray-800">${product.name}</h2>
+                        <button onclick="closeProductModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <!-- Carrousel d'images -->
+                            <div class="relative">
+                                <div id="product-carousel-${product.id}" class="carousel-container relative w-full h-80 overflow-hidden rounded-lg">
+                                    ${product.images.map((img, index) => `
+                                        <div class="carousel-slide absolute inset-0 transition-opacity duration-500 ${index === 0 ? 'opacity-100' : 'opacity-0'}">
+                                            <img src="${img}" alt="${product.name}" class="w-full h-full object-contain" 
+                                                 onerror="this.src='/images/prestige shop.png'">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                
+                                <!-- Navigation du carrousel -->
+                                ${product.images.length > 1 ? `
+                                    <button onclick="changeProductSlide(${product.id}, -1)" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75">
+                                        &#10094;
+                                    </button>
+                                    <button onclick="changeProductSlide(${product.id}, 1)" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75">
+                                        &#10095;
+                                    </button>
+                                    
+                                    <!-- Indicateurs -->
+                                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                        ${product.images.map((_, index) => `
+                                            <div class="w-3 h-3 rounded-full ${index === 0 ? 'bg-white' : 'bg-gray-300'}" 
+                                                 onclick="setProductSlide(${product.id}, ${index})"></div>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="text-gray-600 mb-4">${product.description || 'Aucune description disponible'}</p>
+                            
+                            <div class="mb-4">
+                                <span class="text-2xl font-bold text-purple-600">${product.price.toFixed(2)} FCFA</span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full 
+                                    ${product.status === 'actif' ? 'bg-green-100 text-green-800' : 
+                                      product.status === 'epuise' ? 'bg-red-100 text-red-800' : 
+                                      'bg-gray-100 text-gray-800'}">
+                                    ${product.status === 'actif' ? 'En stock' : 
+                                      product.status === 'epuise' ? 'Épuisé' : 'Inactif'}
+                                </span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <span class="text-gray-700">Stock disponible: ${product.stock}</span>
+                            </div>
+                            
+                            <div class="flex space-x-4">
+                                <button onclick="addToCart(${product.id})" 
+                                        class="flex-1 bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors font-medium">
+                                    Ajouter au panier
+                                </button>
+                                <button onclick="buyNow(${product.id})" 
+                                        class="flex-1 bg-orange-500 text-white py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors font-medium">
+                                    Acheter maintenant
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Ajouter la modale au body
+    const modalElement = document.createElement('div');
+    modalElement.id = 'product-modal';
+    modalElement.innerHTML = modalContent;
+    document.body.appendChild(modalElement);
+    
+    // Empêcher le scroll du body quand la modale est ouverte
+    document.body.style.overflow = 'hidden';
+}
 
+// Fonction pour fermer la modale
+function closeProductModal() {
+    const modal = document.getElementById('product-modal');
+    if (modal) {
+        modal.remove();
+        document.body.style.overflow = 'auto';
+    }
+}
 
+// Fonction pour naviguer dans le carrousel de la modale
+function changeProductSlide(productId, direction) {
+    const carousel = document.getElementById(`product-carousel-${productId}`);
+    if (!carousel) return;
+    
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    if (slides.length <= 1) return;
+    
+    let currentIndex = 0;
+    slides.forEach((slide, index) => {
+        if (slide.classList.contains('opacity-100')) {
+            currentIndex = index;
+            slide.classList.remove('opacity-100');
+            slide.classList.add('opacity-0');
+        }
+    });
+    
+    let newIndex = currentIndex + direction;
+    if (newIndex >= slides.length) newIndex = 0;
+    if (newIndex < 0) newIndex = slides.length - 1;
+    
+    slides[newIndex].classList.remove('opacity-0');
+    slides[newIndex].classList.add('opacity-100');
+    
+    // Mettre à jour les indicateurs
+    const indicators = carousel.querySelectorAll('.absolute.bottom-4 .w-3.h-3');
+    if (indicators.length > 0) {
+        indicators.forEach((indicator, index) => {
+            if (index === newIndex) {
+                indicator.classList.remove('bg-gray-300');
+                indicator.classList.add('bg-white');
+            } else {
+                indicator.classList.remove('bg-white');
+                indicator.classList.add('bg-gray-300');
+            }
+        });
+    }
+}
 
-        
+// Fonction pour aller à un slide spécifique
+function setProductSlide(productId, index) {
+    const carousel = document.getElementById(`product-carousel-${productId}`);
+    if (!carousel) return;
+    
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    slides.forEach((slide, i) => {
+        if (i === index) {
+            slide.classList.remove('opacity-0');
+            slide.classList.add('opacity-100');
+        } else {
+            slide.classList.remove('opacity-100');
+            slide.classList.add('opacity-0');
+        }
+    });
+    
+    // Mettre à jour les indicateurs
+    const indicators = carousel.querySelectorAll('.absolute.bottom-4 .w-3.h-3');
+    if (indicators.length > 0) {
+        indicators.forEach((indicator, i) => {
+            if (i === index) {
+                indicator.classList.remove('bg-gray-300');
+                indicator.classList.add('bg-white');
+            } else {
+                indicator.classList.remove('bg-white');
+                indicator.classList.add('bg-gray-300');
+            }
+        });
+    }
+}
+
+// Fonction pour ajouter au panier (à implémenter)
+function addToCart(productId) {
+    const product = allProducts.find(p => p.id == productId);
+    if (!product) return;
+    
+    // Ajouter au panier (implémentation à compléter)
+    showNotification(`${product.name} ajouté au panier !`, 'success');
+    closeProductModal();
+}
+
+// Fonction pour acheter maintenant (à implémenter)
+function buyNow(productId) {
+    const product = allProducts.find(p => p.id == productId);
+    if (!product) return;
+    
+    // Rediriger vers la page de commande (implémentation à compléter)
+    showNotification(`Redirection vers la commande pour ${product.name}...`, 'info');
+    closeProductModal();
+}
+
+// Fermer la modale en cliquant en dehors
+document.addEventListener('click', function(event) {
+    const modal = document.getElementById('product-modal');
+    if (modal && event.target === modal) {
+        closeProductModal();
+    }
+});
 
         
         
@@ -7182,7 +6560,6 @@ Commandez sur Digit Shop Express !`;
     
     <!-- ========== CHATBOT ASSISTANT IA ========== -->
     <script src="chatbot-widget.js"></script>
-    <script src="api-config.js"></script>
     
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9696453bb45cc13d',t:'MTc1NDIyODg4NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
