@@ -3,7 +3,6 @@
 // ======================================
 
 // Variables pour la synthèse vocale et la reconnaissance vocale
-let isVoiceEnabled = true;
 let isSpeaking = false;
 let recognition;
 
@@ -273,8 +272,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Injecter les styles
     document.head.insertAdjacentHTML('beforeend', chatbotStyles);
     
-    // Injecter le HTML
-    document.body.insertAdjacentHTML('beforeend', chatbotHTML);
+    // Injecter le HTML avec un message de bienvenue personnalisé
+    const personalizedWelcome = getPersonalizedWelcomeMessage();
+    const chatbotHTMLWithWelcome = chatbotHTML.replace(
+        '👋 Bonjour ! Je suis votre assistant virtuel. Comment puis-je vous aider aujourd\'hui ?',
+        personalizedWelcome
+    );
+    document.body.insertAdjacentHTML('beforeend', chatbotHTMLWithWelcome);
     
     // Initialiser le chatbot
     initChatbot();
@@ -300,11 +304,25 @@ const CHATBOT_CONFIG = {
         "Fast food, si vous désirez des plats rapides et délicieux.",
         "Dites-moi, que recherchez-vous aujourd'hui ?"
     ],
+    // Messages de présentation vocale pour la page welcome
+    welcomeVoiceIntroduction: [
+        "Bonjour et bienvenue sur Prestige Shop Express !",
+        "Je suis PrestIA, votre assistant vocal personnel pour votre première connexion.",
+        "Pour commencer, vous pouvez créer un nouveau compte ou vous connecter si vous avez déjà un compte.",
+        "Cliquez sur le bouton 'Créer un compte gratuitement' ou 'Se connecter' pour continuer.",
+        "Je suis là pour vous aider dans votre expérience d'achat !"
+    ],
     // Questions vocales interactives
     voiceQuestions: [
         "Souhaitez-vous voir nos produits ?",
         "Avez-vous besoin d'aide pour passer une commande ?",
         "Souhaitez-vous créer un compte ou vous connecter ?"
+    ],
+    // Questions vocales interactives pour la page welcome
+    welcomeVoiceQuestions: [
+        "Souhaitez-vous créer un compte ?",
+        "Avez-vous déjà un compte ?",
+        "Souhaitez-vous vous connecter ?"
     ]
 };
 
@@ -318,12 +336,21 @@ const chatbotKnowledgeBase = {
             "<span class='chatbot-wave-hand'>👋</span> Bonjour ! Je suis <span class='chatbot-attention-highlight'>PrestIA</span> de Prestige Shop Express. En quoi puis-je vous être utile ?"
         ]
     },
+    // Spécial pour la page welcome
+    welcome: {
+        patterns: ['bienvenue', 'welcome', 'première fois', 'première connexion', 'nouveau'],
+        responses: [
+            "<span class='chatbot-wave-hand'>👋</span> Bienvenue sur Prestige Shop Express ! Je suis <span class='chatbot-attention-highlight'>PrestIA</span>, votre assistant pour votre première connexion. Cliquez sur <span class='chatbot-attention-highlight'>Créer un compte gratuitement</span> si vous êtes nouveau, ou <span class='chatbot-attention-highlight'>Se connecter</span> si vous avez déjà un compte ! 🎉",
+            "<span class='chatbot-wave-hand'>👋</span> Je vois que c'est votre première fois ici ! Je suis <span class='chatbot-attention-highlight'>PrestIA</span>, votre guide. Pour commencer, vous pouvez <span class='chatbot-attention-highlight'>créer un compte</span> ou <span class='chatbot-attention-highlight'>vous connecter</span> si vous en avez déjà un.",
+            "<span class='chatbot-wave-hand'>👋</span> Bienvenue ! Je suis <span class='chatbot-attention-highlight'>PrestIA</span>, votre assistant personnel pour cette première connexion. Les boutons en bas de page vous permettront de <span class='chatbot-attention-highlight'>créer un compte</span> ou de <span class='chatbot-attention-highlight'>vous connecter</span> !"
+        ]
+    },
     products: {
         patterns: ['produit', 'article', 'voir', 'catalogue', 'acheter', 'vendre'],
         responses: [
             "🛍️ Nous avons une large sélection de produits de qualité ! Vous pouvez parcourir notre catalogue sur cette page. Pour une recherche plus rapide, cliquez sur nos différentes catégories :\n\n• <span class='chatbot-attention-highlight'>Mode</span> : Vêtements et accessoires de mode\n• <span class='chatbot-attention-highlight'>Éducatif</span> : Fournitures scolaires et éducatives\n• <span class='chatbot-attention-highlight'>Électronique</span> : Appareils technologiques\n• <span class='chatbot-attention-highlight'>Fast food</span> : Plats rapides et délicieux\n\nCherchez-vous quelque chose en particulier ?",
             "📦 Notre boutique propose des produits variés. Faites défiler la page pour voir tous nos articles disponibles ! Pour trouver plus rapidement ce que vous cherchez, utilisez nos catégories :\n\n<span class='chatbot-attention-highlight'>Mode</span> pour les vêtements, <span class='chatbot-attention-highlight'>Éducatif</span> pour les fournitures scolaires, <span class='chatbot-attention-highlight'>Électronique</span> pour les gadgets, <span class='chatbot-attention-highlight'>Fast food</span> pour les plats.\n\nBesoin d'aide pour trouver quelque chose ?",
-            "✨ Découvrez nos produits de prestige ! Ils sont affichés juste en dessous. Pour une recherche optimale, cliquez sur les catégories :\n\n👉 <span class='chatbot-attention-highlight'>Mode</span> : Si vous recherchez des vêtements\n👉 <span class='chatbot-attention-highlight'>Éducatif</span> : Si vous voulez des fournitures scolaires\n👉 <span class='chatbot-attention-highlight'>Électronique</span> : Si vous désirez des appareils technologiques\n👉 <span class='chatbot-attention-highlight'>Fast food</span> : Si vous cherchez des plats rapides\n\nQue désirez-vous explorer ?"
+            "✨ Découvrez nos produits de prestige ! Ils sont affichés juste en dessous. Pour une recherche optimale, cliquez sur les catégories :\n\n👉 <span class='chatbot-attention-highlight'>Mode</span> : Si vous recherchez des vêtements\n👉 <span class='chatbot-attention-highlight'>Éducatif</span> : Si vous voulez des fournitures scolaires\n👉 <span class='chatbot-attention-highlight'>Électronique</span> : Si vous désirez des appareils technologiques\n👉 <span class='chatbot-attention-highlight'>Fast food</span> : Si vous cherchez des plats rapides\n\nQue désitez-vous explorer ?"
         ]
     },
     orders: {
@@ -550,6 +577,45 @@ function hideChatbotTypingIndicator() {
 
 function generateChatbotResponse(userMessage) {
     const message = userMessage.toLowerCase();
+    const user = getLoggedInUser();
+    
+    // Vérifier si nous sommes sur la page welcome.html
+    if (window.location.pathname.includes('welcome.html') || window.location.href.includes('welcome.html')) {
+        // Vérifier les patterns spécifiques à la page welcome
+        for (const [category, data] of Object.entries(chatbotKnowledgeBase)) {
+            // Ne pas traiter les catégories qui ne sont pas pertinentes pour la page welcome
+            if (category === 'products' || category === 'orders' || category === 'payment') {
+                continue;
+            }
+            
+            for (const pattern of data.patterns) {
+                if (message.includes(pattern)) {
+                    const responses = data.responses;
+                    return responses[Math.floor(Math.random() * responses.length)];
+                }
+            }
+        }
+        
+        // Si c'est une salutation et personnaliser la réponse
+        if (isGreeting(message)) {
+            if (user && user.prenom) {
+                return `<span class='chatbot-wave-hand'>👋</span> Bonjour ${user.prenom} ! Je suis <span class='chatbot-attention-highlight'>PrestIA</span>, votre assistant pour votre première connexion. Cliquez sur "Créer un compte" ou "Se connecter" pour commencer !`;
+            } else {
+                const responses = chatbotKnowledgeBase.welcome.responses;
+                return responses[Math.floor(Math.random() * responses.length)];
+            }
+        }
+        
+        // Réponse par défaut pour la page welcome
+        return "👋 Je suis <span class='chatbot-attention-highlight'>PrestIA</span>, votre assistant pour votre première connexion sur Prestige Shop Express ! Cliquez sur <span class='chatbot-attention-highlight'>Créer un compte gratuitement</span> ou <span class='chatbot-attention-highlight'>Se connecter</span> pour commencer votre expérience. Comment puis-je vous aider ?";
+    }
+    
+    // Vérifier si c'est une salutation et personnaliser la réponse
+    if (isGreeting(message)) {
+        if (user && user.prenom) {
+            return `<span class='chatbot-wave-hand'>👋</span> Bonjour ${user.prenom} ! Je suis <span class='chatbot-attention-highlight'>PrestIA</span>, votre assistant personnel. Comment puis-je vous aider aujourd'hui ?`;
+        }
+    }
     
     for (const [category, data] of Object.entries(chatbotKnowledgeBase)) {
         for (const pattern of data.patterns) {
@@ -584,12 +650,100 @@ function initChatbot() {
         }
     }, 3000);
     
+    // Vérifier si nous sommes sur la page welcome.html pour ajouter des fonctionnalités spéciales
+    if (window.location.pathname.includes('welcome.html') || window.location.href.includes('welcome.html')) {
+        // Ajouter un message spécial dans le chatbot au chargement de la page welcome
+        setTimeout(() => {
+            addSpecialWelcomeMessage();
+        }, 4000);
+    }
+    
     // Notification après 5 secondes si le chatbot n'est pas ouvert
     setTimeout(() => {
         if (!chatbotState.isOpen) {
             showChatbotNotification();
         }
     }, 5000);
+}
+
+// Fonction spéciale pour ajouter un message de bienvenue sur la page welcome
+function addSpecialWelcomeMessage() {
+    // Vérifier si le chatbot est déjà ouvert
+    if (!chatbotState.isOpen) {
+        // Ajouter un message spécial dans le conteneur de messages
+        const messagesContainer = document.getElementById('chatbot-messages');
+        if (messagesContainer) {
+            const specialMessage = document.createElement('div');
+            specialMessage.className = 'chatbot-message flex items-start space-x-2';
+            specialMessage.innerHTML = `
+                <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-robot text-white text-sm"></i>
+                </div>
+                <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-md max-w-[80%]">
+                    <p class="text-gray-800 text-sm">
+                        👋 Bienvenue sur Prestige Shop Express ! Je suis <span class='chatbot-attention-highlight'>PrestIA</span>, votre assistant pour votre première connexion. 
+                        Cliquez sur les boutons ci-dessous pour <span class='chatbot-attention-highlight'>créer un compte</span> ou <span class='chatbot-attention-highlight'>vous connecter</span> !
+                    </p>
+                    <div class="mt-2 flex space-x-2">
+                        <button onclick="highlightRegisterButton()" class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full hover:bg-green-200 transition-colors">
+                            📝 Créer un compte
+                        </button>
+                        <button onclick="highlightLoginButton()" class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full hover:bg-blue-200 transition-colors">
+                            🔐 Se connecter
+                        </button>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(specialMessage);
+            scrollChatbotToBottom();
+        }
+    }
+}
+
+// Fonction pour mettre en évidence le bouton d'inscription
+function highlightRegisterButton() {
+    // Fermer le chatbot
+    toggleChatbot();
+    
+    // Faire défiler vers le bouton d'inscription
+    const registerButton = document.querySelector('a[href="register.html"]');
+    if (registerButton) {
+        registerButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        registerButton.classList.add('ring-4', 'ring-yellow-400', 'animate-pulse');
+        
+        // Retirer la mise en évidence après 3 secondes
+        setTimeout(() => {
+            registerButton.classList.remove('ring-4', 'ring-yellow-400', 'animate-pulse');
+        }, 3000);
+        
+        // Lire un message à haute voix
+        if (chatbotState.isVoiceEnabled) {
+            speakText("Voici le bouton pour créer un compte. Cliquez dessus pour commencer !");
+        }
+    }
+}
+
+// Fonction pour mettre en évidence le bouton de connexion
+function highlightLoginButton() {
+    // Fermer le chatbot
+    toggleChatbot();
+    
+    // Faire défiler vers le bouton de connexion
+    const loginButton = document.querySelector('a[href="login.html"]');
+    if (loginButton) {
+        loginButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        loginButton.classList.add('ring-4', 'ring-yellow-400', 'animate-pulse');
+        
+        // Retirer la mise en évidence après 3 secondes
+        setTimeout(() => {
+            loginButton.classList.remove('ring-4', 'ring-yellow-400', 'animate-pulse');
+        }, 3000);
+        
+        // Lire un message à haute voix
+        if (chatbotState.isVoiceEnabled) {
+            speakText("Voici le bouton pour vous connecter. Cliquez dessus si vous avez déjà un compte !");
+        }
+    }
 }
 
 // Fonctions de synthèse vocale
@@ -631,17 +785,44 @@ function speakText(text) {
 }
 
 function speakIntroduction() {
-    // Combiner tous les messages d'introduction en un seul texte
-    const fullIntroduction = CHATBOT_CONFIG.voiceIntroduction.join(" ");
-    speakText(fullIntroduction);
+    const user = getLoggedInUser();
+    let introductionText = "";
     
-    // Poser les questions interactives après l'introduction
-    setTimeout(() => {
-        if (chatbotState.isVoiceEnabled) {
-            const question = CHATBOT_CONFIG.voiceQuestions[Math.floor(Math.random() * CHATBOT_CONFIG.voiceQuestions.length)];
-            speakText(question);
+    // Vérifier si nous sommes sur la page welcome.html
+    if (window.location.pathname.includes('welcome.html') || window.location.href.includes('welcome.html')) {
+        // Utiliser l'introduction personnalisée pour la page welcome
+        introductionText = CHATBOT_CONFIG.welcomeVoiceIntroduction.join(" ");
+        
+        // Poser les questions interactives de bienvenue après l'introduction
+        setTimeout(() => {
+            if (chatbotState.isVoiceEnabled) {
+                const question = CHATBOT_CONFIG.welcomeVoiceQuestions[Math.floor(Math.random() * CHATBOT_CONFIG.welcomeVoiceQuestions.length)];
+                speakText(question);
+            }
+        }, introductionText.length * 100 + 1000); // Attendre la fin de l'introduction
+    } else {
+        // Utiliser l'introduction normale pour les autres pages
+        if (user && user.prenom) {
+            introductionText = `Bonjour ${user.prenom} et bienvenue sur Prestige Shop Express ! Je suis PrestIA, votre assistant vocal personnel. Je peux vous aider à trouver des produits, passer des commandes et répondre à vos questions. Pour une recherche plus rapide, cliquez sur nos différentes catégories : Mode, si vous recherchez des vêtements et accessoires de mode. Éducatif, si vous cherchez des fournitures scolaires et éducatives. Électronique, si vous voulez des appareils technologiques. Fast food, si vous désirez des plats rapides et délicieux. Dites-moi ${user.prenom}, que recherchez-vous aujourd'hui ?`;
+        } else {
+            introductionText = CHATBOT_CONFIG.voiceIntroduction.join(" ");
         }
-    }, fullIntroduction.length * 100 + 1000); // Attendre la fin de l'introduction
+        
+        // Poser les questions interactives après l'introduction
+        setTimeout(() => {
+            if (chatbotState.isVoiceEnabled) {
+                let question = "";
+                if (user && user.prenom) {
+                    question = `Souhaitez-vous voir nos produits ${user.prenom} ?`;
+                } else {
+                    question = CHATBOT_CONFIG.voiceQuestions[Math.floor(Math.random() * CHATBOT_CONFIG.voiceQuestions.length)];
+                }
+                speakText(question);
+            }
+        }, introductionText.length * 100 + 1000); // Attendre la fin de l'introduction
+    }
+    
+    speakText(introductionText);
 }
 
 function updateVoiceButtonState() {
@@ -739,4 +920,45 @@ function stopVoiceRecognition() {
         voiceButton.classList.remove('recording');
         recognition.stop();
     }
+}
+
+// Fonction pour obtenir le nom de l'utilisateur connecté
+function getLoggedInUser() {
+    // Vérifier d'abord dans localStorage
+    let userData = localStorage.getItem('userData');
+    if (userData) {
+        try {
+            const user = JSON.parse(userData);
+            return user;
+        } catch (e) {
+            console.error('Erreur lors du parsing des données utilisateur depuis localStorage:', e);
+        }
+    }
+    
+    // Vérifier dans sessionStorage
+    userData = sessionStorage.getItem('userData');
+    if (userData) {
+        try {
+            const user = JSON.parse(userData);
+            return user;
+        } catch (e) {
+            console.error('Erreur lors du parsing des données utilisateur depuis sessionStorage:', e);
+        }
+    }
+    
+    return null;
+}
+
+// Fonction pour personnaliser le message de bienvenue
+function getPersonalizedWelcomeMessage() {
+    // Vérifier si nous sommes sur la page welcome.html
+    if (window.location.pathname.includes('welcome.html') || window.location.href.includes('welcome.html')) {
+        return `<span class='chatbot-wave-hand'>👋</span> Bienvenue ! Je suis <span class='chatbot-attention-highlight'>PrestIA</span>, votre assistant pour votre première connexion. Cliquez sur "Créer un compte" ou "Se connecter" pour commencer votre expérience sur Prestige Shop Express ! 🎉`;
+    }
+    
+    const user = getLoggedInUser();
+    if (user && user.prenom) {
+        return `<span class='chatbot-wave-hand'>👋</span> Bonjour ${user.prenom} ! Je suis <span class='chatbot-attention-highlight'>PrestIA</span>, votre assistant virtuel. Comment puis-je vous aider aujourd'hui ?`;
+    }
+    return `<span class='chatbot-wave-hand'>👋</span> Bonjour ! Je suis <span class='chatbot-attention-highlight'>PrestIA</span>, votre assistant virtuel. Comment puis-je vous aider aujourd'hui ?`;
 }

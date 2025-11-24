@@ -268,10 +268,16 @@
                 <button 
                     type="submit" 
                     id="register-btn"
-                    class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
                 >
-                    <i class="fas fa-user-plus mr-2"></i>
-                    Créer mon compte
+                    <span id="register-btn-text">
+                        <i class="fas fa-user-plus mr-2"></i>
+                        Créer mon compte
+                    </span>
+                    <span id="register-btn-loading" class="hidden">
+                        <i class="fas fa-spinner fa-spin mr-2"></i>
+                        Inscription en cours...
+                    </span>
                 </button>
             </form>
             
@@ -287,13 +293,10 @@
             
             <!-- Connexion sociale -->
             <div class="grid grid-cols-2 gap-4 mb-8">
-                <button onclick="loginWithGoogle()" class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
-                    <i class="fab fa-google text-red-500 text-xl mr-2"></i>
-                    <span class="font-semibold text-gray-700">Continuer avec Google</span>
-                </button>
+                <div id="google-login-btn-register"></div>
                 <button class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
                     <i class="fab fa-facebook-f text-blue-600 text-xl mr-2"></i>
-                    <span class="font-semibold text-gray-700">Facebook</span>
+                    <!-- <span class="font-semibold text-gray-700">Facebook</span> -->
                 </button>
             </div>
             
@@ -318,10 +321,10 @@
     <script src="api-config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Fonction pour vérifier la force du mot de passe
+            // Fonction pour vérifier la force du mot de passe (simplifiée)
             function checkPasswordStrength(password) {
-                // Validation simple : juste la longueur minimale
-                return password.length >= 8 ? 1 : 0;
+                // Juste vérifier la longueur
+                return password.length;
             }
             
             // Fonction pour afficher un message d'erreur
@@ -394,9 +397,9 @@
                 }
                 
                 // Vérification du mot de passe
-                // Validation simple : juste la longueur minimale
+                // Validation très simple : juste 8 caractères minimum
                 if (password.length < 8) {
-                    showError('Le mot de passe doit contenir au moins 8 caractères.');
+                    showError('Le mot de passe doit contenir au moins 8 caractères (lettres ou chiffres).');
                     return;
                 }
                 
@@ -414,6 +417,15 @@
                 
                 // Nettoyage du numéro de téléphone
                 const cleanedPhone = phone.replace(/\s+/g, '');
+                
+                // Afficher l'état de chargement
+                const registerBtn = document.getElementById('register-btn');
+                const registerBtnText = document.getElementById('register-btn-text');
+                const registerBtnLoading = document.getElementById('register-btn-loading');
+                
+                registerBtn.disabled = true;
+                registerBtnText.classList.add('hidden');
+                registerBtnLoading.classList.remove('hidden');
                 
                 // Appel à l'API Flask
                 console.log('Envoi des données d\'inscription:', {
@@ -467,6 +479,12 @@
                     } else {
                         showError('Une erreur s\'est produite. Veuillez réessayer. Détails: ' + error.message);
                     }
+                })
+                .finally(() => {
+                    // Réinitialiser l'état du bouton
+                    registerBtn.disabled = false;
+                    registerBtnText.classList.remove('hidden');
+                    registerBtnLoading.classList.add('hidden');
                 });
             });
             
@@ -499,13 +517,25 @@
                 // Rediriger vers le point de terminaison Google OAuth
                 window.location.href = `${API_BASE_URL}/auth/google`;
             }
-            
-            // Fonction pour traiter la réponse de Google
-            function handleCredentialResponse(response) {
-                console.log("Encoded JWT ID token: " + response.credential);
-                // Ici, vous pouvez envoyer le token à votre serveur pour vérification
-            }
         });
+        
+        // Fonction pour traiter la réponse de Google
+        function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+            // Ici, vous pouvez envoyer le token à votre serveur pour vérification
+        }
+        
+        // Initialisation du bouton Google
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: "722931671687-fj2ph80jpqvlqmqnmc3aepdfqtsl7eqe.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.getElementById("google-login-btn-register"),
+                { theme: "outline", size: "large", width: "100%", text: "signin_with" }
+            );
+        };
     </script>
 </body>
 </html>

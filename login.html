@@ -186,10 +186,16 @@
                 <button 
                     type="submit" 
                     id="login-btn"
-                    class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
                 >
-                    <i class="fas fa-sign-in-alt mr-2"></i>
-                    Se connecter
+                    <span id="login-btn-text">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        Se connecter
+                    </span>
+                    <span id="login-btn-loading" class="hidden">
+                        <i class="fas fa-spinner fa-spin mr-2"></i>
+                        Connexion en cours...
+                    </span>
                 </button>
             </form>
             
@@ -205,13 +211,10 @@
             
             <!-- Connexion sociale -->
             <div class="grid grid-cols-2 gap-4">
-                <button onclick="loginWithGoogle()" class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
-                    <i class="fab fa-google text-red-500 text-xl mr-2"></i>
-                    <span class="font-semibold text-gray-700">Continuer avec Google</span>
-                </button>
+                <div id="google-login-btn"></div>
                 <button class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
                     <i class="fab fa-facebook-f text-blue-600 text-xl mr-2"></i>
-                    <span class="font-semibold text-gray-700">Facebook</span>
+                    <!-- <span class="font-semibold text-gray-700">Facebook</span> -->
                 </button>
             </div>
             
@@ -242,6 +245,15 @@
             const password = document.getElementById('password').value;
             const remember = document.getElementById('remember').checked;
             
+            // Afficher l'état de chargement
+            const loginBtn = document.getElementById('login-btn');
+            const loginBtnText = document.getElementById('login-btn-text');
+            const loginBtnLoading = document.getElementById('login-btn-loading');
+            
+            loginBtn.disabled = true;
+            loginBtnText.classList.add('hidden');
+            loginBtnLoading.classList.remove('hidden');
+            
             // Appel à l'API Flask
             fetch(`${API_BASE_URL}/login`, {
                 method: 'POST',
@@ -253,7 +265,12 @@
                     password: password
                 })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     // Stocker les données utilisateur de manière sécurisée
@@ -286,14 +303,20 @@
                     
                     window.location.href = 'index.html';
                 } else {
-                    document.getElementById('error-text').textContent = data.message;
+                    document.getElementById('error-text').textContent = data.message || 'Erreur de connexion';
                     document.getElementById('error-message').classList.remove('hidden');
                 }
             })
             .catch(error => {
                 console.error('Erreur lors de la connexion:', error);
-                document.getElementById('error-text').textContent = 'Une erreur s\'est produite. Veuillez réessayer.';
+                document.getElementById('error-text').textContent = `Erreur de connexion au serveur: ${error.message || 'Vérifiez que le serveur est démarré et accessible'}`;
                 document.getElementById('error-message').classList.remove('hidden');
+            })
+            .finally(() => {
+                // Réinitialiser l'état du bouton
+                loginBtn.disabled = false;
+                loginBtnText.classList.remove('hidden');
+                loginBtnLoading.classList.add('hidden');
             });
         });
 
@@ -304,16 +327,84 @@
             this.classList.toggle('text-purple-600');
         });
 
+        // Fonction pour la connexion avec Google
         function loginWithGoogle() {
             // Rediriger vers le point de terminaison Google OAuth
             window.location.href = `${API_BASE_URL}/auth/google`;
         }
 
+        // Fonction pour traiter la réponse de Google
         function handleCredentialResponse(response) {
-            const id_token = response.credential;
-            console.log("ID Token: " + id_token);
-            // Vous pouvez envoyer cet id_token à votre serveur pour vérification
+            // Afficher l'état de chargement
+            const loginBtn = document.getElementById('login-btn');
+            const loginBtnText = document.getElementById('login-btn-text');
+            const loginBtnLoading = document.getElementById('login-btn-loading');
+            
+            loginBtn.disabled = true;
+            loginBtnText.classList.add('hidden');
+            loginBtnLoading.classList.remove('hidden');
+            
+            // Envoyer le token à notre serveur pour vérification
+            fetch(`${API_BASE_URL}/auth/google/callback/web`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    credential: response.credential
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Stocker les données utilisateur
+                    const userData = {
+                        id: data.user.id,
+                        nom: data.user.nom,
+                        prenom: data.user.prenom,
+                        email: data.user.email,
+                        numero: data.user.numero || ''
+                    };
+                    
+                    // Stocker les données utilisateur dans localStorage (connexion persistante)
+                    localStorage.setItem('userLoggedIn', 'true');
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                    localStorage.setItem('userEmail', userData.email);
+                    localStorage.setItem('userFullname', `${userData.prenom} ${userData.nom}`.trim());
+                    if (userData.numero) {
+                        localStorage.setItem('userPhone', userData.numero);
+                    }
+                    
+                    window.location.href = 'index.html';
+                } else {
+                    document.getElementById('error-text').textContent = data.message;
+                    document.getElementById('error-message').classList.remove('hidden');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la connexion Google:', error);
+                document.getElementById('error-text').textContent = 'Une erreur s\'est produite. Veuillez réessayer.';
+                document.getElementById('error-message').classList.remove('hidden');
+            })
+            .finally(() => {
+                // Réinitialiser l'état du bouton
+                loginBtn.disabled = false;
+                loginBtnText.classList.remove('hidden');
+                loginBtnLoading.classList.add('hidden');
+            });
         }
+
+        // Initialisation du bouton Google
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: "722931671687-fj2ph80jpqvlqmqnmc3aepdfqtsl7eqe.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.getElementById("google-login-btn"),
+                { theme: "outline", size: "large", width: "100%", text: "signin_with" }
+            );
+        };
     </script>
 </body>
 </html>

@@ -2625,7 +2625,7 @@ if (images && images.length > 0) {
                     const user = JSON.parse(userData);
                     
                     // Récupérer les informations à jour depuis l'API
-                    const response = await fetch(`http://localhost:5000/api/user/${user.id}`);
+                    const response = await fetch(`${API_BASE_URL}/user/${user.id}`);
                     const data = await response.json();
                     
                     if (data.success) {
