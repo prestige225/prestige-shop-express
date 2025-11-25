@@ -6,14 +6,15 @@
     <title>Bienvenue | Prestige Shop Express - Votre boutique en ligne</title>
     <meta name="description" content="Bienvenue sur Prestige Shop Express. Connectez-vous ou créez un compte pour découvrir nos produits de qualité.">
     <link rel="icon" href="images/prestige shop.png" type="image/png" />
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-        
+        /* Styles spécifiques à la page d'accueil */
         body {
-            font-family: 'Poppins', sans-serif;
-<<<<<<< HEAD
             background: linear-gradient(135deg, #c0392b 0%, #27ae60 100%);
         }
         
@@ -34,35 +35,11 @@
         
         .christmas-gradient {
             background: linear-gradient(135deg, #ffffff, #f1c40f, #e74c3c);
-=======
-        }
-        
-        .hero-section {
-            animation: fadeIn 1s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .feature-card {
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-<<<<<<< HEAD
         .christmas-button {
             background: linear-gradient(135deg, #e74c3c, #27ae60);
             transition: all 0.3s ease;
@@ -157,6 +134,202 @@
             animation: float 6s ease-in-out infinite;
             animation-delay: 2s;
         }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Boutons avec effets avancés */
+        .btn-animated {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-animated::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-animated:active::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-animated:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Carte avec ombres avancées */
+        .card-hover {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        /* Effet de brillance */
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+        
+        .shine-effect:hover::after {
+            opacity: 1;
+            animation: shine 1.5s ease-in-out;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        /* Animation de chargement */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        /* Effet de fondu */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Effet de slide */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-slideDown {
+            animation: slideDown 0.4s ease-out;
+        }
+        
+        /* Styles pour les éléments festifs */
+        .festive-element {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Badge animé */
+        .animated-badge {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Effet de scintillement */
+        .sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; filter: brightness(1); }
+            50% { opacity: 0.8; filter: brightness(1.3); }
+        }
+        
+        /* Scrollbar personnalisée */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #9333ea;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7e22ce;
+        }
+        
+        /* Styles spécifiques à la page d'accueil */
+        .christmas-bg {
+            background: linear-gradient(135deg, #1a472a 0%, #2d1b1b 25%, #1a472a 50%, #2d1b1b 75%, #1a472a 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .feature-card-christmas {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card-christmas:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .category-card {
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body class="christmas-bg min-h-screen relative overflow-x-hidden">
@@ -176,32 +349,11 @@
     
     <!-- Container principal -->
     <div class="relative z-20 min-h-screen flex flex-col">
-=======
-        .cta-button {
-            transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            transform: scale(1.05);
-        }
-    </style>
-</head>
-<body class="bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 min-h-screen">
-    
-    <!-- Formes décoratives -->
-    <div class="absolute top-0 left-0 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-    <div class="absolute top-1/2 right-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style="animation-delay: 1s;"></div>
-    <div class="absolute bottom-0 left-1/2 w-96 h-96 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style="animation-delay: 2s;"></div>
-    
-    <!-- Container principal -->
-    <div class="relative z-10 min-h-screen flex flex-col">
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
         
         <!-- Header -->
         <header class="py-6 px-4">
             <div class="container mx-auto flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-<<<<<<< HEAD
                     <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden bg-white shadow-xl relative">
                         <img src="images/prestige shop.png" alt="Logo" class="w-full h-full object-cover">
                         <div class="absolute -top-2 -right-2 text-red-500 text-xl">🎄</div>
@@ -214,23 +366,12 @@
                 <div class="text-yellow-300 text-2xl animate-pulse">
                     <i class="fas fa-star"></i>
                 </div>
-=======
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden bg-white shadow-xl">
-                        <img src="images/prestige shop.png" alt="Logo" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <h1 class="text-xl md:text-2xl font-black text-gray-900">Prestige Shop Express</h1>
-                        <p class="text-xs md:text-sm text-gray-600">Votre boutique en ligne de confiance</p>
-                    </div>
-                </div>
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
             </div>
         </header>
         
         <!-- Hero Section -->
         <main class="flex-1 flex items-center justify-center px-4 py-8 md:py-12">
             <div class="container mx-auto">
-<<<<<<< HEAD
                 <div class="text-center mb-12 relative">
                     <div class="floating absolute -top-20 left-1/2 transform -translate-x-1/2 text-6xl text-yellow-300">
                         ⭐
@@ -241,54 +382,29 @@
                     <p class="text-lg md:text-xl lg:text-2xl text-gray-100 mb-8 max-w-3xl mx-auto leading-relaxed">
                         Découvrez une expérience d'achat magique cette saison ! Profitez de nos offres spéciales de Noël 
                         avec des produits de qualité, une livraison rapide et un service client exceptionnel en Côte d'Ivoire.
-=======
-                <div class="hero-section text-center mb-12">
-                    <h2 class="text-4xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6">
-                        Bienvenue sur <br class="md:hidden"><span class="gradient-text">Prestige Shop Express</span>
-                    </h2>
-                    <p class="text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                        Découvrez une expérience d'achat unique avec des produits de qualité, 
-                        une livraison rapide et un service client exceptionnel en Côte d'Ivoire.
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                     </p>
                     
                     <!-- Boutons CTA -->
                     <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
-<<<<<<< HEAD
                         <a href="register.html" class="christmas-button w-full sm:w-auto text-white px-10 py-5 rounded-2xl font-bold text-lg md:text-xl transition-all shadow-2xl flex items-center justify-center">
                             <i class="fas fa-user-plus mr-3 text-2xl"></i>
                             Créer un compte gratuitement
                         </a>
                         <a href="login.html" class="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 px-10 py-5 rounded-2xl font-bold text-lg md:text-xl transition-all shadow-xl flex items-center justify-center">
-=======
-                        <a href="register.html" class="cta-button w-full sm:w-auto bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-10 py-5 rounded-2xl font-bold text-lg md:text-xl transition-all shadow-2xl hover:shadow-3xl flex items-center justify-center">
-                            <i class="fas fa-user-plus mr-3 text-2xl"></i>
-                            Créer un compte gratuitement
-                        </a>
-                        <a href="login.html" class="cta-button w-full sm:w-auto bg-white border-3 border-purple-600 text-purple-600 hover:bg-purple-50 px-10 py-5 rounded-2xl font-bold text-lg md:text-xl transition-all shadow-xl flex items-center justify-center">
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                             <i class="fas fa-sign-in-alt mr-3 text-2xl"></i>
                             Se connecter
                         </a>
                     </div>
                     
-<<<<<<< HEAD
                     <div class="text-yellow-300 inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
                         <i class="fas fa-gift mr-2"></i>
                         Offres spéciales de Noël disponibles !
                     </div>
-=======
-                    <p class="text-gray-500 text-sm">
-                        <i class="fas fa-lock mr-2"></i>
-                        Vos données sont sécurisées et protégées
-                    </p>
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                 </div>
                 
                 <!-- Features Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                     <!-- Feature 1 -->
-<<<<<<< HEAD
                     <div class="feature-card-christmas rounded-2xl p-6 shadow-xl">
                         <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-red-700 rounded-xl flex items-center justify-center mb-4 mx-auto relative">
                             <i class="fas fa-truck text-white text-2xl"></i>
@@ -326,46 +442,10 @@
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2 text-center">Support 24/7</h3>
                         <p class="text-gray-100 text-center">Besoin d'aide pour vos cadeaux ? Nous sommes là pour vous</p>
-=======
-                    <div class="feature-card bg-white rounded-2xl p-6 shadow-xl border border-purple-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-truck text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 text-center">Livraison Rapide</h3>
-                        <p class="text-gray-600 text-center">Recevez vos commandes sous 24-48h partout en Côte d'Ivoire</p>
-                    </div>
-                    
-                    <!-- Feature 2 -->
-                    <div class="feature-card bg-white rounded-2xl p-6 shadow-xl border border-blue-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-shield-alt text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 text-center">Paiement Sécurisé</h3>
-                        <p class="text-gray-600 text-center">Vos transactions sont protégées avec les meilleurs standards de sécurité</p>
-                    </div>
-                    
-                    <!-- Feature 3 -->
-                    <div class="feature-card bg-white rounded-2xl p-6 shadow-xl border border-green-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-percent text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 text-center">Offres Exclusives</h3>
-                        <p class="text-gray-600 text-center">-20% sur votre première commande et réductions régulières</p>
-                    </div>
-                    
-                    <!-- Feature 4 -->
-                    <div class="feature-card bg-white rounded-2xl p-6 shadow-xl border border-orange-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-orange-600 to-orange-700 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-headset text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 text-center">Support 24/7</h3>
-                        <p class="text-gray-600 text-center">Notre équipe est disponible pour vous aider à tout moment</p>
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                     </div>
                 </div>
                 
                 <!-- Stats -->
-<<<<<<< HEAD
                 <div class="stats-card rounded-3xl shadow-2xl p-8 md:p-12">
                     <h3 class="text-2xl md:text-3xl font-black text-center text-white mb-8">Pourquoi nous choisir pour vos fêtes ?</h3>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -384,33 +464,12 @@
                         <div>
                             <div class="text-4xl md:text-5xl font-black christmas-gradient mb-2">4.9/5</div>
                             <p class="text-gray-100 font-semibold">Note Moyenne</p>
-=======
-                <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-purple-100">
-                    <h3 class="text-2xl md:text-3xl font-black text-center text-gray-900 mb-8">Pourquoi nous choisir ?</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div>
-                            <div class="text-4xl md:text-5xl font-black gradient-text mb-2">500+</div>
-                            <p class="text-gray-600 font-semibold">Clients Satisfaits</p>
-                        </div>
-                        <div>
-                            <div class="text-4xl md:text-5xl font-black gradient-text mb-2">1000+</div>
-                            <p class="text-gray-600 font-semibold">Produits Disponibles</p>
-                        </div>
-                        <div>
-                            <div class="text-4xl md:text-5xl font-black gradient-text mb-2">24h</div>
-                            <p class="text-gray-600 font-semibold">Livraison Express</p>
-                        </div>
-                        <div>
-                            <div class="text-4xl md:text-5xl font-black gradient-text mb-2">4.9/5</div>
-                            <p class="text-gray-600 font-semibold">Note Moyenne</p>
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                         </div>
                     </div>
                 </div>
                 
                 <!-- Catégories Preview -->
                 <div class="mt-16">
-<<<<<<< HEAD
                     <h3 class="text-3xl md:text-4xl font-black text-center text-white mb-8">Catégories Festives</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="category-card rounded-2xl p-8 text-center hover:shadow-2xl transition-all">
@@ -438,32 +497,6 @@
                             </div>
                             <h4 class="text-2xl font-bold text-white mb-2">Spécialités</h4>
                             <p class="text-gray-100">Découvrez nos produits exclusifs de saison</p>
-=======
-                    <h3 class="text-3xl md:text-4xl font-black text-center text-gray-900 mb-8">Nos Catégories</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-white rounded-2xl p-8 shadow-xl border border-purple-100 text-center hover:shadow-2xl transition-all">
-                            <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                <i class="fas fa-graduation-cap text-white text-3xl"></i>
-                            </div>
-                            <h4 class="text-2xl font-bold text-gray-900 mb-2">Éducatif</h4>
-                            <p class="text-gray-600">Fournitures scolaires et matériel éducatif de qualité</p>
-                        </div>
-                        
-                        <div class="bg-white rounded-2xl p-8 shadow-xl border border-green-100 text-center hover:shadow-2xl transition-all">
-                            <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                <i class="fas fa-laptop text-white text-3xl"></i>
-                            </div>
-                            <h4 class="text-2xl font-bold text-gray-900 mb-2">Électronique</h4>
-                            <p class="text-gray-600">Appareils et accessoires électroniques dernière génération</p>
-                        </div>
-                        
-                        <div class="bg-white rounded-2xl p-8 shadow-xl border border-pink-100 text-center hover:shadow-2xl transition-all">
-                            <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                <i class="fas fa-tshirt text-white text-3xl"></i>
-                            </div>
-                            <h4 class="text-2xl font-bold text-gray-900 mb-2">Mode</h4>
-                            <p class="text-gray-600">Vêtements et accessoires tendance pour tous les styles</p>
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                         </div>
                     </div>
                 </div>
@@ -471,7 +504,6 @@
         </main>
         
         <!-- Footer -->
-<<<<<<< HEAD
         <footer class="py-8 px-4 text-center border-t border-white/20 bg-white/10 backdrop-blur-sm">
             <div class="container mx-auto">
                 <p class="text-gray-100 mb-2 font-semibold">© 2024 Prestige Shop Express. Tous droits réservés.</p>
@@ -486,25 +518,13 @@
                     <i class="fas fa-heart text-red-500 mr-2"></i>
                     Développé avec ❤️ en Côte d'Ivoire - Joyeuses Fêtes !
                 </p>
-=======
-        <footer class="py-8 px-4 text-center border-t border-gray-200 bg-white/50 backdrop-blur-sm">
-            <div class="container mx-auto">
-                <p class="text-gray-600 mb-2 font-semibold">© 2024 Prestige Shop Express. Tous droits réservés.</p>
-                <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 mb-3">
-                    <a href="#" class="hover:text-purple-600 transition-colors">Conditions d'utilisation</a>
-                    <span>•</span>
-                    <a href="#" class="hover:text-purple-600 transition-colors">Politique de confidentialité</a>
-                    <span>•</span>
-                    <a href="#" class="hover:text-purple-600 transition-colors">Contact</a>
-                </div>
-                <p class="text-gray-500 text-sm">Développé avec ❤️ en Côte d'Ivoire</p>
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
             </div>
         </footer>
     </div>
     
+    <script src="chatbot-widget.js"></script>
+    
     <script>
-<<<<<<< HEAD
         // Générer les confettis
         function createConfetti() {
             const confettiContainer = document.getElementById('confettiContainer');
@@ -545,24 +565,106 @@
         window.addEventListener('DOMContentLoaded', () => {
             createConfetti();
             
-=======
-        // Vérifier si l'utilisateur est déjà connecté
-        window.addEventListener('DOMContentLoaded', () => {
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
             const isLoggedIn = localStorage.getItem('userLoggedIn') || sessionStorage.getItem('userLoggedIn');
             
             if (isLoggedIn === 'true') {
                 // Rediriger vers la page des produits
                 window.location.href = 'index.html';
             }
+            
+            // Initialiser le guide d'authentification léger
+            setTimeout(() => {
+                const hasVisited = localStorage.getItem('hasVisitedWelcome');
+                if (!hasVisited) {
+                    // Marquer la visite
+                    localStorage.setItem('hasVisitedWelcome', 'true');
+                    
+                    // Afficher un message d'accueil discret en bas de la page
+                    showAuthGuideMessage();
+                }
+            }, 2000);
+            
+            // Initialiser le chatbot personnalisé pour les nouveaux utilisateurs
+            setTimeout(() => {
+                const hasVisited = localStorage.getItem('hasVisitedWelcome');
+                if (!hasVisited) {
+                    // Attendre que le chatbot soit chargé, puis l'ouvrir automatiquement
+                    setTimeout(() => {
+                        if (typeof toggleChatbot === 'function') {
+                            toggleChatbot();
+                            
+                            // Envoyer un message de bienvenue personnalisé pour la première connexion
+                            setTimeout(() => {
+                                if (typeof addChatbotMessage === 'function') {
+                                    addChatbotMessage("👋 Bienvenue chez Prestige Shop Express ! Je suis PrestIA, votre assistant personnel. \n\nPour une connexion rapide et sécurisée, je vous suggère de continuer avec **Google** en cliquant sur 'Se connecter'. \n\nC'est le moyen le plus simple pour accéder à toutes nos offres exclusives ! 🎁\n\nQue souhaitez-vous faire ?", 'bot');
+                                }
+                            }, 1000);
+                            
+                            // Activer la présentation vocale personnalisée
+                            setTimeout(() => {
+                                if (typeof speakText === 'function') {
+                                    speakText("Bonjour et bienvenue chez Prestige Shop Express ! Je suis PrestIA. Pour gagner du temps, je vous conseille de vous connecter avec Google. C'est rapide et sécurisé. Comment puis-je vous aider ?");
+                                }
+                            }, 2500);
+                        }
+                    }, 2000);
+                }
+            }, 3000);
         });
+        
+        // Fonction pour afficher un guide d'authentification discret
+        function showAuthGuideMessage() {
+            // Créer un message discret en bas de la page
+            const guideMessage = document.createElement('div');
+            guideMessage.id = 'auth-guide-message';
+            guideMessage.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                right: 20px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                padding: 15px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 999;
+                max-width: 300px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                animation: fadeInUp 0.5s ease-out;
+            `;
+            
+            guideMessage.innerHTML = `
+                <div style="display: flex; align-items: flex-start;">
+                    <div style="margin-right: 10px;">
+                        <i class="fas fa-hand-point-right" style="font-size: 20px; color: #3498db;"></i>
+                    </div>
+                    <div>
+                        <p style="margin: 0 0 10px 0; font-size: 14px; color: #2c3e50; font-weight: 500;">
+                            Nouveau ici ? Créez un compte ou connectez-vous pour accéder à toutes nos offres !
+                        </p>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="window.location.href='register.html'" style="background: #27ae60; color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 12px; cursor: pointer;">
+                                S'inscrire
+                            </button>
+                            <button onclick="window.location.href='login.html'" style="background: #3498db; color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 12px; cursor: pointer;">
+                                Se connecter
+                            </button>
+                        </div>
+                    </div>
+                    <button onclick="this.closest('#auth-guide-message').remove();" style="position: absolute; top: 5px; right: 10px; background: none; border: none; color: #7f8c8d; cursor: pointer; font-size: 16px;">
+                        ×
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(guideMessage);
+            
+            // Retirer le message après 10 secondes
+            setTimeout(() => {
+                if (guideMessage.parentNode) {
+                    guideMessage.remove();
+                }
+            }, 10000);
+        }
     </script>
-<<<<<<< HEAD
-    <!-- ========== CHATBOT ASSISTANT IA ========== -->
-    <script src="chatbot-widget.js"></script>
 </body>
 </html>
-=======
-</body>
-</html>
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54

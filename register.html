@@ -6,17 +6,26 @@
     <title>Créer un compte | Prestige Shop Express - Votre boutique en ligne</title>
     <meta name="description" content="Créez votre compte Prestige Shop Express et profitez d'une expérience d'achat personnalisée avec des offres exclusives.">
     <link rel="icon" href="images/prestige shop.png" type="image/png" />
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-<<<<<<< HEAD
+    <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-=======
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
+            max-width: 100vw;
         }
         
         .gradient-bg {
@@ -55,6 +64,156 @@
         .password-strength {
             height: 4px;
             transition: all 0.3s ease;
+        }
+        
+        /* Boutons avec effets avancés */
+        .btn-animated {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-animated::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-animated:active::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-animated:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Carte avec ombres avancées */
+        .card-hover {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        /* Effet de brillance */
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+        
+        .shine-effect:hover::after {
+            opacity: 1;
+            animation: shine 1.5s ease-in-out;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        /* Animation de chargement */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        /* Effet de fondu */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Effet de slide */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-slideDown {
+            animation: slideDown 0.4s ease-out;
+        }
+        
+        /* Styles pour les éléments festifs */
+        .festive-element {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Badge animé */
+        .animated-badge {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Effet de scintillement */
+        .sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; filter: brightness(1); }
+            50% { opacity: 0.8; filter: brightness(1.3); }
+        }
+        
+        /* Scrollbar personnalisée */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #9333ea;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7e22ce;
         }
     </style>
 </head>
@@ -132,11 +291,7 @@
         <!-- Section droite - Formulaire -->
         <div class="w-full md:w-3/5 p-8 md:p-12 flex flex-col justify-center">
             <!-- Logo mobile -->
-<<<<<<< HEAD
             <div class="md-hidden text-center mb-8">
-=======
-            <div class="md:hidden text-center mb-8">
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                 <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-white shadow-xl">
                     <img src="images/prestige shop.png" alt="Logo" class="w-full h-full object-cover">
                 </div>
@@ -275,7 +430,6 @@
                 <button 
                     type="submit" 
                     id="register-btn"
-<<<<<<< HEAD
                     class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
                 >
                     <span id="register-btn-text">
@@ -304,19 +458,10 @@
                 <div id="google-login-btn-register"></div>
                 <button class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
                     <i class="fab fa-facebook-f text-blue-600 text-xl mr-2"></i>
-                    <!-- <span class="font-semibold text-gray-700">Facebook</span> -->
+                    <span class="font-semibold text-gray-700">Facebook</span>
                 </button>
             </div>
             
-=======
-                    class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
-                >
-                    <i class="fas fa-user-plus mr-2"></i>
-                    Créer mon compte
-                </button>
-            </form>
-            
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
             <!-- Lien connexion -->
             <div class="text-center mt-8">
                 <p class="text-gray-600">
@@ -335,7 +480,6 @@
         </div>
     </div>
     
-<<<<<<< HEAD
     <script src="api-config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -539,8 +683,63 @@
         
         // Fonction pour traiter la réponse de Google
         function handleCredentialResponse(response) {
-            console.log("Encoded JWT ID token: " + response.credential);
-            // Ici, vous pouvez envoyer le token à votre serveur pour vérification
+            // Afficher l'état de chargement
+            const registerBtn = document.getElementById('register-btn');
+            const registerBtnText = document.getElementById('register-btn-text');
+            const registerBtnLoading = document.getElementById('register-btn-loading');
+            
+            registerBtn.disabled = true;
+            registerBtnText.classList.add('hidden');
+            registerBtnLoading.classList.remove('hidden');
+            
+            // Envoyer le token à notre serveur pour vérification
+            fetch(`${API_BASE_URL}/auth/google/callback/web`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    credential: response.credential
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Stocker les données utilisateur
+                    const userData = {
+                        id: data.user.id,
+                        nom: data.user.nom,
+                        prenom: data.user.prenom,
+                        email: data.user.email,
+                        numero: data.user.numero || ''
+                    };
+                    
+                    // Stocker les données utilisateur dans localStorage (connexion persistante)
+                    localStorage.setItem('userLoggedIn', 'true');
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                    localStorage.setItem('userEmail', userData.email);
+                    localStorage.setItem('userFullname', `${userData.prenom} ${userData.nom}`.trim());
+                    if (userData.numero) {
+                        localStorage.setItem('userPhone', userData.numero);
+                    }
+                    
+                    window.location.href = 'index.html';
+                } else {
+                    document.getElementById('error-text').textContent = data.message;
+                    document.getElementById('error-message').classList.remove('hidden');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la connexion Google:', error);
+                document.getElementById('error-text').textContent = 'Une erreur s\'est produite. Veuillez réessayer.';
+                document.getElementById('error-message').classList.remove('hidden');
+            })
+            .finally(() => {
+                // Réinitialiser l'état du bouton
+                registerBtn.disabled = false;
+                registerBtnText.classList.remove('hidden');
+                registerBtnLoading.classList.add('hidden');
+            });
         }
         
         // Initialisation du bouton Google
@@ -554,182 +753,65 @@
                 { theme: "outline", size: "large", width: "100%", text: "signin_with" }
             );
         };
-=======
-    <script>
-        // ========== TOGGLE PASSWORD VISIBILITY ==========
-        document.getElementById('toggle-password').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
+        
+        // Initialiser un guide léger au chargement de la page
+        window.addEventListener('DOMContentLoaded', function() {
+            // Démarrer le guide léger après 2 secondes
+            setTimeout(showRegisterTip, 2000);
         });
         
-        document.getElementById('toggle-confirm-password').addEventListener('click', function() {
-            const confirmPasswordInput = document.getElementById('confirm-password');
-            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            confirmPasswordInput.setAttribute('type', type);
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
-        });
-        
-        // ========== PASSWORD STRENGTH INDICATOR ==========
-        document.getElementById('password').addEventListener('input', function() {
-            const password = this.value;
-            const strengthBar = document.getElementById('password-strength');
-            const strengthText = document.getElementById('password-text');
+        // Fonction pour afficher un tip d'inscription discret
+        function showRegisterTip() {
+            // Vérifier si l'utilisateur a déjà vu le tip
+            if (localStorage.getItem('registerTipSeen')) return;
             
-            let strength = 0;
-            let text = '';
-            let color = '';
+            // Créer un tip discret en bas de la page
+            const tip = document.createElement('div');
+            tip.id = 'register-tip';
+            tip.style.cssText = `
+                position: fixed;
+                bottom: 80px;
+                left: 20px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                padding: 15px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 999;
+                max-width: 300px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                animation: fadeInUp 0.5s ease-out;
+            `;
             
-            if (password.length >= 6) strength++;
-            if (password.length >= 8) strength++;
-            if (/[A-Z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            tip.innerHTML = `
+                <div style="display: flex; align-items: flex-start;">
+                    <div style="margin-right: 10px;">
+                        <i class="fas fa-lightbulb" style="font-size: 20px; color: #f1c40f;"></i>
+                    </div>
+                    <div>
+                        <p style="margin: 0 0 10px 0; font-size: 14px; color: #2c3e50; font-weight: 500;">
+                            Astuce : Remplissez tous les champs et utilisez un mot de passe sécurisé (8 caractères minimum) !
+                        </p>
+                        <button onclick="this.closest('#register-tip').remove();" style="background: #27ae60; color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 12px; cursor: pointer;">
+                            Compris
+                        </button>
+                    </div>
+                    <button onclick="this.closest('#register-tip').remove();" style="position: absolute; top: 5px; right: 10px; background: none; border: none; color: #7f8c8d; cursor: pointer; font-size: 16px;">
+                        ×
+                    </button>
+                </div>
+            `;
             
-            switch(strength) {
-                case 0:
-                case 1:
-                    color = 'bg-red-500';
-                    text = 'Faible';
-                    break;
-                case 2:
-                case 3:
-                    color = 'bg-orange-500';
-                    text = 'Moyen';
-                    break;
-                case 4:
-                    color = 'bg-yellow-500';
-                    text = 'Bon';
-                    break;
-                case 5:
-                    color = 'bg-green-500';
-                    text = 'Excellent';
-                    break;
-            }
+            document.body.appendChild(tip);
+            localStorage.setItem('registerTipSeen', 'true');
             
-            strengthBar.className = `password-strength ${color}`;
-            strengthBar.style.width = `${(strength / 5) * 100}%`;
-            strengthText.textContent = text;
-            strengthText.className = `text-xs mt-1 font-semibold ${color.replace('bg-', 'text-')}`;
-        });
-        
-        // ========== GESTION DE L'INSCRIPTION ==========
-        const registerForm = document.getElementById('register-form');
-        const errorMessage = document.getElementById('error-message');
-        const successMessage = document.getElementById('success-message');
-        const errorText = document.getElementById('error-text');
-        const successText = document.getElementById('success-text');
-        const registerBtn = document.getElementById('register-btn');
-        
-        registerForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const fullname = document.getElementById('fullname').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            const terms = document.getElementById('terms').checked;
-            
-            errorMessage.classList.add('hidden');
-            successMessage.classList.add('hidden');
-            
-            // Validation
-            if (!fullname || !email || !phone || !password || !confirmPassword) {
-                showError('Veuillez remplir tous les champs');
-                return;
-            }
-            
-            if (!email.includes('@')) {
-                showError('Email invalide');
-                return;
-            }
-            
-            if (password.length < 6) {
-                showError('Le mot de passe doit contenir au moins 6 caractères');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                showError('Les mots de passe ne correspondent pas');
-                return;
-            }
-            
-            if (!terms) {
-                showError('Vous devez accepter les conditions d\'utilisation');
-                return;
-            }
-            
-            // Afficher le chargement
-            registerBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Création du compte...';
-            registerBtn.disabled = true;
-            
-            // Simuler l'inscription
+            // Retirer le tip après 8 secondes
             setTimeout(() => {
-                // Vérifier si l'email existe déjà
-                const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-                const emailExists = existingUsers.some(user => user.email === email);
-                
-                if (emailExists) {
-                    showError('Cet email est déjà utilisé');
-                    registerBtn.innerHTML = '<i class="fas fa-user-plus mr-2"></i>Créer mon compte';
-                    registerBtn.disabled = false;
-                    return;
+                if (tip.parentNode) {
+                    tip.remove();
                 }
-                
-                // Créer le nouvel utilisateur
-                const newUser = {
-                    id: Date.now(),
-                    fullname: fullname,
-                    email: email,
-                    phone: phone,
-                    password: password, // En production, hasher le mot de passe !
-                    createdAt: new Date().toISOString()
-                };
-                
-                existingUsers.push(newUser);
-                localStorage.setItem('users', JSON.stringify(existingUsers));
-                
-                // Afficher succès
-                registerBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Compte créé !';
-                registerBtn.classList.remove('from-purple-600', 'to-blue-600');
-                registerBtn.classList.add('from-green-500', 'to-green-600');
-                
-                successText.textContent = 'Votre compte a été créé avec succès ! Redirection...';
-                successMessage.classList.remove('hidden');
-                
-                // Connecter automatiquement l'utilisateur
-                localStorage.setItem('userLoggedIn', 'true');
-                localStorage.setItem('userEmail', email);
-                localStorage.setItem('userFullname', fullname);
-                
-                // Redirection vers l'accueil
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 2000);
-            }, 1500);
-        });
-        
-        function showError(message) {
-            errorText.textContent = message;
-            errorMessage.classList.remove('hidden');
-            registerForm.classList.add('animate-shake');
-            setTimeout(() => {
-                registerForm.classList.remove('animate-shake');
-            }, 500);
+            }, 8000);
         }
-        
-        // Vérifier si déjà connecté
-        window.addEventListener('DOMContentLoaded', () => {
-            const isLoggedIn = localStorage.getItem('userLoggedIn') || sessionStorage.getItem('userLoggedIn');
-            if (isLoggedIn === 'true') {
-                window.location.href = 'index.html';
-            }
-        });
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
     </script>
 </body>
 </html>

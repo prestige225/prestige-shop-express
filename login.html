@@ -6,19 +6,16 @@
     <title>Connexion | Prestige Shop Express - Votre boutique en ligne</title>
     <meta name="description" content="Connectez-vous à votre compte Prestige Shop Express pour accéder à vos commandes et profiter d'une expérience d'achat personnalisée.">
     <link rel="icon" href="images/prestige shop.png" type="image/png" />
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-<<<<<<< HEAD
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet">
+    <!-- Google Identity Services -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-=======
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        
+        /* Styles spécifiques à la page de connexion */
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
@@ -50,6 +47,193 @@
         
         .animate-shake {
             animation: shake 0.5s ease-in-out;
+        }
+        
+        /* Boutons avec effets avancés */
+        .btn-animated {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-animated::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-animated:active::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-animated:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Carte avec ombres avancées */
+        .card-hover {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        /* Effet de brillance */
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+        
+        .shine-effect:hover::after {
+            opacity: 1;
+            animation: shine 1.5s ease-in-out;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        /* Animation de chargement */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        /* Effet de fondu */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Effet de slide */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-slideDown {
+            animation: slideDown 0.4s ease-out;
+        }
+        
+        /* Styles pour les éléments festifs */
+        .festive-element {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Badge animé */
+        .animated-badge {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Effet de scintillement */
+        .sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; filter: brightness(1); }
+            50% { opacity: 0.8; filter: brightness(1.3); }
+        }
+        
+        /* Scrollbar personnalisée */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #9333ea;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7e22ce;
+        }
+        
+        /* Styles spécifiques au formulaire de connexion */
+        .login-container {
+            min-height: 80vh;
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+        }
+        
+        .input-group input {
+            padding-left: 3rem;
+        }
+        
+        /* Animation du bouton de connexion */
+        .btn-login {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -189,7 +373,6 @@
                 <button 
                     type="submit" 
                     id="login-btn"
-<<<<<<< HEAD
                     class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
                 >
                     <span id="login-btn-text">
@@ -200,12 +383,6 @@
                         <i class="fas fa-spinner fa-spin mr-2"></i>
                         Connexion en cours...
                     </span>
-=======
-                    class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
-                >
-                    <i class="fas fa-sign-in-alt mr-2"></i>
-                    Se connecter
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                 </button>
             </form>
             
@@ -221,20 +398,10 @@
             
             <!-- Connexion sociale -->
             <div class="grid grid-cols-2 gap-4">
-<<<<<<< HEAD
-                <div id="google-login-btn"></div>
-                <button class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
-                    <i class="fab fa-facebook-f text-blue-600 text-xl mr-2"></i>
-                    <!-- <span class="font-semibold text-gray-700">Facebook</span> -->
-=======
-                <button class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
-                    <i class="fab fa-google text-red-500 text-xl mr-2"></i>
-                    <span class="font-semibold text-gray-700">Google</span>
-                </button>
+                <div id="google-login-btn" style="width: 100%; max-width: 300px; margin: 0 auto;"></div>
                 <button class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
                     <i class="fab fa-facebook-f text-blue-600 text-xl mr-2"></i>
                     <span class="font-semibold text-gray-700">Facebook</span>
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                 </button>
             </div>
             
@@ -256,39 +423,15 @@
         </div>
     </div>
     
-<<<<<<< HEAD
     <script src="api-config.js"></script>
     <script>
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
-=======
-    <script>
-        // ========== TOGGLE PASSWORD VISIBILITY ==========
-        const togglePassword = document.getElementById('toggle-password');
-        const passwordInput = document.getElementById('password');
-        
-        togglePassword.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
-        });
-        
-        // ========== GESTION DE LA CONNEXION ==========
-        const loginForm = document.getElementById('login-form');
-        const errorMessage = document.getElementById('error-message');
-        const errorText = document.getElementById('error-text');
-        const loginBtn = document.getElementById('login-btn');
-        
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
             
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const remember = document.getElementById('remember').checked;
             
-<<<<<<< HEAD
             // Afficher l'état de chargement
             const loginBtn = document.getElementById('login-btn');
             const loginBtnText = document.getElementById('login-btn-text');
@@ -309,12 +452,7 @@
                     password: password
                 })
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     // Stocker les données utilisateur de manière sécurisée
@@ -347,13 +485,13 @@
                     
                     window.location.href = 'index.html';
                 } else {
-                    document.getElementById('error-text').textContent = data.message || 'Erreur de connexion';
+                    document.getElementById('error-text').textContent = data.message;
                     document.getElementById('error-message').classList.remove('hidden');
                 }
             })
             .catch(error => {
                 console.error('Erreur lors de la connexion:', error);
-                document.getElementById('error-text').textContent = `Erreur de connexion au serveur: ${error.message || 'Vérifiez que le serveur est démarré et accessible'}`;
+                document.getElementById('error-text').textContent = 'Une erreur s\'est produite. Veuillez réessayer.';
                 document.getElementById('error-message').classList.remove('hidden');
             })
             .finally(() => {
@@ -449,84 +587,65 @@
                 { theme: "outline", size: "large", width: "100%", text: "signin_with" }
             );
         };
-=======
-            errorMessage.classList.add('hidden');
-            
-            if (!email || !password) {
-                showError('Veuillez remplir tous les champs');
-                return;
-            }
-            
-            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Connexion en cours...';
-            loginBtn.disabled = true;
-            
-            setTimeout(() => {
-                if (validateLogin(email, password)) {
-                    const userData = {
-                        email: email,
-                        loginTime: new Date().toISOString(),
-                        remember: remember
-                    };
-                    
-                    if (remember) {
-                        localStorage.setItem('userLoggedIn', 'true');
-                        localStorage.setItem('userEmail', email);
-                    } else {
-                        sessionStorage.setItem('userLoggedIn', 'true');
-                        sessionStorage.setItem('userEmail', email);
-                    }
-                    
-                    loginBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Connexion réussie !';
-                    loginBtn.classList.remove('from-purple-600', 'to-blue-600');
-                    loginBtn.classList.add('from-green-500', 'to-green-600');
-                    
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 1000);
-                } else {
-                    showError('Email ou mot de passe incorrect');
-                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-2"></i>Se connecter';
-                    loginBtn.disabled = false;
-                }
-            }, 1500);
+        
+        // Initialiser un guide léger au chargement de la page
+        window.addEventListener('DOMContentLoaded', function() {
+            // Démarrer le guide léger après 2 secondes
+            setTimeout(showLoginTip, 2000);
         });
         
-        function validateLogin(email, password) {
-            // Vérifier dans la base de données locale
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const user = users.find(u => u.email === email && u.password === password);
+        // Fonction pour afficher un tip de connexion discret
+        function showLoginTip() {
+            // Vérifier si l'utilisateur a déjà vu le tip
+            if (localStorage.getItem('loginTipSeen')) return;
             
-            if (user) {
-                // Sauvegarder les infos complètes de l'utilisateur
-                if (document.getElementById('remember').checked) {
-                    localStorage.setItem('userFullname', user.fullname);
-                    localStorage.setItem('userPhone', user.phone);
-                } else {
-                    sessionStorage.setItem('userFullname', user.fullname);
-                    sessionStorage.setItem('userPhone', user.phone);
-                }
-                return true;
-            }
-            return false;
-        }
-        
-        function showError(message) {
-            errorText.textContent = message;
-            errorMessage.classList.remove('hidden');
-            loginForm.classList.add('animate-shake');
+            // Créer un tip discret en bas de la page
+            const tip = document.createElement('div');
+            tip.id = 'login-tip';
+            tip.style.cssText = `
+                position: fixed;
+                bottom: 80px;
+                left: 20px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                padding: 15px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 999;
+                max-width: 300px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                animation: fadeInUp 0.5s ease-out;
+            `;
+            
+            tip.innerHTML = `
+                <div style="display: flex; align-items: flex-start;">
+                    <div style="margin-right: 10px;">
+                        <i class="fas fa-lightbulb" style="font-size: 20px; color: #f1c40f;"></i>
+                    </div>
+                    <div>
+                        <p style="margin: 0 0 10px 0; font-size: 14px; color: #2c3e50; font-weight: 500;">
+                            Astuce : Cliquez sur le bouton Google pour une connexion rapide et sécurisée !
+                        </p>
+                        <button onclick="this.closest('#login-tip').remove();" style="background: #3498db; color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 12px; cursor: pointer;">
+                            Compris
+                        </button>
+                    </div>
+                    <button onclick="this.closest('#login-tip').remove();" style="position: absolute; top: 5px; right: 10px; background: none; border: none; color: #7f8c8d; cursor: pointer; font-size: 16px;">
+                        ×
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(tip);
+            localStorage.setItem('loginTipSeen', 'true');
+            
+            // Retirer le tip après 8 secondes
             setTimeout(() => {
-                loginForm.classList.remove('animate-shake');
-            }, 500);
+                if (tip.parentNode) {
+                    tip.remove();
+                }
+            }, 8000);
         }
-        
-        // Vérifier si déjà connecté
-        window.addEventListener('DOMContentLoaded', () => {
-            const isLoggedIn = localStorage.getItem('userLoggedIn') || sessionStorage.getItem('userLoggedIn');
-            if (isLoggedIn === 'true') {
-                window.location.href = 'index.html';
-            }
-        });
->>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
     </script>
 </body>
 </html>
