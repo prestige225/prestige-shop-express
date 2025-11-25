@@ -8,7 +8,10 @@
     <link rel="icon" href="images/prestige shop.png" type="image/png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<<<<<<< HEAD
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+=======
+>>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         
@@ -186,6 +189,7 @@
                 <button 
                     type="submit" 
                     id="login-btn"
+<<<<<<< HEAD
                     class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
                 >
                     <span id="login-btn-text">
@@ -196,6 +200,12 @@
                         <i class="fas fa-spinner fa-spin mr-2"></i>
                         Connexion en cours...
                     </span>
+=======
+                    class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Se connecter
+>>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                 </button>
             </form>
             
@@ -211,10 +221,20 @@
             
             <!-- Connexion sociale -->
             <div class="grid grid-cols-2 gap-4">
+<<<<<<< HEAD
                 <div id="google-login-btn"></div>
                 <button class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
                     <i class="fab fa-facebook-f text-blue-600 text-xl mr-2"></i>
                     <!-- <span class="font-semibold text-gray-700">Facebook</span> -->
+=======
+                <button class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
+                    <i class="fab fa-google text-red-500 text-xl mr-2"></i>
+                    <span class="font-semibold text-gray-700">Google</span>
+                </button>
+                <button class="flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all">
+                    <i class="fab fa-facebook-f text-blue-600 text-xl mr-2"></i>
+                    <span class="font-semibold text-gray-700">Facebook</span>
+>>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                 </button>
             </div>
             
@@ -236,15 +256,39 @@
         </div>
     </div>
     
+<<<<<<< HEAD
     <script src="api-config.js"></script>
     <script>
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
+=======
+    <script>
+        // ========== TOGGLE PASSWORD VISIBILITY ==========
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+        
+        // ========== GESTION DE LA CONNEXION ==========
+        const loginForm = document.getElementById('login-form');
+        const errorMessage = document.getElementById('error-message');
+        const errorText = document.getElementById('error-text');
+        const loginBtn = document.getElementById('login-btn');
+        
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+>>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
             
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const remember = document.getElementById('remember').checked;
             
+<<<<<<< HEAD
             // Afficher l'état de chargement
             const loginBtn = document.getElementById('login-btn');
             const loginBtnText = document.getElementById('login-btn-text');
@@ -405,6 +449,84 @@
                 { theme: "outline", size: "large", width: "100%", text: "signin_with" }
             );
         };
+=======
+            errorMessage.classList.add('hidden');
+            
+            if (!email || !password) {
+                showError('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Connexion en cours...';
+            loginBtn.disabled = true;
+            
+            setTimeout(() => {
+                if (validateLogin(email, password)) {
+                    const userData = {
+                        email: email,
+                        loginTime: new Date().toISOString(),
+                        remember: remember
+                    };
+                    
+                    if (remember) {
+                        localStorage.setItem('userLoggedIn', 'true');
+                        localStorage.setItem('userEmail', email);
+                    } else {
+                        sessionStorage.setItem('userLoggedIn', 'true');
+                        sessionStorage.setItem('userEmail', email);
+                    }
+                    
+                    loginBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Connexion réussie !';
+                    loginBtn.classList.remove('from-purple-600', 'to-blue-600');
+                    loginBtn.classList.add('from-green-500', 'to-green-600');
+                    
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
+                } else {
+                    showError('Email ou mot de passe incorrect');
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt mr-2"></i>Se connecter';
+                    loginBtn.disabled = false;
+                }
+            }, 1500);
+        });
+        
+        function validateLogin(email, password) {
+            // Vérifier dans la base de données locale
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                // Sauvegarder les infos complètes de l'utilisateur
+                if (document.getElementById('remember').checked) {
+                    localStorage.setItem('userFullname', user.fullname);
+                    localStorage.setItem('userPhone', user.phone);
+                } else {
+                    sessionStorage.setItem('userFullname', user.fullname);
+                    sessionStorage.setItem('userPhone', user.phone);
+                }
+                return true;
+            }
+            return false;
+        }
+        
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            loginForm.classList.add('animate-shake');
+            setTimeout(() => {
+                loginForm.classList.remove('animate-shake');
+            }, 500);
+        }
+        
+        // Vérifier si déjà connecté
+        window.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('userLoggedIn') || sessionStorage.getItem('userLoggedIn');
+            if (isLoggedIn === 'true') {
+                window.location.href = 'index.html';
+            }
+        });
+>>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
     </script>
 </body>
 </html>

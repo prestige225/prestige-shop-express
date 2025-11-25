@@ -8,7 +8,10 @@
     <link rel="icon" href="images/prestige shop.png" type="image/png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<<<<<<< HEAD
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+=======
+>>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         
@@ -129,7 +132,11 @@
         <!-- Section droite - Formulaire -->
         <div class="w-full md:w-3/5 p-8 md:p-12 flex flex-col justify-center">
             <!-- Logo mobile -->
+<<<<<<< HEAD
             <div class="md-hidden text-center mb-8">
+=======
+            <div class="md:hidden text-center mb-8">
+>>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
                 <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-white shadow-xl">
                     <img src="images/prestige shop.png" alt="Logo" class="w-full h-full object-cover">
                 </div>
@@ -268,6 +275,7 @@
                 <button 
                     type="submit" 
                     id="register-btn"
+<<<<<<< HEAD
                     class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
                 >
                     <span id="register-btn-text">
@@ -300,6 +308,15 @@
                 </button>
             </div>
             
+=======
+                    class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Créer mon compte
+                </button>
+            </form>
+            
+>>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
             <!-- Lien connexion -->
             <div class="text-center mt-8">
                 <p class="text-gray-600">
@@ -318,6 +335,7 @@
         </div>
     </div>
     
+<<<<<<< HEAD
     <script src="api-config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -536,6 +554,182 @@
                 { theme: "outline", size: "large", width: "100%", text: "signin_with" }
             );
         };
+=======
+    <script>
+        // ========== TOGGLE PASSWORD VISIBILITY ==========
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+        
+        document.getElementById('toggle-confirm-password').addEventListener('click', function() {
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPasswordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+        
+        // ========== PASSWORD STRENGTH INDICATOR ==========
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.getElementById('password-strength');
+            const strengthText = document.getElementById('password-text');
+            
+            let strength = 0;
+            let text = '';
+            let color = '';
+            
+            if (password.length >= 6) strength++;
+            if (password.length >= 8) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            switch(strength) {
+                case 0:
+                case 1:
+                    color = 'bg-red-500';
+                    text = 'Faible';
+                    break;
+                case 2:
+                case 3:
+                    color = 'bg-orange-500';
+                    text = 'Moyen';
+                    break;
+                case 4:
+                    color = 'bg-yellow-500';
+                    text = 'Bon';
+                    break;
+                case 5:
+                    color = 'bg-green-500';
+                    text = 'Excellent';
+                    break;
+            }
+            
+            strengthBar.className = `password-strength ${color}`;
+            strengthBar.style.width = `${(strength / 5) * 100}%`;
+            strengthText.textContent = text;
+            strengthText.className = `text-xs mt-1 font-semibold ${color.replace('bg-', 'text-')}`;
+        });
+        
+        // ========== GESTION DE L'INSCRIPTION ==========
+        const registerForm = document.getElementById('register-form');
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+        const errorText = document.getElementById('error-text');
+        const successText = document.getElementById('success-text');
+        const registerBtn = document.getElementById('register-btn');
+        
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullname = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const terms = document.getElementById('terms').checked;
+            
+            errorMessage.classList.add('hidden');
+            successMessage.classList.add('hidden');
+            
+            // Validation
+            if (!fullname || !email || !phone || !password || !confirmPassword) {
+                showError('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            if (!email.includes('@')) {
+                showError('Email invalide');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showError('Le mot de passe doit contenir au moins 6 caractères');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('Les mots de passe ne correspondent pas');
+                return;
+            }
+            
+            if (!terms) {
+                showError('Vous devez accepter les conditions d\'utilisation');
+                return;
+            }
+            
+            // Afficher le chargement
+            registerBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Création du compte...';
+            registerBtn.disabled = true;
+            
+            // Simuler l'inscription
+            setTimeout(() => {
+                // Vérifier si l'email existe déjà
+                const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+                const emailExists = existingUsers.some(user => user.email === email);
+                
+                if (emailExists) {
+                    showError('Cet email est déjà utilisé');
+                    registerBtn.innerHTML = '<i class="fas fa-user-plus mr-2"></i>Créer mon compte';
+                    registerBtn.disabled = false;
+                    return;
+                }
+                
+                // Créer le nouvel utilisateur
+                const newUser = {
+                    id: Date.now(),
+                    fullname: fullname,
+                    email: email,
+                    phone: phone,
+                    password: password, // En production, hasher le mot de passe !
+                    createdAt: new Date().toISOString()
+                };
+                
+                existingUsers.push(newUser);
+                localStorage.setItem('users', JSON.stringify(existingUsers));
+                
+                // Afficher succès
+                registerBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Compte créé !';
+                registerBtn.classList.remove('from-purple-600', 'to-blue-600');
+                registerBtn.classList.add('from-green-500', 'to-green-600');
+                
+                successText.textContent = 'Votre compte a été créé avec succès ! Redirection...';
+                successMessage.classList.remove('hidden');
+                
+                // Connecter automatiquement l'utilisateur
+                localStorage.setItem('userLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userFullname', fullname);
+                
+                // Redirection vers l'accueil
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }, 1500);
+        });
+        
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            registerForm.classList.add('animate-shake');
+            setTimeout(() => {
+                registerForm.classList.remove('animate-shake');
+            }, 500);
+        }
+        
+        // Vérifier si déjà connecté
+        window.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('userLoggedIn') || sessionStorage.getItem('userLoggedIn');
+            if (isLoggedIn === 'true') {
+                window.location.href = 'index.html';
+            }
+        });
+>>>>>>> 449064afa358cf0630d949b004d9115f8f672f54
     </script>
 </body>
 </html>
